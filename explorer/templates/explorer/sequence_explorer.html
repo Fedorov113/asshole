@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sequence Explorer</title>
+</head>
+<body>
+    <h1>Available sequence sets</h1>
+    <div style="margin-left: 16pt">
+        {% for category, fastas in categories.items %}
+        <h2><i>{{ category }}</i></h2>
+        <ul style="list-style-type:none">
+            {% for fasta in fastas%}
+                <li><a href="{{category}}/{{fasta}}">{{fasta}}</a></li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

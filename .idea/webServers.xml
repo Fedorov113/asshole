@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" name="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" url="http://cluster.ripcm.com">
+        <fileTransfer host="cluster.ripcm.com" port="22" accessType="SFTP">
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,44 @@
+
+<style>
+    div {
+    display: inline-block;
+}
+
+.threeSpread {
+
+margin: 0 0pt 0pt 0pt
+
+
+}
+
+div.inner, div.outer {
+    max-width: 30%;
+    margin-left: 4pt;
+    min-width: 200pt;
+}
+</style >
+<h1>Files for sample {{sample_name}}</h1>
+{% for key, val in files.items %}
+
+    <li><i >{{ key }}</i></li>
+    <div class="threeSpread">
+    <div class="outer">
+        <ul style="list-style-type:none">
+            <li><b>   FastQC</b></li>
+            {% for file in val%}
+            <li><a href="how/{{ key }}/{{file.0}}/fastqc">{{file.0}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="inner">
+
+        <ul style="list-style-type:none">
+           <li><b>File Size</b></li>
+            {% for file in val%}
+           <li>{{file.1}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+{% endfor %}

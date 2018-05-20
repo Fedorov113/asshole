@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="ripcm">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data6/bio/TFM/asshole" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
