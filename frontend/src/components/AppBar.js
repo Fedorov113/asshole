@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 
-import {withStyles} from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
-import {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-import Typography from 'material-ui/Typography';
+import {withStyles} from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 
 import {render} from 'react-dom'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'

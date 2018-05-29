@@ -1,4 +1,4 @@
-from ehr.org.openehr.am.aom2.definitions.AdlCodeDefinitions import AdlCodeDefinitions
+from mis.org.openehr.am.aom2.definitions.AdlCodeDefinitions import AdlCodeDefinitions
 
 
 class ArchetypeConstraint(AdlCodeDefinitions):

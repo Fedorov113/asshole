@@ -1,5 +1,5 @@
 from .Archetype import Archetype
-from ehr.org.openehr.rm.common.resource.AuthoredResource import AuthoredResource
+from mis.org.openehr.rm.common.resource.AuthoredResource import AuthoredResource
 
 class AuthoredArchetype(Archetype, AuthoredResource):
     def __init__(self):

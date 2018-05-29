@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('explorer/', include('explorer.urls')),
     path('app/', include('frontend.urls')),
-    path('api/test/', include(('explorer.api.urls', 'explorer'), namespace='api-explorer')),
-    path('api/fs/', include(('explorer.file_system.urls', 'filesystem'), namespace='fs-explorer'))
+    path('api/molot/', include(('explorer.api.urls', 'explorer'), namespace='api-explorer')),
+    path('api/fs/', include(('explorer.file_system.urls', 'filesystem'), namespace='fs-explorer')),
+    path('api/mis/', include(('mis.api.urls', 'mis'), namespace='api-mis'))
 ]

@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import ExpansionPanel, {
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-} from 'material-ui/ExpansionPanel';
-import Typography from 'material-ui/Typography';
+import {withStyles} from '@material-ui/core/styles';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+
+import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({

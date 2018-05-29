@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-class DfCard extends React.Component {
+class PersonCard extends React.Component {
 
   render() {
     const {classes} = this.props;
@@ -42,10 +42,10 @@ class DfCard extends React.Component {
                       }}>
             <CardContent>
               <Typography variant="headline" component="h2">
-                {this.props.data.df_name}
+                {this.props.data.person_name}
               </Typography>
               <Typography color="textSecondary">
-                {this.props.data.df_description}
+                {this.props.data.diagnosis}
               </Typography>
             </CardContent>
 
@@ -56,9 +56,8 @@ class DfCard extends React.Component {
   }
 }
 
-DfCard.propTypes = {
+PersonCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles)(DfCard));
-
+export default withRouter(withStyles(styles)(PersonCard));
