@@ -28,9 +28,9 @@ class Person(models.Model):
     F = 'F'
     O = 'O'
     GenderChoice = (
-        (M,"Male"),
-        (F ,"Female"),
-        (O , "Other")
+        (M,"Мужчина"),
+        (F ,"Женщина"),
+        (O , "Другое")
     )
 
     BK = 'BK'
@@ -46,6 +46,7 @@ class Person(models.Model):
 
     # General Info
     person_name = models.CharField(max_length=200)
+    person_nickname = models.CharField(max_length=200)
     date_of_birth = models.DateTimeField('Birth Date')
     gender = models.CharField(max_length=100, choices=GenderChoice)
     diagnosis = models.CharField(max_length=100, choices=DiagnosisChoice, default=H)
@@ -94,3 +95,10 @@ class FMT(models.Model):
 
     def __str__(self):
         return self.transplant_sample.sample_nickname + '__to__' + self.patient.person_name
+
+class DiseaseTerminology(models.Model):
+    mesh_code = models.CharField(max_length=100)
+    common_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.common_name+' (MeSH code '+self.mesh_code+')'

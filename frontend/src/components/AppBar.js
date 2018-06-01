@@ -20,7 +20,8 @@ import DatasetCardsGrid from "./dataset/DatasetCardsGrid"
 import DatasetFullInfo from './dataset/DatsetFullInfo'
 import AddSubjectForm from './subject/AddSubjectForm'
 import Mp2Plot from "./result/metaphlan2";
-
+import PersonFullInfo from "./subject/PersonFullInfo"
+import SampleFullInfo from './sample/SampleFullInfo'
 
 const drawerWidth = 240;
 
@@ -89,6 +90,8 @@ function ClippedDrawer(props) {
             <Route exact path='/app/dataset/:df_id/add_subject' component={AddSubjectForm}/>
             <Route exact path='/app/dataset/:df_id/add_sample/' component={AddSampleForm}/>
             <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
+            <Route exact path='/app/dataset/:df_id/person/:person_id' component={PersonFullInfo}/>
+            <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
           </Switch>
         </BrowserRouter>
       </main>

@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-class PersonCard extends React.Component {
+class ActualShitCard extends React.Component {
 
   render() {
     const {classes} = this.props;
@@ -37,18 +37,15 @@ class PersonCard extends React.Component {
         <Card className={classes.card}>
           <ButtonBase className={this.props.classes.cardAction}
                       onClick={event => {
-                        var loc = '1/person/' + this.props.data.pk;
+                        var loc = this.props.match.params.person_id + '/sample/' + this.props.data.pk;
                         this.props.history.push(loc);
                       }}>
             <CardContent>
               <Typography variant="headline" component="h2">
-                <b>{this.props.data.subject_nickname}</b>
+                <b>{this.props.data.subject_nickname}_{this.props.data.point_referent_to_fmt}</b>
               </Typography>
               <Typography color="textSecondary">
-                Пол:  <i>{this.props.data.gender}</i>
-              </Typography>
-              <Typography color="textSecondary">
-                Диагноз: <i>{this.props.data.diagnosis_name_in_study}</i>
+                Дата взятия образца:  <i>{this.props.data.date_of_collection}</i>
               </Typography>
 
             </CardContent>
@@ -60,8 +57,8 @@ class PersonCard extends React.Component {
   }
 }
 
-PersonCard.propTypes = {
+ActualShitCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles)(PersonCard));
+export default withRouter(withStyles(styles)(ActualShitCard));

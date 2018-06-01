@@ -1,8 +1,8 @@
-import {FETCH_PERSONS} from "../constants/action-types";
+import {FETCH_PERSONS, FETCH_SUBJECT} from "../constants/action-types";
 
 const initialState = {
   persons: [],
-  person: {}
+  subject: {}
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         persons: action.payload
+      };
+    case FETCH_SUBJECT:
+      return{
+        ...state,
+        subject: action.payload
       };
     default:
       return state;
