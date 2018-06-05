@@ -14,14 +14,15 @@ import Typography from '@material-ui/core/Typography';
 
 import {render} from 'react-dom'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
-import AddSampleForm from './sample/AddSampleForm'
+import AddSampleForm from './data/sample/AddSampleForm'
 
-import DatasetCardsGrid from "./dataset/DatasetCardsGrid"
-import DatasetFullInfo from './dataset/DatsetFullInfo'
-import AddSubjectForm from './subject/AddSubjectForm'
+import DatasetCardsGrid from "./data/dataset/DatasetCardsGrid"
+import DatasetFullInfo from './data/dataset/DatsetFullInfo'
+import AddSubjectForm from './data/subject/AddSubjectForm'
 import Mp2Plot from "./result/metaphlan2";
-import PersonFullInfo from "./subject/PersonFullInfo"
-import SampleFullInfo from './sample/SampleFullInfo'
+import PersonFullInfo from "./data/subject/PersonFullInfo"
+import SampleFullInfo from './data/sample/SampleFullInfo'
+import ReferenceExplorer from './action/reference_explorer'
 
 const drawerWidth = 240;
 
@@ -78,7 +79,8 @@ function ClippedDrawer(props) {
           </ListItem>
           <ListItem button>
             <ListItemText primary="Results"/>
-          </ListItem></List>
+          </ListItem>
+        </List>
       </Drawer>
 
       <main className={classes.content}>
@@ -92,6 +94,9 @@ function ClippedDrawer(props) {
             <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
             <Route exact path='/app/dataset/:df_id/person/:person_id' component={PersonFullInfo}/>
             <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
+
+            <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
+
           </Switch>
         </BrowserRouter>
       </main>

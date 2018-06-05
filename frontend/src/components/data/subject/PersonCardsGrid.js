@@ -9,8 +9,8 @@ import Radio, {RadioGroup} from '@material-ui/core/Radio';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import {fetchDatasets} from "../../actions/datasetActions";
-import DfCard from "./DatasetCard";
+import {fetchPersons} from "../../../redux/actions/personActions";
+import PersonCard from "./PersonCard";
 
 const styles = theme => ({
   root: {
@@ -29,10 +29,10 @@ const styles = theme => ({
   },
 });
 
-class DatasetCardsGrid extends React.Component {
+class PersonCardsGrid extends React.Component {
 
   componentDidMount(){
-    this.props.fetchDatasets();
+    this.props.fetchPersons();
   }
 
   render() {
@@ -40,21 +40,21 @@ class DatasetCardsGrid extends React.Component {
     return (
       <div>
         <Typography variant="display2" gutterBottom>
-          {'Available Datasets'}
+          {'Subjects in study'}
         </Typography>
 
         <Grid container className={classes.root} spacing={16}>
           <Grid container className={classes.demo} spacing={24}>
-            {this.props.datasets.map(df => (
-              <Grid key={df.id} item>
-                <DfCard data={df}/>
+            {this.props.persons.map(person => (
+              <Grid key={person.pk} item>
+                <PersonCard data={person}/>
               </Grid>
             ))}
           </Grid>
         </Grid>
 
         <Button variant="raised" color="primary" className={classes.button}>
-          Add new dataset
+          Add new
         </Button>
 
       </div>
@@ -64,13 +64,13 @@ class DatasetCardsGrid extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  datasets: state.datasets.datasets
+  persons: state.persons.persons
 });
 
-DatasetCardsGrid.propTypes = {
+PersonCardsGrid.propTypes = {
   classes: PropTypes.object.isRequired,
-  fetchDatasets: PropTypes.func.isRequired,
-  datasets: PropTypes.array.isRequired
+  fetchPersons: PropTypes.func.isRequired,
+  persons: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps, {fetchDatasets})(withStyles(styles)(DatasetCardsGrid));
+export default connect(mapStateToProps, {fetchPersons})(withStyles(styles)(PersonCardsGrid));

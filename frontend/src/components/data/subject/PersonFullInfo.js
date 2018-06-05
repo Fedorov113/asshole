@@ -14,7 +14,8 @@ import Paper from '@material-ui/core/Paper';
 import Plot from 'react-plotly.js';
 
 import ActualShitCardsGrid from '../actual_shit/ActualShitCardsGrid'
-import {fetchSubject} from "../../actions/personActions";
+import {fetchSubject} from "../../../redux/actions/personActions";
+import {fetchFmt} from "../../../redux/actions/fmtActions";
 
 const styles = theme => ({
   root: {
@@ -60,6 +61,7 @@ class PersonFullInfo extends React.Component {
   componentDidMount(){
     console.log(this.props.match.params.person_id);
     this.props.fetchSubject(this.props.match.params.person_id);
+    this.props.fetchFmt(this.props.match.params.person_id);
   }
 
   render() {
@@ -129,7 +131,8 @@ class PersonFullInfo extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  subject: state.persons.subject
+  subject: state.persons.subject,
+  fmt: state.fmt.fmt
 });
 
 PersonFullInfo.propTypes = {
@@ -139,6 +142,6 @@ PersonFullInfo.propTypes = {
 };
 
 
-export default withRouter(connect(mapStateToProps, {fetchSubject})(withStyles(styles)(PersonFullInfo)))
+export default withRouter(connect(mapStateToProps, {fetchFmt, fetchSubject})(withStyles(styles)(PersonFullInfo)))
 
 

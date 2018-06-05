@@ -45,9 +45,17 @@ class ActualShitCard extends React.Component {
                 <b>{this.props.data.subject_nickname}_{this.props.data.point_referent_to_fmt}</b>
               </Typography>
               <Typography color="textSecondary">
-                Дата взятия образца:  <i>{this.props.data.date_of_collection}</i>
+                Дата взятия образца: <i>{this.props.data.date_of_collection}</i>
               </Typography>
-
+              <Typography color="textSecondary">
+                Индекс оценки состояния: <i>{this.props.data.clinical_index_name}</i>
+              </Typography>
+              <Typography color="textSecondary">
+                Индекс сотояния: <i>{this.props.data.clinical_index_value}</i>
+              </Typography>
+              <Typography color="textSecondary">
+                Номер образца относительно ТФМ: <i>{this.props.data.point_referent_to_fmt}</i>
+              </Typography>
             </CardContent>
 
           </ButtonBase>

@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 
 
 
-import {fetchMp2Result} from "../../actions/mp2Actions";
+import {fetchMp2Result} from "../../redux/actions/mp2Actions";
 
 const styles = theme => ({
   root: {

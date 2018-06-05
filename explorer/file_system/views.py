@@ -4,6 +4,7 @@ from rest_framework import viewsets, status
 
 from . import serializers
 from .samples import get_samples_for_df_preproc
+from .ref_seq_explorer import *
 
 import pandas as pd
 from . import metaphlan2 as mp2
@@ -62,3 +63,21 @@ class Mp2View(APIView):
         mp2_data_json = list(mp2_data_json)
 
         return HttpResponse(mp2_data_json, content_type='application/json')
+
+
+class RefSeqSetsView(viewsets.ViewSet):
+    # Required for the Browsable API renderer to have a nice form.
+    serializer_class = serializers.RefSeqSetsSerializer
+
+    def list(self, request):
+        types = get_types_of_seq_sets()
+        categories_with_seq_sets = []
+        for seq_type in types:
+            seqs_for_type = get_seqs_for_seq_type(seq_type)
+            data = {'type': seq_type, 'seqs': seqs_for_type}
+            categories_with_seq_sets.append(data)
+
+        print(categories_with_seq_sets)
+        serializer = serializers.RefSeqSetsSerializer(
+            instance=categories_with_seq_sets, many=True)
+        return Response(serializer.data)

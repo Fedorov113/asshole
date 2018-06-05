@@ -1,4 +1,4 @@
-from rest_framework import generics, mixins
+from rest_framework import generics, mixins, viewsets
 from explorer.models import Dataset
 from .serializers import *
 from django.db.models import Q
@@ -32,6 +32,13 @@ class ActualShitAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
         return qs
 
+class FmtRUDView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'pk'
+    serializer_class = FmtSerializer
+
+    def get_queryset(self):
+        return FMT.objects.all()
+
 class SubjectAPIView(mixins.CreateModelMixin, generics.ListAPIView):  # Detail View
     lookup_field = 'pk'
     serializer_class = SubjectSerializer
@@ -58,3 +65,6 @@ class DatasetRUDView(generics.RetrieveUpdateDestroyAPIView):  # Detail View
     # def get_object(self):
     #     pk = self.kwargs.get('pk')
     #     return Dataset.objects.get(pk=pk)
+
+
+

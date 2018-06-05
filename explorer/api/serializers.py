@@ -63,3 +63,4 @@ class SubjectSerializer(serializers.ModelSerializer):
             'additional_info',
             'shit_samples'
         )
+

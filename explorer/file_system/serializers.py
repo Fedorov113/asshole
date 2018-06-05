@@ -6,8 +6,8 @@ class StringListField(serializers.ListField):
 
 class SampleFSSerializer(serializers.Serializer):
     sample_name = StringListField()
-#
-# class Mp2DataSerializer(serializers.Serializer):
-#
-#
-#
+
+class RefSeqSetsSerializer(serializers.Serializer):
+    type = serializers.CharField()
+    seqs = serializers.ListField(child = serializers.CharField())
+

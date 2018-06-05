@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ClippedDrawer from "./AppBar";
 import {Provider} from "react-redux";
-import store from "../store/index"
+import store from "../redux/store/index"
 
 function App() {
   return (
