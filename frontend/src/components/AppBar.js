@@ -7,9 +7,12 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/List';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
 import Typography from '@material-ui/core/Typography';
 
 import {render} from 'react-dom'
@@ -71,14 +74,11 @@ function ClippedDrawer(props) {
         }}>
         <div className={classes.toolbar}/>
         <List>
-          <ListItem button>
-            <ListItemText primary="Data"/>
+          <ListItem button component="a" href="/app/dfs">
+            <ListItemText primary="Datasets"/>
           </ListItem>
-          <ListItem button>
-            <ListItemText primary="Actions"/>
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Results"/>
+          <ListItem button component="a" href="/app/ref_seq">
+            <ListItemText primary="Reference Sequences"/>
           </ListItem>
         </List>
       </Drawer>
@@ -87,7 +87,7 @@ function ClippedDrawer(props) {
         <div className={classes.toolbar}/>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/app/' component={DatasetCardsGrid}/>
+            <Route exact path='/app/dfs' component={DatasetCardsGrid}/>
             <Route exact path='/app/dataset/:df_id' component={DatasetFullInfo}/>
             <Route exact path='/app/dataset/:df_id/add_subject' component={AddSubjectForm}/>
             <Route exact path='/app/dataset/:df_id/add_sample/' component={AddSampleForm}/>

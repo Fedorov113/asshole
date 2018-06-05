@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom';
 import SamplesByDirTabs from '../sample/SampleByDirTabs'
 import PersonCardsGrid from '../subject/PersonCardsGrid'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const styles = theme => ({
   root: {
@@ -22,9 +23,6 @@ const styles = theme => ({
   },
   control: {
     padding: 24,
-  },
-  button: {
-    margin: 18,
   },
   content: {
     marginLeft: 18,
@@ -39,7 +37,7 @@ class DatasetFullInfo extends React.Component {
       df: '',
       samples: [],
       loaded: false,
-      placeholder: "Loading...",
+      placeholder: <LinearProgress/>,
     };
   }
 

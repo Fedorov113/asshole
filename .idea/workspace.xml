@@ -2,46 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f08cfec-28e1-4b40-a220-9c8253d3597e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/explorer/file_system/ref_seq_explorer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/action/ReferencePanel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/data/fmt/FmtCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/actions/fmtActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/actions/seqSetsActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/fmtReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/seqSetsReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/result/mp2_scatter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/file_system/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/file_system/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/actions/datasetActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/actions/mp2Actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/actions/personActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/personActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/AppBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AppBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/actual_shit/ActualShitCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/actual_shit/ActualShitCardsGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCardsGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/dataset/DatasetCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/dataset/DatasetCardsGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/dataset/DatsetFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sample/AddSampleForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/AddSampleForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sample/SampleByDirTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/SampleByDirTabs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sample/SampleFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/SampleFullInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/sample/SamplesExpandableList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesExpandableList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/subject/AddSubjectForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/subject/AddSubjectForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/subject/PersonCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/subject/PersonCardsGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonCardsGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/subject/PersonFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/constants/action-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/datasetReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/mp2Reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/personReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/personReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,64 +37,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="seqSetsActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/seqSetsActions.js">
+      <file leaf-file-name="metaphlan2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/metaphlan2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            <state relative-caret-position="-92">
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#167#223#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seqSetsReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/seqSetsReducer.js">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="1" />
+            <state relative-caret-position="-78">
+              <caret line="67" column="20" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#2367#2990#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datasetActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reference_explorer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js">
+      <file leaf-file-name="action-types.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/redux/constants/action-types.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+              <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReferencePanel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/action/ReferencePanel.js">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+            <state relative-caret-position="378">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppBar.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/AppBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2016">
-              <caret line="96" column="43" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,20 +86,17 @@
       <file leaf-file-name="PersonFullInfo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-708">
-              <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActualShitCardsGrid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCardsGrid.js">
+      <file leaf-file-name="mp2_scatter.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/result/mp2_scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="59" column="15" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="59" selection-end-column="15" />
+            <state relative-caret-position="258">
+              <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -153,20 +104,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatsetFullInfo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
+      <file leaf-file-name="metaphlan2.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="785">
-              <caret line="94" column="26" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
+            <state relative-caret-position="405">
+              <caret line="69" column="9" lean-forward="true" selection-start-line="59" selection-start-column="6" selection-end-line="69" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SamplesExpandableList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SamplesExpandableList.js">
+      <file leaf-file-name="mp2Actions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-987">
-              <caret line="6" column="76" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
+            <state relative-caret-position="294">
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mp2Reducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -196,11 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/asshole/settings.py" />
-        <option value="$PROJECT_DIR$/ehr/admin.py" />
-        <option value="$PROJECT_DIR$/ehr/models.py" />
-        <option value="$PROJECT_DIR$/ehr/api/serializers.py" />
-        <option value="$PROJECT_DIR$/ehr/api/views.py" />
         <option value="$PROJECT_DIR$/ehr/api/urls.py" />
         <option value="$PROJECT_DIR$/asshole/urls.py" />
         <option value="$PROJECT_DIR$/frontend/src/actions/datasetActions.js" />
@@ -234,19 +192,24 @@
         <option value="$PROJECT_DIR$/frontend/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/fmt/FmtCard.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/subject/PersonFullInfo.js" />
-        <option value="$PROJECT_DIR$/frontend/src/components/AppBar.js" />
         <option value="$PROJECT_DIR$/explorer/api/views.py" />
         <option value="$PROJECT_DIR$/explorer/api/serializers.py" />
-        <option value="$PROJECT_DIR$/explorer/file_system/urls.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/ref_seq_explorer.py" />
-        <option value="$PROJECT_DIR$/explorer/file_system/views.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/serializers.py" />
-        <option value="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/reducers/index.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/reducers/seqSetsReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/actions/seqSetsActions.js" />
-        <option value="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/action/ReferencePanel.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/AppBar.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" />
+        <option value="$PROJECT_DIR$/explorer/file_system/views.py" />
+        <option value="$PROJECT_DIR$/explorer/file_system/urls.py" />
+        <option value="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" />
+        <option value="$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js" />
+        <option value="$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/result/mp2_scatter.js" />
       </list>
     </option>
   </component>
@@ -284,6 +247,11 @@
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
@@ -344,6 +312,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="fmt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -354,6 +331,14 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="subject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="result" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
@@ -474,9 +459,9 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32915717" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4975945" visible="true" weight="0.3644647" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4975945" visible="true" weight="0.3644647" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.24398625" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.24398625" />
       <window_info anchor="right" id="R Packages" order="7" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="4" />
@@ -533,37 +518,11 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SampleByDirTabs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="45" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/subject/AddSubjectForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/AddSampleForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asshole/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1716" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mis/admin.py">
@@ -632,16 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="903">
@@ -659,24 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="17" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -705,17 +640,6 @@
         <state>
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/metaphlan2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#167#223#0" />
-            <element signature="e#303#1468#0" />
           </folding>
         </state>
       </provider>
@@ -784,37 +708,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/explorer/file_system/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/redux/constants/action-types.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -882,13 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="785">
-          <caret line="94" column="26" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SamplesExpandableList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-987">
@@ -903,16 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-708">
-          <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCardsGrid.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -923,20 +803,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js">
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state>
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1092">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/subject/AddSubjectForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/action/ReferencePanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+        <state relative-caret-position="92">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="31" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -945,10 +841,106 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/AppBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2016">
-          <caret line="96" column="43" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="43" />
+        <state relative-caret-position="181">
+          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-462">
+          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-78">
+          <caret line="67" column="20" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#2367#2990#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/metaphlan2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92">
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#167#223#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/redux/constants/action-types.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="59" selection-start-column="6" selection-end-line="69" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/result/mp2_scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="85" column="13" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

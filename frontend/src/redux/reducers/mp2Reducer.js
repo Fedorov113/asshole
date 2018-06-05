@@ -1,7 +1,8 @@
-import {FETCH_MP2} from "../constants/action-types";
+import {FETCH_MP2,FETCH_MP2_SCATTER} from "../constants/action-types";
 
 const initialState = {
-  mp2: {}
+  mp2: {},
+  mp2_scatter: {}
 };
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         mp2: action.payload
+      };
+    case FETCH_MP2_SCATTER:
+      return {
+        ...state,
+        mp2_scatter: action.payload
       };
     default:
       return state;

@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import Plot from 'react-plotly.js';
 
 import ActualShitCardsGrid from '../actual_shit/ActualShitCardsGrid'
+import Mp2ScatterPlot from '../../result/mp2_scatter'
 import {fetchSubject} from "../../../redux/actions/personActions";
 import {fetchFmt} from "../../../redux/actions/fmtActions";
 
@@ -116,6 +117,8 @@ class PersonFullInfo extends React.Component {
         </Card>
         </Grid>
       </Grid>
+
+      <Mp2ScatterPlot/>
 
       <div className={classes.content}>
 

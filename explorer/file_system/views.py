@@ -65,6 +65,31 @@ class Mp2View(APIView):
         return HttpResponse(mp2_data_json, content_type='application/json')
 
 
+class Mp2ScatterView(APIView):
+    def get(self, request):
+        # THIS STUFF DOESN'T BELONG HERE!!!!
+        base_dir = '/data6/bio/TFM/pipeline'
+        metaphlan2_dir = '/datasets/FHM/taxa/reads/trimmomatic/metaphlan2/'
+        mp2_dir = base_dir + metaphlan2_dir
+        dir_strand_only = base_dir + '/datasets/FHM/taxa/reads/trimmomatic/metaphlan2/R1/'
+
+        ext = '.mp2'
+        d2t3 = {"DFM_002_F1_S9": mp2_dir + 'DFM_002_F1_S9' + ext,
+                'TFM_003_F1-1_S6': mp2_dir + 'TFM_003_F1-1_S6' + ext,
+                'TFM_003_F1-3_S7': mp2_dir + 'TFM_003_F1-3_S7' + ext,
+                '3F5_S61': dir_strand_only + '3F5_S61' + ext}
+
+        mp2_data = mp2.read_mp2_data(d2t3, level='f__', org='Bacteria', norm_100=True)
+        mp2_data = mp2_data.reset_index().drop(['index'], axis=1)
+        mp2_data = mp2_data.fillna(0)
+
+        mp2_data_dict = mp2_data.to_dict(orient='list')
+        mp2_data_json = json.dumps(mp2_data_dict)
+        mp2_data_json = list(mp2_data_json)
+
+        return HttpResponse(mp2_data_json, content_type='application/json')
+
+
 class RefSeqSetsView(viewsets.ViewSet):
     # Required for the Browsable API renderer to have a nice form.
     serializer_class = serializers.RefSeqSetsSerializer
