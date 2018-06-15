@@ -26,6 +26,7 @@ import Mp2Plot from "./result/metaphlan2";
 import PersonFullInfo from "./data/subject/PersonFullInfo"
 import SampleFullInfo from './data/sample/SampleFullInfo'
 import ReferenceExplorer from './action/reference_explorer'
+import Mapping from './action/mapping'
 
 const drawerWidth = 240;
 
@@ -80,6 +81,9 @@ function ClippedDrawer(props) {
           <ListItem button component="a" href="/app/ref_seq">
             <ListItemText primary="Reference Sequences"/>
           </ListItem>
+          <ListItem button component="a" href="/app/mapping">
+            <ListItemText primary="Mapping"/>
+          </ListItem>
         </List>
       </Drawer>
 
@@ -96,6 +100,7 @@ function ClippedDrawer(props) {
             <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
 
             <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
+            <Route exact path='/app/mapping' component={Mapping}/>
 
           </Switch>
         </BrowserRouter>

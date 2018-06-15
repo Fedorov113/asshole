@@ -43,13 +43,12 @@ class Mp2ScatterPlot extends React.Component {
       let i = 0;
       Object.keys(mp2).forEach(function (key) {
         if (key !== 'sample') {
-          console.log(mp2[key]);
+          console.log(Math.log2(mp2[key]));
           let data = {
             x: [0, 1, 2, 3],
             y: mp2[key],
             type: 'scatter',
             mode: 'lines+points',
-            marker: {color: 'red'},
             name: key.split('__').slice(-1)[0] // Getting only last part of string
           };
           dataToPlot.push(data)

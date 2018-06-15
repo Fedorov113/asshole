@@ -4,11 +4,13 @@ import mp2Reducer from './mp2Reducer'
 import personReducer from './personReducer'
 import fmtReducer from './fmtReducer'
 import seqSetsReducer from './seqSetsReducer'
+import mappingReducer from './mappingReducer'
 
 export default combineReducers({
   datasets: datasetReducer,
   mp2: mp2Reducer,
   persons: personReducer,
   fmt:fmtReducer,
-  seq_sets: seqSetsReducer
+  seq_sets: seqSetsReducer,
+  mapping: mappingReducer,
 });

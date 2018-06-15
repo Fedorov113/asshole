@@ -1,18 +1,17 @@
 from django.http import HttpResponse
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 
-from . import serializers
-from .samples import get_samples_for_df_preproc
-from .ref_seq_explorer import *
+from explorer.file_system.api import serializers
+from explorer.file_system.samples import get_samples_for_df_preproc
+from explorer.file_system.ref_seq_explorer import *
 
 import pandas as pd
-from . import metaphlan2 as mp2
-from rest_pandas import PandasSimpleView
+from explorer.file_system import metaphlan2 as mp2
 
-from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 import json
+import explorer.file_system.helpers as hp
 
 class SampleFSViewSet(viewsets.ViewSet):
     # Required for the Browsable API renderer to have a nice form.
@@ -88,6 +87,58 @@ class Mp2ScatterView(APIView):
         mp2_data_json = list(mp2_data_json)
 
         return HttpResponse(mp2_data_json, content_type='application/json')
+
+class MappedView(APIView):
+    def get(self, request, dataset, preproc, tool, seq_type, seq_name, postproc):
+        datasets_dir = settings.PIPELINE_DIR + '/datasets/'
+        search_dir = datasets_dir + '{0}/mapped/{1}/{2}/{3}/{4}/{5}/'
+        search_dir = search_dir.format(dataset, preproc, tool, seq_type, seq_name, postproc)
+        mapped_files = get_files_from_path_with_ext(search_dir, '.bb_stats', only_names = False)
+
+        # remove dir to datasets
+        for i, f in enumerate(mapped_files):
+            mapped_files[i] = f.replace(datasets_dir, '')
+            print(f)
+
+        if len(mapped_files) > 0:
+            myFiles = FileSystem(mapped_files[0])
+            for i, record in enumerate(mapped_files[1:]):
+                myFiles.add_child(record)
+
+        query_params = self.request.query_params
+        samples = query_params.get('samples', None)
+        samples_to_plot = []
+
+        if samples is not None:
+            samples = samples.split(',')
+
+            for i, s in enumerate(samples):
+                samples[i] = s.split('.')[0]
+
+            print(samples)
+            print(search_dir)
+            mapping_res = hp.load_cov_stats(samples, search_dir, '.bb_stats')
+            clean_mapping_res = mapping_res
+            ## leave only norm_fold for heatmap
+            cols = mapping_res.columns
+            for col in cols:
+                if not (col == '#ID' or 'Norm_fold' in col):
+                    clean_mapping_res = clean_mapping_res.drop(col, axis=1)
+
+            # set #ID as index
+            clean_mapping_res = clean_mapping_res.set_index('#ID')
+            # fill NaN values with 0
+            clean_mapping_res = clean_mapping_res.fillna(0)
+            # drop all rowes that contain only 0
+            clean_mapping_res = clean_mapping_res[(clean_mapping_res.T != 0).any()]
+            clean_mapping_res_dict = clean_mapping_res.to_dict(orient='split')
+            clean_mapping_res_json = json.dumps(clean_mapping_res_dict)
+            clean_mapping_res_json = list(clean_mapping_res_json)
+
+            return HttpResponse(clean_mapping_res_json, content_type='application/json')
+
+
+        return HttpResponse(json.dumps(myFiles.make_dict()), content_type='application/json')
 
 
 class RefSeqSetsView(viewsets.ViewSet):
