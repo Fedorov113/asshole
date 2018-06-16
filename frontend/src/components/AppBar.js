@@ -27,6 +27,7 @@ import PersonFullInfo from "./data/subject/PersonFullInfo"
 import SampleFullInfo from './data/sample/SampleFullInfo'
 import ReferenceExplorer from './action/reference_explorer'
 import Mapping from './action/mapping'
+import MappingRuleGenerator from './action/MappingRuleGenerator'
 
 const drawerWidth = 240;
 
@@ -84,6 +85,9 @@ function ClippedDrawer(props) {
           <ListItem button component="a" href="/app/mapping">
             <ListItemText primary="Mapping"/>
           </ListItem>
+          <ListItem button component="a" href="/app/mapping_rule">
+            <ListItemText primary="Mapping Rule Generator"/>
+          </ListItem>
         </List>
       </Drawer>
 
@@ -101,6 +105,7 @@ function ClippedDrawer(props) {
 
             <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
             <Route exact path='/app/mapping' component={Mapping}/>
+            <Route exact path='/app/mapping_rule' component={MappingRuleGenerator}/>
 
           </Switch>
         </BrowserRouter>

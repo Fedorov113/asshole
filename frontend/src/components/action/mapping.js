@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -263,6 +264,14 @@ class Mapping extends React.Component {
     if (this.state.need_parsing === true) {
       this.parseFileStructure(this.state.df, this.state.preproc, this.state.tool, this.state.type,
         this.state.seq_set_name, this.state.postproc);
+      // if(this.state.dfs.length === 1)
+      //   this.setState({['df']: this.state.dfs[0]});
+      // if(this.state.postprocs.length === 1)
+      //   this.setState({['postproc']: this.state.postprocs[0]});
+      // if(this.state.preprocs.length === 1)
+      //   this.setState({['preproc']: this.state.preprocs[0]});
+      // if(this.state.tools.length === 1)
+      //   this.setState({['tool']: this.state.tools[0]});
     }
 
     let dataToPlot = [];
@@ -461,8 +470,8 @@ class Mapping extends React.Component {
             <Plot
               useResizeHandler={true}
               data={dataToPlot}
-              style={{width: '100%', minHeight: '1000px'}}
-              layout={{autosize: true, title: 'Taxonomic composition'}}
+              style={{width: '100%', minHeight: '1000px', marginTop: '12pt'}}
+              layout={{autosize: true, title: 'Mapping Heatmap'}}
             />
           </div>
         </div>

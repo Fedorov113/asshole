@@ -157,3 +157,12 @@ class RefSeqSetsView(viewsets.ViewSet):
         serializer = serializers.RefSeqSetsSerializer(
             instance=categories_with_seq_sets, many=True)
         return Response(serializer.data)
+
+class ReadsView(APIView):
+    def get(self, request, df, preproc):
+        datasets_dir = settings.PIPELINE_DIR + '/datasets/'
+        search_dir = datasets_dir + '{0}/reads/{1}/'
+        search_dir = search_dir.format(df, preproc)
+        read_files = get_files_from_path_with_ext(search_dir, '.bb_stats', only_names=False)
+
+        return HttpResponse('clean_mapping_res_json', content_type='application/json')

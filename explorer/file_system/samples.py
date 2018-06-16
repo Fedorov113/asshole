@@ -52,7 +52,7 @@ def get_samples_for_df(df_name, preproc, batch_id):
     df_files.sort()
     return df_files
 
-def get_samples_for_df_preproc(df_name, preproc, batch_id = None):
+def get_samples_for_df_preproc(df_name, preproc, full_path = False):
     """
     Returns list of
     :param df_name:
@@ -77,15 +77,19 @@ def get_samples_for_df_preproc(df_name, preproc, batch_id = None):
             with_R1 = glob.glob(sample_files_dir+'*'+STRAND + EXT)
             if len(with_R1) > 0:
                 print( "contains files with _R1" )
-                samples_in_dir = [
-                    item.split("/")[-1].split(STRAND + EXT)[0]
-                    for item in with_R1
-                ]
+                if full_path:
+                    pass
+                else:
+                    samples_in_dir = [
+                        item.split("/")[-1].split(STRAND + EXT)[0]
+                        for item in with_R1
+                    ]
             else:
                 samples_in_dir = [
                     item.split("/")[-1].split(EXT)[0]
                     for item in fqgz_files_in_dir
                 ]
+
     samples_in_dir.sort()
     return samples_in_dir
 
