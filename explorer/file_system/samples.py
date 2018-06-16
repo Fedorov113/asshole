@@ -1,6 +1,6 @@
 import os, glob
 from django.conf import settings
-from .general import *
+from .file_system_helpers import *
 
 STRAND = '_R1'
 EXT = '.fastq.gz'

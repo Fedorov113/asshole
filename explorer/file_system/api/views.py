@@ -89,6 +89,7 @@ class Mp2ScatterView(APIView):
         return HttpResponse(mp2_data_json, content_type='application/json')
 
 class MappedView(APIView):
+
     def get(self, request, dataset, preproc, tool, seq_type, seq_name, postproc):
         datasets_dir = settings.PIPELINE_DIR + '/datasets/'
         search_dir = datasets_dir + '{0}/mapped/{1}/{2}/{3}/{4}/{5}/'
@@ -115,8 +116,6 @@ class MappedView(APIView):
             for i, s in enumerate(samples):
                 samples[i] = s.split('.')[0]
 
-            print(samples)
-            print(search_dir)
             mapping_res = hp.load_cov_stats(samples, search_dir, '.bb_stats')
             clean_mapping_res = mapping_res
             ## leave only norm_fold for heatmap
@@ -160,9 +159,20 @@ class RefSeqSetsView(viewsets.ViewSet):
 
 class ReadsView(APIView):
     def get(self, request, df, preproc):
-        datasets_dir = settings.PIPELINE_DIR + '/datasets/'
+        pipeline_dir = settings.PIPELINE_DIR +'/'
+        datasets_dir = pipeline_dir + 'datasets/'
         search_dir = datasets_dir + '{0}/reads/{1}/'
         search_dir = search_dir.format(df, preproc)
-        read_files = get_files_from_path_with_ext(search_dir, '.bb_stats', only_names=False)
+        read_files = glob.glob(search_dir  + '*' + '.fastq.gz')
+        read_files.sort()
 
-        return HttpResponse('clean_mapping_res_json', content_type='application/json')
+        rifs = ReadsInSystem(pipeline_dir, read_files[0].replace(pipeline_dir, ''))
+
+        for i, record in enumerate(read_files[1:]):
+            record = record.replace(pipeline_dir, '')
+            rifs.add_child(pipeline_dir, record)
+
+        mapped_dict_from_fs(rifs)
+
+        return HttpResponse(json.dumps(rifs.to_dict()), content_type='application/json')
+

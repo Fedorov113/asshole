@@ -1,5 +1,5 @@
 from django.conf import settings
-from .general import *
+from .file_system_helpers import *
 import os, glob
 
 def getAllSeqSetsWithCategory():
