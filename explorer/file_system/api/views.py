@@ -108,28 +108,57 @@ class MappedView(APIView):
 
         query_params = self.request.query_params
         samples = query_params.get('samples', None)
-        samples_to_plot = []
+        query_filter = query_params.get('filter', None)
 
         if samples is not None:
             samples = samples.split(',')
-
             for i, s in enumerate(samples):
                 samples[i] = s.split('.')[0]
-
+            query_string = ''
+            print(samples)
+            print(search_dir)
             mapping_res = hp.load_cov_stats(samples, search_dir, '.bb_stats')
-            clean_mapping_res = mapping_res
+
+
+            # apply filter if exists
+            if query_filter is not None and query_filter != '':
+                print(query_filter)
+                query_filter = query_filter.replace('and', '&')
+                query_filter = query_filter.replace('or', '|')
+                for sample in samples:
+                    query_string += query_filter.format(s = sample)
+                query_string = query_string[0:-3]
+                print(query_string)
+                mapping_res = hp.get_df_from_query(mapping_res, query_string)
+
+
             ## leave only norm_fold for heatmap
             cols = mapping_res.columns
             for col in cols:
                 if not (col == '#ID' or 'Norm_fold' in col):
-                    clean_mapping_res = clean_mapping_res.drop(col, axis=1)
+                    mapping_res = mapping_res.drop(col, axis=1)
+
+
+            # # Only with hosts
+            # vir_info_loc = '/data6/bio/TFM/pipeline/data/ref/virus/IMGVR_mVCs_nucleotides.info.tsv'
+            # vir_info = pd.read_csv(vir_info_loc, sep='\t', low_memory=False)
+            # with_hosts = vir_info.loc[vir_info['Host'].notna()]
+            # with_hosts_list = list(with_hosts['mVCs'])
+            # mapping_res = mapping_res.loc[mapping_res['#ID'].isin(with_hosts_list)]
+
 
             # set #ID as index
-            clean_mapping_res = clean_mapping_res.set_index('#ID')
+            mapping_res = mapping_res.set_index('#ID')
             # fill NaN values with 0
-            clean_mapping_res = clean_mapping_res.fillna(0)
+            mapping_res = mapping_res.fillna(0)
             # drop all rowes that contain only 0
-            clean_mapping_res = clean_mapping_res[(clean_mapping_res.T != 0).any()]
+            #clean_mapping_res = clean_mapping_res[(clean_mapping_res.T != 0).any()]
+            cols = mapping_res.columns
+            rename_cols = {}
+            for i, col in enumerate(cols):
+                rename_cols[col] = col.replace('Norm_fold__', '')
+            clean_mapping_res =mapping_res.rename(rename_cols, axis='columns')
+
             clean_mapping_res_dict = clean_mapping_res.to_dict(orient='split')
             clean_mapping_res_json = json.dumps(clean_mapping_res_dict)
             clean_mapping_res_json = list(clean_mapping_res_json)
@@ -163,7 +192,7 @@ class ReadsView(APIView):
         datasets_dir = pipeline_dir + 'datasets/'
         search_dir = datasets_dir + '{0}/reads/{1}/'
         search_dir = search_dir.format(df, preproc)
-        read_files = glob.glob(search_dir  + '*' + '.fastq.gz')
+        read_files = glob.glob(search_dir  + '*/*.fastq.gz')
         read_files.sort()
 
         rifs = ReadsInSystem(pipeline_dir, read_files[0].replace(pipeline_dir, ''))

@@ -16,7 +16,13 @@ import Chip from '@material-ui/core/Chip';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import indigo from '@material-ui/core/colors/indigo';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField';
+
+
 
 import Plot from 'react-plotly.js';
 
@@ -32,11 +38,31 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 200
+  },
+  textFieldLong: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 500,
   },
   formControl: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit * 2,
     minWidth: 120,
+    padding: theme.spacing.unit,
+  },
+  formControlLong: {
+    margin: theme.spacing.unit * 2,
+    minWidth: 350,
+    padding: theme.spacing.unit,
+  },
+  text: {
+    width: 400
+  },
+  block: {
+    margin: theme.spacing.unit * 2,
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`,
   },
   menu: {
     width: 200,
@@ -72,7 +98,11 @@ class Mapping extends React.Component {
     files: [],
     loaded: false,
     need_update: false,
-    need_parsing: true
+    need_parsing: true,
+    value: 'female',
+    min_avg_cov: '',
+    min_width: '',
+    filter_query: 'Avg_fold_{s} > 0.5 and Covered_percent_{s} > 45 or '
   };
 
   componentDidMount() {
@@ -97,6 +127,12 @@ class Mapping extends React.Component {
     this.setState({[event.target.name]: event.target.value});
     this.state.need_update = true;
     this.state.need_parsing = true;
+  };
+
+  handleTextChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
   };
 
   parseFileStructure(df, preproc, tool, seq_type, seq_name, postproc) {
@@ -225,7 +261,7 @@ class Mapping extends React.Component {
     }
     console.log(selected_samples);
     this.props.fetchMappingForHeatmap(this.state.df, this.state.preproc, this.state.tool, this.state.type,
-      this.state.seq_set_name, this.state.postproc, selected_samples);
+      this.state.seq_set_name, this.state.postproc, selected_samples, this.state.filter_query);
   };
 
   selectAll = data => () => {
@@ -253,6 +289,7 @@ class Mapping extends React.Component {
 
     console.log('rendering');
     console.log(this.state.files);
+    console.log(this.state.min_width);
 
     this.state.dfs = [];
     for (let key in this.props.mapping_files) {
@@ -290,11 +327,11 @@ class Mapping extends React.Component {
     if (this.state.loaded === true) {
       return (
         <div>
-          <Typography variant="display3">
+          <Typography variant="display1">
             Mapping Explorer
           </Typography>
           <div>
-            <Typography variant="display1">
+            <Typography>
               Select reference
             </Typography>
             <FormControl className={classes.formControl}>
@@ -345,7 +382,7 @@ class Mapping extends React.Component {
           </div>
 
           <div>
-            <Typography variant="display1">
+            <Typography>
               Select samples
             </Typography>
             <FormControl className={classes.formControl}>
@@ -463,17 +500,50 @@ class Mapping extends React.Component {
                 />
               ))}
             </Paper>
-            <div>
-
-            </div>
-
-            <Plot
-              useResizeHandler={true}
-              data={dataToPlot}
-              style={{width: '100%', minHeight: '1000px', marginTop: '12pt'}}
-              layout={{autosize: true, title: 'Mapping Heatmap'}}
-            />
           </div>
+
+          <div>
+            <Paper className={classes.block}>
+              <Typography>Filter by average coverage and coverage percent</Typography>
+              <FormControl component="fieldset" required className={classes.formControl}>
+                <FormLabel component="legend">Type</FormLabel>
+                <RadioGroup
+                  aria-label="gender"
+                  name="gender1"
+                  className={classes.group}
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                >
+                  <FormControlLabel value="at_least_one" control={<Radio/>} label="At least 1 contains"/>
+                  <FormControlLabel
+                    value="disabled"
+                    disabled
+                    control={<Radio/>}
+                    label="(Disabled option)"
+                  />
+                </RadioGroup>
+              </FormControl>
+              <FormControl className={classes.formControlLong}>
+                <TextField
+                  fullWidth
+                  id="filter_query"
+                  label="Filter Query"
+                  className={classes.textFieldLong}
+                  value={this.state.filter_query}
+                  onChange={this.handleTextChange('filter_query')}
+                  margin="normal"
+                  multiline
+                  rowsMax="3"
+                />
+              </FormControl>
+            </Paper>
+          </div>
+          <Plot
+            useResizeHandler={true}
+            data={dataToPlot}
+            style={{width: '100%', minHeight: '1000px', marginTop: '12pt'}}
+            layout={{autosize: true, title: 'Mapping Heatmap'}}
+          />
         </div>
       )
     }

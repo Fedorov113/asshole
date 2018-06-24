@@ -51,3 +51,19 @@ def load_coverage(samples, folder, ext='.bb_stats'):
         cov_tf = pd.read_csv(cov_file, sep='\t', header=None, names=['seq', 'start', 'stop', 'cover'])
         dfs.append(cov_tf)
     return dfs
+
+
+def get_df_from_query(data, q):
+    # Because it doesn't accept these symbols in query, remove
+    delete_symb = str.maketrans(dict.fromkeys("-_"))
+    q = q.translate(delete_symb)
+
+    df = data
+    cols_before = data.columns
+    cols = cols_before.map(lambda x: x.replace('_', '').replace('-', ''))
+    df.columns = cols
+    df = df.query(q)
+    df.columns = cols_before
+    data.columns = cols_before
+
+    return df

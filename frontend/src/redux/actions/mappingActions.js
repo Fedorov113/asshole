@@ -14,7 +14,7 @@ export function fetchMappingForRef(df, preproc, tool, seq_type, seq_name, postpr
   }
 }
 
-export function fetchMappingForHeatmap(df, preproc, tool, seq_type, seq_name, postproc, samples) {
+export function fetchMappingForHeatmap(df, preproc, tool, seq_type, seq_name, postproc, samples, filter_query) {
   return function (dispatch) {
     if (samples.length < 1)
       return 0;
@@ -25,6 +25,8 @@ export function fetchMappingForHeatmap(df, preproc, tool, seq_type, seq_name, po
       if (i !== samples.length-1)
         url += ','
     }
+    console.log("we are fetching" + filter_query);
+    url = url + '&filter=' + filter_query;
     console.log(url);
     fetch(url)
       .then(response => response.json())
