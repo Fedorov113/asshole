@@ -22,10 +22,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 
-
-
 import Plot from 'react-plotly.js';
-
 
 import {fetchSeqSets} from "../../redux/actions/seqSetsActions";
 import {fetchMappingForRef, fetchMappingForHeatmap} from "../../redux/actions/mappingActions"

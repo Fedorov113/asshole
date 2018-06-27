@@ -63,6 +63,13 @@ class Mp2View(APIView):
 
         return HttpResponse(mp2_data_json, content_type='application/json')
 
+class Mp2BoxView(APIView):
+    def get(self, request, dataset, preproc):
+        mp2_dir = settings.PIPELINE_DIR + '/datasets/'
+        mp2_dir += '{df}/taxa/reads/{preproc}/mp2/'
+        mp2_dir = mp2_dir.format(df = dataset, preproc = preproc)
+
+        return 0
 
 class Mp2ScatterView(APIView):
     def get(self, request):
@@ -167,7 +174,6 @@ class MappedView(APIView):
 
 
         return HttpResponse(json.dumps(myFiles.make_dict()), content_type='application/json')
-
 
 class RefSeqSetsView(viewsets.ViewSet):
     # Required for the Browsable API renderer to have a nice form.

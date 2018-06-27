@@ -5,6 +5,7 @@ import personReducer from './personReducer'
 import fmtReducer from './fmtReducer'
 import seqSetsReducer from './seqSetsReducer'
 import mappingReducer from './mappingReducer'
+import sampleReducer from './sampleReducer'
 
 export default combineReducers({
   datasets: datasetReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   fmt:fmtReducer,
   seq_sets: seqSetsReducer,
   mapping: mappingReducer,
+  sample: sampleReducer
 });

@@ -27,7 +27,6 @@ def get_files_from_path_with_ext(directory, extension, only_names=True):
 
 class FileSystem:
     debug = False
-
     def __init__(self, file_path=None):
         self.children = []
         if file_path is not None:
@@ -140,6 +139,17 @@ class ReadsInSystem:
                         self.name = path
                         self.type = 'file'
                         self.full_path = parent_path + path
+                        split = path.split('.')
+                        if split[1] == 'fastq' and split[2] == 'gz':
+                            self.size = sizeof_fmt(os.path.getsize(parent_path + path))
+                            # get counts
+                            self.reads = 0
+                            self.bp = 0
+                            if os.path.isfile(parent_path + split[0] + '.count'):
+                                with open(parent_path + split[0] + '.count', 'r') as count:
+                                    splits = count.readline().split(' ')
+                                    self.reads = splits[0]
+                                    self.bp = splits[1]
         else:
             print('We dont like it')
             print('Parent: ' + parent_path)
@@ -193,10 +203,14 @@ class ReadsInSystem:
                 dictionary['children'].append(child.to_dict())
             return dictionary
         else:
-            return {'node_name': self.name,
+            if self.type == 'file':
+                return {'node_name': self.name,
                     'full_path': self.full_path,
                     'type': self.type,
-                    'level': self.level}
+                    'level': self.level,
+                    'size': self.size,
+                    'bp': self.bp,
+                    'reads': self.reads}
 
 
 def create_fs_object_from_list_of_dirs(list_of_dirs, prefix_path=''):

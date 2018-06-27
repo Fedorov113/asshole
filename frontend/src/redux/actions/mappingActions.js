@@ -1,6 +1,5 @@
 import {FETCH_MAPPING_FOR_REF, FETCH_MAPPING_FOR_HEATMAP} from "../constants/action-types";
 
-
 export function fetchMappingForRef(df, preproc, tool, seq_type, seq_name, postproc) {
   return function (dispatch) {
     let url = '/api/fs/mapping/'+df+'/'+preproc+'/'+tool+'/'+seq_type+'/'+seq_name+'/'+postproc;
