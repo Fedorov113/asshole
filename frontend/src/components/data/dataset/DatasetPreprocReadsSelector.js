@@ -1,16 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 
-
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import FormControl from '@material-ui/core/FormControl';
@@ -18,23 +10,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 
-
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Input from '@material-ui/core/Input';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-
-import Plot from 'react-plotly.js';
-
-import DatasetPreprocReadsSelector from '../dataset/DatasetPreprocReadsSelector'
-
 import {fetchReads} from "../../../redux/actions/sampleActions";
-import {fetchDatasetsFS, fetchDatasetsPreprocsFS} from "../../../redux/actions/datasetActions";
+import {fetchDatasets, fetchDatasetsFS, fetchDatasetsPreprocsFS} from "../../../redux/actions/datasetActions";
 
 const styles = theme => ({
   container: {
@@ -63,8 +40,7 @@ function createDataForTable(name, r1_size, r2_size, bp, reads) {
   return {id, name, r1_size, r2_size, bp, reads}
 }
 
-class SamplesTableView extends React.Component {
-
+class DatasetPreprocReadsSelector extends React.Component {
   state = {
     df: '*',
     preproc: '*',
@@ -97,7 +73,9 @@ class SamplesTableView extends React.Component {
       reads += parseInt(file['reads']);
     }
     this.state.samples_w_reads.push(sample);
-    this.state.data.push(createDataForTable(sample_name, r1_size, r2_size, bp, reads))
+    this.state.data.push(createDataForTable(sample_name, r1_size, r2_size, bp, reads));
+
+
   };
 
   parseFSNode = (fsNode) => {
@@ -136,6 +114,7 @@ class SamplesTableView extends React.Component {
     if (this.state.need_parsing === true) {
       console.log('PARSING');
       this.parseFSNode(fsObject);
+      this.props.callbackFromParent({df:this.state.df, preproc:this.state.preproc});
       this.setState({['need_parsing']: false});
     }
   };
@@ -176,97 +155,11 @@ class SamplesTableView extends React.Component {
     this.setState({['dfs']: []});
   };
 
-  getDataFromSelector = (data_from_selector) => {
-    console.log('THIS IS CALLBACK MOTHERFUCKER');
-    console.log(data_from_selector);
-  };
-
   render() {
-    console.log('RENDER');
-    console.log('need parsing: ' + this.state.need_parsing);
-    console.log('need update: ' + this.state.need_update);
-
     const {classes} = this.props;
 
-    let data = [];
-    let len = 0;
-    let mean = 0;
-    if (this.state.data.length > 0) {
-      let names = [];
-      let vals = [];
-      for (let i = 0; i < this.state.data.length; i++) {
-        names.push(this.state.data[i].name);
-        vals.push(this.state.data[i].bp);
-        mean += this.state.data[i].bp;
-      }
-      data = [
-        {
-          x: vals,
-          y: names,
-          type: 'bar',
-          orientation: 'h'
-        }
-      ];
-      len = vals.length;
-      mean = mean / len;
-      console.log(mean);
-    }
-    mean = Number(mean);
-    mean = mean.toFixed(0);
-
-    let layout = {
-      autosize: true,
-      title: 'Mapping Heatmap',
-      shapes: [
-        {
-          type: 'line',
-          x0: mean,
-          y0: 0,
-          x1: mean,
-          y1: 10,
-          line: {
-            color: 'rgb(200, 33, 55)',
-            width: 3,
-          },
-        }]
-    };
-
     return (
-      <div>
-        <DatasetPreprocReadsSelector callbackFromParent={this.getDataFromSelector}/>
-
-        {/*<Typography>Samples Table View</Typography>*/}
-        {/*<Paper>*/}
-        {/*<Table className={classes.table}>*/}
-        {/*<TableHead>*/}
-        {/*<TableRow>*/}
-        {/*<TableCell>Sample Name</TableCell>*/}
-        {/*<TableCell>R1 size</TableCell>*/}
-        {/*<TableCell>R2 size</TableCell>*/}
-        {/*<TableCell numeric>Base Pairs Total</TableCell>*/}
-        {/*<TableCell numeric>Reads Total</TableCell>*/}
-        {/*</TableRow>*/}
-        {/*</TableHead>*/}
-        {/*<TableBody>*/}
-        {/*{this.state.data.map(n => {*/}
-        {/*return (*/}
-        {/*<TableRow key={n.id}>*/}
-        {/*<TableCell component="a" scope="row" href="/app/ref_seq">*/}
-        {/*{n.name}*/}
-        {/*</TableCell>*/}
-        {/*<TableCell>{n.r1_size}</TableCell>*/}
-        {/*<TableCell>{n.r2_size}</TableCell>*/}
-        {/*<TableCell numeric>{n.bp}</TableCell>*/}
-        {/*<TableCell numeric>{n.reads}</TableCell>*/}
-        {/*</TableRow>*/}
-        {/*);*/}
-        {/*})}*/}
-        {/*</TableBody>*/}
-        {/*</Table>*/}
-        {/*</Paper>*/}
-
-
-
+      <Paper>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="df">Dataset</InputLabel>
           <Select
@@ -311,15 +204,7 @@ class SamplesTableView extends React.Component {
             ))}
           </Select>
         </FormControl>
-
-        <Plot
-          useResizeHandler={true}
-          data={data}
-          style={{width: '100%', minHeight: '1000px', marginTop: '12pt'}}
-          layout={layout}
-        />
-
-      </div>
+      </Paper>
     )
   }
 }
@@ -330,8 +215,7 @@ const mapStateToProps = state => ({
   dataset_preprocs: state.datasets.dataset_preprocs
 });
 
-SamplesTableView.propTypes = {
-
+DatasetPreprocReadsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   fetchReads: PropTypes.func.isRequired,
   fetchDatasetsFS: PropTypes.func.isRequired,
@@ -340,5 +224,5 @@ SamplesTableView.propTypes = {
   dataset_preprocs: PropTypes.array.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps,
-  {fetchReads, fetchDatasetsFS, fetchDatasetsPreprocsFS})(withStyles(styles)(SamplesTableView)))
+export default connect(mapStateToProps, {fetchReads, fetchDatasetsFS, fetchDatasetsPreprocsFS})
+(withStyles(styles)(DatasetPreprocReadsSelector))

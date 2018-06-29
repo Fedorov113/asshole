@@ -71,6 +71,43 @@ class Mp2BoxView(APIView):
 
         return 0
 
+class DatasetsFSView(APIView):
+    def get(self,request):
+        pipeline_dir = settings.PIPELINE_DIR + '/'
+        datasets_dir = pipeline_dir + 'datasets/*'
+        datasets_folders = glob.glob(datasets_dir)
+        print(datasets_folders)
+
+        rifs = ReadsInSystem(pipeline_dir, datasets_folders[0].replace(pipeline_dir, ''))
+
+        for i, record in enumerate(datasets_folders[1:]):
+            record = record.replace(pipeline_dir, '')
+            rifs.add_child(pipeline_dir, record)
+
+
+        print('LETS SEE WHAT WEVE GOT')
+        print(rifs.__str__())
+
+        df_list = []
+        for df in datasets_folders:
+            df_list.append(df.replace(pipeline_dir+'datasets/', ''))
+
+        return HttpResponse(json.dumps(df_list), content_type='application/json')
+
+class DatasetPreprocsAPIVIew(APIView):
+    def get(self, request, df):
+        pipeline_dir = settings.PIPELINE_DIR + '/'
+        preprocs_dir = pipeline_dir + 'datasets/'+df+'/reads/*'
+        preprocs = glob.glob(preprocs_dir)
+
+        preprocs_list = []
+        for preproc in preprocs:
+            if os.path.isdir(preproc):
+                preprocs_list.append(preproc.replace(pipeline_dir+'datasets/'+df+'/reads/', ''))
+
+
+        return HttpResponse(json.dumps(preprocs_list), content_type='application/json')
+
 class Mp2ScatterView(APIView):
     def get(self, request):
         # THIS STUFF DOESN'T BELONG HERE!!!!

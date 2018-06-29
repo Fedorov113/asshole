@@ -27,6 +27,7 @@ def get_files_from_path_with_ext(directory, extension, only_names=True):
 
 class FileSystem:
     debug = False
+
     def __init__(self, file_path=None):
         self.children = []
         if file_path is not None:
@@ -107,7 +108,7 @@ class FileSystem:
 class ReadsInSystem:
     debug = True
 
-    def __init__(self, parent_path, path='', level = 0):
+    def __init__(self, parent_path, path='', level=0):
         """
 
         :param parent_path: absolute path for this fs root; starts and ends with '/'
@@ -123,16 +124,20 @@ class ReadsInSystem:
                     self.name, child_path = path.split("/", 1)
                     self.type = 'dir'
                     self.full_path = self.parent_dir + self.name + '/'
-                    self.children.append(ReadsInSystem(self.full_path, child_path, self.level+1))
+                    print('appending ' + child_path)
+                    self.children.append(ReadsInSystem(self.full_path, child_path, self.level + 1))
                 except ValueError:
-                    print('WTF? We think its path, but cant parse split')
+                    self.name = path
+                    self.type = 'dir'
+                    self.full_path = self.parent_dir + self.name + '/'
+
             elif os.path.isfile(self.parent_dir + path):
                 try:
                     self.name, child_path = path.split("/", 1)
                     if os.path.isdir(self.parent_dir + self.name):
                         self.type = 'dir'
                         self.full_path = self.parent_dir + self.name + '/'
-                        self.children.append(ReadsInSystem(self.full_path, child_path, self.level+1))
+                        self.children.append(ReadsInSystem(self.full_path, child_path, self.level + 1))
                 except ValueError:
                     # print('Looks like this is the end')
                     if os.path.isfile(parent_path + path):
@@ -155,21 +160,21 @@ class ReadsInSystem:
             print('Parent: ' + parent_path)
             print('Path: ' + path)
 
-
     def add_child(self, parent_path, path):
 
         parent_path_to_pass = parent_path
         # Standard assumptions
         if self.parent_dir == parent_path and path[0] != '/':
-            try: # Try to split the path in 2
+            try:  # Try to split the path in 2
                 this_level, next_level = path.split('/', 1)
                 parent_path_to_pass = parent_path_to_pass + this_level + '/'
                 if self.name == this_level:
                     try:
                         this_level, nnext_level = next_level.split('/', 1)
-
                     except ValueError:
-                        self.children.append(ReadsInSystem(parent_path_to_pass, next_level, self.level+1))
+                        print('val err, appending ' + next_level)
+                        print(ReadsInSystem(parent_path_to_pass, next_level, self.level + 1).__str__())
+                        self.children.append(ReadsInSystem(parent_path_to_pass, next_level, self.level + 1))
                         return
                 else:
                     print('no')
@@ -178,7 +183,7 @@ class ReadsInSystem:
                     if child.name == this_level:
                         child.add_child(parent_path_to_pass, next_level)
                         return
-                self.children.append(ReadsInSystem(parent_path_to_pass, next_level, self.level+1))
+                self.children.append(ReadsInSystem(parent_path_to_pass, next_level, self.level + 1))
 
             except ValueError:
                 print('baad')
@@ -205,12 +210,17 @@ class ReadsInSystem:
         else:
             if self.type == 'file':
                 return {'node_name': self.name,
-                    'full_path': self.full_path,
-                    'type': self.type,
-                    'level': self.level,
-                    'size': self.size,
-                    'bp': self.bp,
-                    'reads': self.reads}
+                        'full_path': self.full_path,
+                        'type': self.type,
+                        'level': self.level,
+                        'size': self.size,
+                        'bp': self.bp,
+                        'reads': self.reads}
+            if self.type == 'dir':
+                return {'node_name': self.name,
+                        'full_path': self.full_path,
+                        'type': self.type,
+                        'level': self.level}
 
 
 def create_fs_object_from_list_of_dirs(list_of_dirs, prefix_path=''):
@@ -229,9 +239,10 @@ def create_fs_object_from_list_of_dirs(list_of_dirs, prefix_path=''):
 
     return fs_object
 
-def create_reads_dict_from_fs(fs):
 
+def create_reads_dict_from_fs(fs):
     return
+
 
 def parse_fs_node(node):
     if node.type == 'file':
@@ -240,9 +251,8 @@ def parse_fs_node(node):
         print(node.name)
 
     for i, child in enumerate(node.children):
-
-
         parse_fs_node(child)
+
 
 def mapped_dict_from_fs(node):
     return
