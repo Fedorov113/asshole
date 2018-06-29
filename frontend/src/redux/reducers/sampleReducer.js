@@ -1,7 +1,7 @@
 import {FETCH_READS} from "../constants/action-types";
 
 const initialState = {
-  reads: {}
+  reads: 'None'
 };
 
 export default function (state = initialState, action) {

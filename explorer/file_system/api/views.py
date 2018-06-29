@@ -237,7 +237,7 @@ class ReadsView(APIView):
         search_dir = search_dir.format(df, preproc)
         read_files = glob.glob(search_dir  + '*/*.fastq.gz')
         read_files.sort()
-
+        print(read_files)
         rifs = ReadsInSystem(pipeline_dir, read_files[0].replace(pipeline_dir, ''))
 
         for i, record in enumerate(read_files[1:]):

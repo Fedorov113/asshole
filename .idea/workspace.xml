@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f08cfec-28e1-4b40-a220-9c8253d3597e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/file_system/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/sampleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/actions/sampleActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,11 +32,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DatasetCardsGrid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
+      <file leaf-file-name="DatasetsBpLenVis.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="75" column="95" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="95" />
+            <state relative-caret-position="227">
+              <caret line="201" column="16" selection-start-line="201" selection-start-column="16" selection-end-line="201" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#1418#1428#0" />
+                <element signature="e#1600#2440#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sampleReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -49,24 +58,11 @@
       <file leaf-file-name="SamplesTableView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="340" column="2" lean-forward="true" selection-start-line="326" selection-end-line="340" selection-end-column="2" />
+            <state relative-caret-position="95">
+              <caret line="98" column="4" lean-forward="true" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="33" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
-                <element signature="e#2126#2848#0" />
-                <element signature="e#2879#3719#0" />
-                <element signature="e#3754#4051#0" />
-                <element signature="e#5984#6273#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatasetsBpLenVis.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -74,70 +70,41 @@
       <file leaf-file-name="DatasetPreprocReadsSelector.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-226">
-              <caret line="116" column="81" selection-start-line="116" selection-start-column="81" selection-end-line="116" selection-end-column="81" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-                <element signature="e#1944#2784#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SamplesExpandableList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SamplesExpandableList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1558">
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleFullInfo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SampleFullInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
+            <state relative-caret-position="143">
+              <caret line="94" column="24" selection-start-line="94" selection-start-column="24" selection-end-line="94" selection-end-column="24" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleByDirTabs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SampleByDirTabs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-928">
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddSampleForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/AddSampleForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-928">
-              <caret line="4" column="9" selection-start-line="4" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FmtCard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/fmt/FmtCard.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="DatsetFullInfo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2020">
+            <state relative-caret-position="-340">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="240" column="21" lean-forward="true" selection-start-line="240" selection-start-column="21" selection-end-line="240" selection-end-column="21" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#916#2345#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_system_helpers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="162" column="43" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -175,6 +142,10 @@
       <find>Mapping</find>
       <find>setStat</find>
       <find>fetchReads</find>
+      <find>call</find>
+      <find>samples_w_reads</find>
+      <find>data</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,17 +193,17 @@
         <option value="$PROJECT_DIR$/frontend/src/components/AppBar.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/actions/mappingActions.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/action/mapping.js" />
-        <option value="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/result/mp2_box.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/actions/sampleActions.js" />
-        <option value="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/api/urls.py" />
-        <option value="$PROJECT_DIR$/explorer/file_system/api/views.py" />
         <option value="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" />
-        <option value="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js" />
+        <option value="$PROJECT_DIR$/explorer/file_system/api/views.py" />
+        <option value="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js" />
+        <option value="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js" />
       </list>
     </option>
@@ -448,15 +419,15 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50446737" side_tool="true" weight="0.3428246" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5051546" side_tool="true" weight="0.4236902" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49966645" weight="0.33712983" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4969072" weight="0.32915717" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49553263" visible="true" weight="0.4236902" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49484536" visible="true" weight="0.4236902" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.2872852" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.15120275" />
       <window_info anchor="right" id="R Packages" order="7" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="4" />
@@ -473,6 +444,33 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.2872852" />
+      <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.26185566" />
+      <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49966645" weight="0.33712983" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
+      <window_info anchor="right" id="R Packages" order="7" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Database" order="5" weight="0.3298969" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49553263" visible="true" weight="0.4236902" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50446737" side_tool="true" weight="0.3428246" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="SciView" order="6" weight="0.3298969" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4969072" weight="0.32915717" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -482,7 +480,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -685,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -729,23 +720,6 @@
           <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="222" column="43" selection-start-line="222" selection-start-column="43" selection-end-line="222" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="e#916#2345#0" />
           </folding>
         </state>
       </provider>
@@ -828,51 +802,76 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/fmt/FmtCard.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2020">
+        <state relative-caret-position="252">
+          <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="75" column="95" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="95" />
+        <state relative-caret-position="185">
+          <caret line="240" column="21" lean-forward="true" selection-start-line="240" selection-start-column="21" selection-end-line="240" selection-end-column="21" />
+          <folding>
+            <element signature="e#916#2345#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="162" column="43" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-226">
-          <caret line="116" column="81" selection-start-line="116" selection-start-column="81" selection-end-line="116" selection-end-column="81" />
+        <state relative-caret-position="143">
+          <caret line="94" column="24" selection-start-line="94" selection-start-column="24" selection-end-line="94" selection-end-column="24" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#1944#2784#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="340" column="2" lean-forward="true" selection-start-line="326" selection-end-line="340" selection-end-column="2" />
+        <state relative-caret-position="95">
+          <caret line="98" column="4" lean-forward="true" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="33" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#2126#2848#0" />
-            <element signature="e#2879#3719#0" />
-            <element signature="e#3754#4051#0" />
-            <element signature="e#5984#6273#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="227">
+          <caret line="201" column="16" selection-start-line="201" selection-start-column="16" selection-end-line="201" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#1418#1428#0" />
+            <element signature="e#1600#2440#0" />
+          </folding>
         </state>
       </provider>
     </entry>

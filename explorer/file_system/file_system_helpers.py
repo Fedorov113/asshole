@@ -124,7 +124,7 @@ class ReadsInSystem:
                     self.name, child_path = path.split("/", 1)
                     self.type = 'dir'
                     self.full_path = self.parent_dir + self.name + '/'
-                    print('appending ' + child_path)
+
                     self.children.append(ReadsInSystem(self.full_path, child_path, self.level + 1))
                 except ValueError:
                     self.name = path
@@ -161,7 +161,6 @@ class ReadsInSystem:
             print('Path: ' + path)
 
     def add_child(self, parent_path, path):
-
         parent_path_to_pass = parent_path
         # Standard assumptions
         if self.parent_dir == parent_path and path[0] != '/':
@@ -172,8 +171,6 @@ class ReadsInSystem:
                     try:
                         this_level, nnext_level = next_level.split('/', 1)
                     except ValueError:
-                        print('val err, appending ' + next_level)
-                        print(ReadsInSystem(parent_path_to_pass, next_level, self.level + 1).__str__())
                         self.children.append(ReadsInSystem(parent_path_to_pass, next_level, self.level + 1))
                         return
                 else:
