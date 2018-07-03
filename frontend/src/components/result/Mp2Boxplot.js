@@ -4,10 +4,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
-import DatasetSelect from '../dataset/DatasetSelect'
-
-import DatasetsBpLenVis from '../dataset/DatasetsBpLenVis'
+import DatasetSelect from '../data/dataset/DatasetSelect'
+import Mp2BoxplotViz from './Mp2BoxplotViz'
 
 
 const styles = theme => ({
@@ -15,10 +13,15 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
     },
+    fab: {
+      position: 'relative',
+      top: '50%',
+      transform: 'translateY(-50%)',
+    },
   })
 ;
 
-class SamplesTableView extends React.Component {
+class Mp2Boxplot extends React.Component {
 
   state = {
     dfs_to_plot: []
@@ -31,18 +34,22 @@ class SamplesTableView extends React.Component {
 
   render() {
     const {classes} = this.props;
+
     return (
       <div>
+        {/*Assuming this is a component with dataset level selection*/}
         <DatasetSelect datasetSelectionReady={this.datasetSelectionReady}/>
-        <DatasetsBpLenVis data_to_plot={this.state.dfs_to_plot}/>
+
+        {/*We need to pass the component to plot here*/}
+        <Mp2BoxplotViz dfs_to_plot={this.state.dfs_to_plot}/>
       </div>
     )
   }
 }
 
 
-SamplesTableView.propTypes = {
+Mp2Boxplot.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter((withStyles(styles)(SamplesTableView)))
+export default withRouter((withStyles(styles)(Mp2Boxplot)))

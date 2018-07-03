@@ -55,19 +55,15 @@ class DatasetPreprocReadsSelector extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     //Here we load preprocs for df
     if (this.props.datasets_fs.loaded &&
-      this.state.df !== '*' &&
-      this.state.df !== prevState.df) {
+        this.state.df !== '*' &&
+        this.state.df !== prevState.df) {
       this.props.fetchDatasetsPreprocsFS(this.state.df);
-    }
-
-    if (this.state.need_update) {
-      this.setState({['need_update']: false});
     }
 
     if ((this.state.df !== prevState.df || this.state.preproc !== prevState.preproc)
       && this.state.df !== '*' && this.state.preproc !== '*') {
       this.setState({['need_parsing']: true});
-      this.props.callbackFromParent({
+      this.props.getDataFromSelector({
         id: this.props.id,
         selection: {
           df: this.state.df,

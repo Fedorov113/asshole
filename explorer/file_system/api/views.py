@@ -132,6 +132,36 @@ class Mp2ScatterView(APIView):
 
         return HttpResponse(mp2_data_json, content_type='application/json')
 
+class Mp2BoxAPIView(APIView):
+    def get(self, request):
+        # Parse query
+        query_params = self.request.query_params
+        df = query_params.get('df', None)
+        preproc = query_params.get('preproc', None)
+        samples = query_params.get('samples', None)
+
+        # Construct paths to load data
+        pipeline_dir = settings.PIPELINE_DIR + '/'
+        datasets_dir = pipeline_dir + 'datasets/'
+        mp2_dir = datasets_dir + '{df}/taxa/reads/{preproc}/mp2/'
+        mp2_dir_for_df_preproc = mp2_dir.format(df = df, preproc = preproc)
+        mp2_files = glob.glob(mp2_dir_for_df_preproc + '*.mp2')
+        # Dictionary of format {sample_name: file_location}
+        samples_loc = {}
+        for file in mp2_files:
+            samples_loc[file.split('/')[-1].replace('.mp2', '')] = file
+
+        # Load Data
+        mp2_data = mp2.read_mp2_data(samples_loc, level='o__', org='Bacteria', norm_100 = False)
+        mp2box = mp2_data.set_index('sample').T
+        mp2box = mp2box.fillna('none')
+        # Transform to json
+        mp2_box_dict = mp2box.to_dict(orient='index')
+        mp2_box_json = json.dumps(mp2_box_dict)
+        mp2_box_json = list(mp2_box_json)
+
+        return HttpResponse( mp2_box_json, content_type='application/json')
+
 class MappedView(APIView):
 
     def get(self, request, dataset, preproc, tool, seq_type, seq_name, postproc):

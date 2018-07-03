@@ -47,7 +47,6 @@ class DatasetsBpLenVis extends React.Component {
 
     if (JSON.stringify(prevProps.data_to_plot) !== JSON.stringify(this.props.data_to_plot)) {
       this.setState({['data']: []});
-
       for (let i = 0; i < this.props.data_to_plot.length; i++) {
         console.log('sending fetch ' + this.props.data_to_plot[i].df + ' ' + this.props.data_to_plot[i].preproc);
         this.props.fetchReads(this.props.data_to_plot[i].df, this.props.data_to_plot[i].preproc)
@@ -207,7 +206,7 @@ class DatasetsBpLenVis extends React.Component {
               layout={layout}
             />
           </Paper>
-          : <Typography> Select at least one dataset </Typography>
+          : <Typography style={{marginTop:'12pt'}}> Select at least one dataset </Typography>
         }
       </div>
 

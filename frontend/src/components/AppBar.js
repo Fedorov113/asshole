@@ -29,6 +29,7 @@ import ReferenceExplorer from './action/reference_explorer'
 import Mapping from './action/mapping'
 import MappingRuleGenerator from './action/MappingRuleGenerator'
 import SamplesTableView from './data/sample/SamplesTableView'
+import Mp2Boxplot from "./result/Mp2Boxplot";
 
 
 const drawerWidth = 240;
@@ -93,6 +94,9 @@ function ClippedDrawer(props) {
           <ListItem button component="a" href="/app/samples_table">
             <ListItemText primary="Reads Samples Table"/>
           </ListItem>
+          <ListItem button component="a" href="/app/mp2box">
+            <ListItemText primary="Metaphlan2 Box Plots"/>
+          </ListItem>
         </List>
       </Drawer>
 
@@ -113,6 +117,8 @@ function ClippedDrawer(props) {
             <Route exact path='/app/mapping_rule' component={MappingRuleGenerator}/>
 
             <Route exact path='/app/samples_table' component={SamplesTableView}/>
+            <Route exact path='/app/mp2box' component={Mp2Boxplot}/>
+
 
           </Switch>
         </BrowserRouter>

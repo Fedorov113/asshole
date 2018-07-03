@@ -4,6 +4,7 @@ export const FETCH_DATASET_PREPROCS = 'FETCH_DATASET_PREPROCS';
 export const NEW_DATASET = 'NEW_DATASET';
 
 export const FETCH_MP2 = 'FETCH_MP2';
+export const FETCH_MP2_BOX = 'FETCH_MP2_BOX';
 export const FETCH_MP2_SCATTER = 'FETCH_MP2_SCATTER';
 
 export const FETCH_PERSONS = 'FETCH_PERSONS';

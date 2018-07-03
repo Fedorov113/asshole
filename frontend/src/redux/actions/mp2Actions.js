@@ -1,4 +1,4 @@
-import {FETCH_MP2, FETCH_MP2_SCATTER} from "../constants/action-types";
+import {FETCH_MP2, FETCH_MP2_SCATTER, FETCH_MP2_BOX} from "../constants/action-types";
 
 
 export function fetchMp2Result(level) {
@@ -10,6 +10,18 @@ export function fetchMp2Result(level) {
         payload: mp2
       }));
   }
+}
+
+export function fetchMp2Boxplot(df, preproc) {
+  return function (dispatch) {
+    fetch('/api/fs/mp2_box/?df='+df+'&preproc='+preproc)
+      .then(response => response.json())
+      .then(mp2_box => dispatch({
+        type: FETCH_MP2_BOX,
+        payload: mp2_box
+      }))
+  }
+
 }
 
 export function fetchMp2ScatterResult(level) {
