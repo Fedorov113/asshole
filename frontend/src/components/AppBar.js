@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
+import classNames from 'classnames';
 
 import {withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,6 +15,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import {render} from 'react-dom'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
@@ -42,42 +47,116 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
   },
+  appFrame: {
+    height: '100%',
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    position: 'absolute',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  'appBarShift-left': {
+    marginLeft: drawerWidth,
+  },
+  'appBarShift-right': {
+    marginRight: drawerWidth,
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
   },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
   },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    minWidth: 0, // So the Typography noWrap works
-    padding: 24
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  'content-left': {
+    marginLeft: -drawerWidth,
+  },
+  'content-right': {
+    marginRight: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  'contentShift-left': {
+    marginLeft: 0,
+  },
+  'contentShift-right': {
+    marginRight: 0,
   },
   toolbar: theme.mixins.toolbar,
 });
 
-function ClippedDrawer(props) {
+class ClippedDrawer extends React.Component {
+  state = {
+    open: false,
+    anchor: 'left',
+  };
 
-  const {classes} = props;
+  handleDrawerOpen = () => {
+    this.setState({open: true});
+  };
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="title" color="inherit" noWrap>
-            ASSHOLE
-          </Typography>
-        </Toolbar>
-      </AppBar>
+  handleDrawerClose = () => {
+    this.setState({open: false});
+  };
 
+  render() {
+    const {classes, theme } = this.props;
+
+    const {anchor, open} = this.state;
+
+    const drawer = (
       <Drawer
-        variant="permanent"
+        variant="persistent"
+        anchor={anchor}
+        open={open}
         classes={{
           paper: classes.drawerPaper,
-        }}>
-        <div className={classes.toolbar}/>
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={this.handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+          </IconButton>
+        </div>
+        <Divider/>
         <List>
           <ListItem button component="a" href="/app/dfs">
             <ListItemText primary="Datasets"/>
@@ -99,37 +178,77 @@ function ClippedDrawer(props) {
           </ListItem>
         </List>
       </Drawer>
+    );
 
-      <main className={classes.content}>
-        <div className={classes.toolbar}/>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/app/dfs' component={DatasetCardsGrid}/>
-            <Route exact path='/app/dataset/:df_id' component={DatasetFullInfo}/>
-            <Route exact path='/app/dataset/:df_id/add_subject' component={AddSubjectForm}/>
-            <Route exact path='/app/dataset/:df_id/add_sample/' component={AddSampleForm}/>
-            <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
-            <Route exact path='/app/dataset/:df_id/person/:person_id' component={PersonFullInfo}/>
-            <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
+    let before = null;
+    let after = null;
 
-            <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
-            <Route exact path='/app/mapping' component={Mapping}/>
-            <Route exact path='/app/mapping_rule' component={MappingRuleGenerator}/>
+    if (anchor === 'left') {
+      before = drawer;
+    } else {
+      after = drawer;
+    }
 
-            <Route exact path='/app/samples_table' component={SamplesTableView}/>
-            <Route exact path='/app/mp2box' component={Mp2Boxplot}/>
+    return (
+      <div className={classes.appFrame}>
+        <AppBar
+          className={classNames(classes.appBar, {
+            [classes.appBarShift]: open,
+            [classes[`appBarShift-${anchor}`]]: open,
+          })}
+        >
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon/>
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              ASSHOLE
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
+        {before}
 
 
-          </Switch>
-        </BrowserRouter>
-      </main>
+        <main className={classNames(classes.content, classes[`content-${anchor}`], {
+              [classes.contentShift]: open,
+              [classes[`contentShift-${anchor}`]]: open,
+            })}>
+          <div className={classes.drawerHeader}/>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path='/app/dfs' component={DatasetCardsGrid}/>
+              <Route exact path='/app/dataset/:df_id' component={DatasetFullInfo}/>
+              <Route exact path='/app/dataset/:df_id/add_subject' component={AddSubjectForm}/>
+              <Route exact path='/app/dataset/:df_id/add_sample/' component={AddSampleForm}/>
+              <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
+              <Route exact path='/app/dataset/:df_id/person/:person_id' component={PersonFullInfo}/>
+              <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
 
-    </div>
-  );
+              <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
+              <Route exact path='/app/mapping' component={Mapping}/>
+              <Route exact path='/app/mapping_rule' component={MappingRuleGenerator}/>
+
+              <Route exact path='/app/samples_table' component={SamplesTableView}/>
+              <Route exact path='/app/mp2box' component={Mp2Boxplot}/>
+
+            </Switch>
+          </BrowserRouter>
+        </main>
+        {after}
+
+      </div>
+    );
+  }
 }
 
 ClippedDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ClippedDrawer);
+export default withStyles(styles, { withTheme: true })(ClippedDrawer);

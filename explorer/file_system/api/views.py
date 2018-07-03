@@ -157,10 +157,10 @@ class Mp2BoxAPIView(APIView):
         mp2box = mp2box.fillna('none')
         # Transform to json
         mp2_box_dict = mp2box.to_dict(orient='index')
-        mp2_box_json = json.dumps(mp2_box_dict)
-        mp2_box_json = list(mp2_box_json)
-
-        return HttpResponse( mp2_box_json, content_type='application/json')
+        #mp2_box_json = json.dumps(mp2_box_dict)
+        #mp2_box_json = list(mp2_box_json)
+        final_dict = {'df': df, "preproc": preproc, 'mp2box': mp2_box_dict}
+        return HttpResponse( json.dumps(final_dict), content_type='application/json')
 
 class MappedView(APIView):
 

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 
-
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -35,22 +34,21 @@ class Mp2BoxplotViz extends React.Component {
     console.log('Mp2BoxViz did update');
 
     if (JSON.stringify(prevProps.dfs_to_plot) !== JSON.stringify(this.props.dfs_to_plot)) {
-      this.setState({['data']: []});
+      this.setState({['data_to_plot']: []});
       for (let i = 0; i < this.props.dfs_to_plot.length; i++) {
         console.log('sending fetch ' + this.props.dfs_to_plot[i].df + ' ' + this.props.dfs_to_plot[i].preproc);
         this.props.fetchMp2Boxplot(this.props.dfs_to_plot[i].df, this.props.dfs_to_plot[i].preproc)
       }
     }
 
-    if (this.props.mp2_box !== 'None' && this.state.need_parsing) {
-
-      let data_to_plot = [];
+    if (this.props.mp2_box !== 'None' && JSON.stringify(prevProps.mp2_box) !== JSON.stringify(this.props.mp2_box)) {
+      let data_to_plot = {df: this.props.mp2_box['df'], preproc: this.props.mp2_box['preproc'], data: []};
       console.log('PARSING');
 
       // Check every taxa node
-      for (let key in this.props.mp2_box) {
-        if (this.props.mp2_box.hasOwnProperty(key)) {
-          const taxa_node = this.props.mp2_box[key];
+      for (let key in this.props.mp2_box['mp2box']) {
+        if (this.props.mp2_box['mp2box'].hasOwnProperty(key)) {
+          const taxa_node = this.props.mp2_box['mp2box'][key];
           let data_node = {name: key, data: []};
 
           // Check every sample
@@ -61,13 +59,15 @@ class Mp2BoxplotViz extends React.Component {
               }
             }
           }
-          data_to_plot.push(data_node)
+          data_to_plot.data.push(data_node)
         }
       }
 
       console.log(data_to_plot);
+      let dd = this.state.data_to_plot;
+      dd.push(data_to_plot);
       this.setState({['need_parsing']: false});
-      this.setState({['data_to_plot']: data_to_plot});
+      this.setState({['data_to_plot']: dd});
     }
   }
 
@@ -78,6 +78,8 @@ class Mp2BoxplotViz extends React.Component {
     let layout = {
       autosize: true,
       title: 'Metaphlan2 Box Plot',
+      boxmode: "group",
+      showlegend: false
     };
     //--------------------
 
@@ -87,14 +89,19 @@ class Mp2BoxplotViz extends React.Component {
 
     //Fetched?
     console.log(this.state.data_to_plot);
-    for (let i = 0; i < this.state.data_to_plot.length; i++){
-      let name = this.state.data_to_plot[i].name.split('|');
-      name = name[name.length - 1];
-      data_to_plot.push({
-        y: this.state.data_to_plot[i].data,
-        name: name,
-        type: 'box'
-      })
+    for (let j = 0; j < this.state.data_to_plot.length; j++) {
+      let data_to_plot_node = this.state.data_to_plot[j];
+      for (let i = 0; i < data_to_plot_node.data.length; i++) {
+        if(data_to_plot_node.data[i].data.length > 10){
+          let name = data_to_plot_node.data[i].name.split('|');
+          name = name[name.length - 1];
+          data_to_plot.push({
+            y: data_to_plot_node.data[i].data,
+            x: data_to_plot_node.data[i].data.map(() => name),
+            name: data_to_plot_node['df'],
+            type: 'box',
+          })}
+      }
     }
 
     return (
