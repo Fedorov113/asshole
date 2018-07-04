@@ -1,4 +1,10 @@
-import {FETCH_DATASETS, FETCH_DATASETS_FS, FETCH_DATASET_PREPROCS, NEW_DATASET} from "../constants/action-types";
+import {
+  FETCH_DATASETS,
+  FETCH_DATASET_LIST,
+  FETCH_DATASETS_FS,
+  FETCH_DATASET_PREPROCS,
+  NEW_DATASET
+} from "../constants/action-types";
 
 const initialState = {
   datasets: [],
@@ -8,6 +14,7 @@ const initialState = {
     datasets: [],
     loaded: false
   },
+  dataset_list: []
 
 };
 
@@ -26,6 +33,11 @@ export default function (state = initialState, action) {
             datasets: action.payload,
             loaded: true
           }
+      };
+    case FETCH_DATASET_LIST:
+      return {
+        ...state,
+        dataset_list: action.payload,
       };
     case FETCH_DATASET_PREPROCS:
       return {

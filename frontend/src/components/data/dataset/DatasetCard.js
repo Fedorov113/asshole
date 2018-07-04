@@ -30,25 +30,28 @@ const styles = {
 
 class DfCard extends React.Component {
 
+  cardClicked = () => {
+    let loc = 'dataset/' + this.props.df_info;
+    this.props.history.push(loc);
+  };
+
   render() {
     const {classes} = this.props;
     return (
       <div>
         <Card className={classes.card}>
-          <ButtonBase className={this.props.classes.cardAction}
-                      onClick={event => {
-                        var loc = 'dataset/' + this.props.data.pk;
-                        this.props.history.push(loc);
-                      }}>
+          <ButtonBase
+            className={this.props.classes.cardAction}
+            onClick={this.cardClicked}>
             <CardContent>
               <Typography variant="headline" component="h2">
-                {this.props.data.df_name}
+                {this.props.df_info}
               </Typography>
               <Typography color="textSecondary">
-                {this.props.data.df_description}
+                {/*{this.props.data.df_description}*/}
+                No description yet
               </Typography>
             </CardContent>
-
           </ButtonBase>
         </Card>
       </div>

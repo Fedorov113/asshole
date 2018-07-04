@@ -9,7 +9,7 @@ import Radio, {RadioGroup} from '@material-ui/core/Radio';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import {fetchDatasets} from "../../../redux/actions/datasetActions";
+import {fetchDatasets, fetchDatasetList} from "../../../redux/actions/datasetActions";
 import DfCard from "./DatasetCard";
 
 const styles = theme => ({
@@ -31,8 +31,9 @@ const styles = theme => ({
 
 class DatasetCardsGrid extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchDatasets();
+    this.props.fetchDatasetList()
   }
 
   render() {
@@ -40,37 +41,33 @@ class DatasetCardsGrid extends React.Component {
     return (
       <div>
         <Typography variant="display2" gutterBottom>
-          {'Available Datasets'}
+          Datasets in system
         </Typography>
 
         <Grid container className={classes.root} spacing={16}>
           <Grid container className={classes.demo} spacing={24}>
-            {this.props.datasets.map(df => (
-              <Grid key={df.id} item>
-                <DfCard data={df}/>
+            {this.props.dataset_list.map(df => (
+              <Grid key={df.toString()} item>
+                <DfCard df_info={df}/>
               </Grid>
             ))}
           </Grid>
         </Grid>
-
-        <Button variant="raised" color="primary" className={classes.button}>
-          Add new dataset
-        </Button>
-
       </div>
-
     );
   }
 }
 
 const mapStateToProps = state => ({
-  datasets: state.datasets.datasets
+  datasets: state.datasets.datasets,
+  dataset_list: state.datasets.dataset_list,
 });
 
 DatasetCardsGrid.propTypes = {
   classes: PropTypes.object.isRequired,
   fetchDatasets: PropTypes.func.isRequired,
+  fetchDatasetList: PropTypes.func.isRequired,
   datasets: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps, {fetchDatasets})(withStyles(styles)(DatasetCardsGrid));
+export default connect(mapStateToProps, {fetchDatasets, fetchDatasetList})(withStyles(styles)(DatasetCardsGrid));
