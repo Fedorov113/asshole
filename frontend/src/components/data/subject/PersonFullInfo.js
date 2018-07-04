@@ -60,7 +60,6 @@ class PersonFullInfo extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props.match.params.person_id);
     this.props.fetchSubject(this.props.match.params.person_id);
     this.props.fetchFmt(this.props.match.params.person_id);
   }
@@ -121,11 +120,7 @@ class PersonFullInfo extends React.Component {
       <Mp2ScatterPlot/>
 
       <div className={classes.content}>
-
-
         <ActualShitCardsGrid data={this.props.subject}/>
-
-
       </div>
     </div>
 

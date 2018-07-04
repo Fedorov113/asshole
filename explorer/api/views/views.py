@@ -1,6 +1,6 @@
 from rest_framework import generics, mixins, viewsets
 from explorer.models import Dataset
-from .serializers import *
+from explorer.api.serializers import *
 from django.db.models import Q
 
 class DatasetAPIView(mixins.CreateModelMixin, generics.ListAPIView):  # Detail View

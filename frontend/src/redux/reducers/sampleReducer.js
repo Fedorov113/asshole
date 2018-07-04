@@ -1,7 +1,8 @@
-import {FETCH_READS} from "../constants/action-types";
+import {FETCH_READS, FETCH_FASTQC} from "../constants/action-types";
 
 const initialState = {
-  reads: 'None'
+  reads: 'None',
+  fastqc: 'None'
 };
 
 export default function (state = initialState, action) {
@@ -10,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         reads: action.payload
+      };
+    case FETCH_FASTQC:
+      return {
+        ...state,
+        fastqc: action.payload
       };
     default:
       return state;

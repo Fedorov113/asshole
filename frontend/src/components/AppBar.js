@@ -176,6 +176,10 @@ class ClippedDrawer extends React.Component {
           <ListItem button component="a" href="/app/mp2box">
             <ListItemText primary="Metaphlan2 Box Plots"/>
           </ListItem>
+
+          <ListItem button component="a" href="/app/sample_full">
+            <ListItemText primary="Sample Full Info"/>
+          </ListItem>
         </List>
       </Drawer>
     );
@@ -229,6 +233,10 @@ class ClippedDrawer extends React.Component {
               <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
               <Route exact path='/app/dataset/:df_id/person/:person_id' component={PersonFullInfo}/>
               <Route exact path='/app/dataset/:df_id/person/:person_id/sample/:sample_id' component={SampleFullInfo}/>
+
+              <Route exact path='/app/dataset/:df/preproc/:preproc/sample/:sample' component={SampleFullInfo}/>
+
+              <Route exact path='/app/sample_full' component={SampleFullInfo}/>
 
               <Route exact path='/app/ref_seq' component={ReferenceExplorer}/>
               <Route exact path='/app/mapping' component={Mapping}/>
