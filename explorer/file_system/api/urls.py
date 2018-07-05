@@ -20,6 +20,7 @@ urlpatterns += [
     re_path(r'^mp2_box/$', Mp2BoxAPIView.as_view()),
     re_path(r'^sample/mp2_scatter/', Mp2ScatterView.as_view()),
     re_path(r'^fastqc/(?P<df>.+)/(?P<preproc>.+)/(?P<sample>.+)/(?P<strand>.+)/$', SampleFastQCView.as_view()),
+    re_path(r'^krona/(?P<df>.+)/(?P<preproc>.+)/(?P<sample>.+)/(?P<tool>.+)/$', SampleKronaView.as_view()),
     re_path(r'^reads/(?P<df>.+)/(?P<preproc>.+)', ReadsView.as_view()),
     re_path(r'^mapping/(?P<dataset>.+)/(?P<preproc>.+)/(?P<tool>.+)/(?P<seq_type>.+)/(?P<seq_name>.+)/(?P<postproc>.+)/$',MappedView.as_view())
 ]

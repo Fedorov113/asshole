@@ -4,28 +4,12 @@ import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import {Link} from 'react-router-dom';
 
 import {fetchReads} from "../../../redux/actions/sampleActions";
 
 import ReadsParser from '../sample/ReadsParser'
-
-const DarkTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+import SamplesTable from './SamplesTable'
 
 const styles = theme => ({
   root: {
@@ -79,6 +63,7 @@ class DatasetFullInfo extends React.Component {
   clickedCell = () => {
     console.log('clicked')
   };
+
   render() {
     const {classes} = this.props;
 
@@ -99,42 +84,11 @@ class DatasetFullInfo extends React.Component {
           Study <b>{df}</b>
         </Typography>
 
-        <div  className={classes.content}>
-        <Typography variant="headline" gutterBottom>
-          Samples
-        </Typography>
-        <Paper>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <DarkTableCell>Sample Name</DarkTableCell>
-                <DarkTableCell>R1 size</DarkTableCell>
-                <DarkTableCell>R2 size</DarkTableCell>
-                <DarkTableCell >Base Pairs Total</DarkTableCell>
-                <DarkTableCell >Reads Total</DarkTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {samples.map(n => {
-                return (
-                  <TableRow key={n.sample_name}>
-                    {/*<TableCell component="a" scope="row"*/}
-                               {/*href={"/app/dataset/" + df + "/preproc/" + preproc + "/sample/" + n.sample_name}>*/}
-                      {/*{n.sample_name}*/}
-                    {/*</TableCell>*/}
-                    <TableCell component={Link} to={"/app/dataset/" + df + "/preproc/" + preproc + "/sample/" + n.sample_name}>
-                      {n.sample_name}
-                    </TableCell>
-                    <TableCell>{n.r1_size}</TableCell>
-                    <TableCell>{n.r2_size}</TableCell>
-                    <TableCell>{n.bp}</TableCell>
-                    <TableCell>{n.reads}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
+        <div className={classes.content}>
+          <Typography variant="headline" gutterBottom>
+            Samples
+          </Typography>
+          <SamplesTable samples={samples} df={df} preproc={preproc}/>
         </div>
       </div>
     )

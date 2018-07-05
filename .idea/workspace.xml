@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f08cfec-28e1-4b40-a220-9c8253d3597e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/ReadsParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/fedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/fedor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/views/dataset_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views/dataset_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AppBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AppBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/mapping.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/action/mapping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesTableView.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/sample/DfsSamplesBpLenView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,44 +45,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatasetCardsGrid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DatasetCard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
+            <state relative-caret-position="42">
               <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatasetsBpLenVis.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js">
+      <file leaf-file-name="DatsetFullInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="36" />
+            <state relative-caret-position="416">
+              <caret line="90" column="66" selection-start-line="90" selection-start-column="66" selection-end-line="90" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatsetFullInfo.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
+      <file leaf-file-name="SamplesTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="113" column="31" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+            <state relative-caret-position="416">
+              <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sample_views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="22" column="95" selection-start-line="22" selection-start-column="95" selection-end-line="22" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -126,18 +133,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
               <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="datasetReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#145#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -191,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/explorer/api/views.py" />
         <option value="$PROJECT_DIR$/explorer/api/serializers.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/ref_seq_explorer.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/serializers.py" />
@@ -230,18 +224,19 @@
         <option value="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/sample/SampleFullInfo.js" />
-        <option value="$PROJECT_DIR$/explorer/file_system/api/urls.py" />
         <option value="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" />
         <option value="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js" />
-        <option value="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/api/views/dataset_views.py" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/sample/ReadsParser.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/AppBar.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/action/mapping.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" />
+        <option value="$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js" />
+        <option value="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" />
+        <option value="$PROJECT_DIR$/explorer/file_system/api/urls.py" />
       </list>
     </option>
   </component>
@@ -254,7 +249,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1490" />
     <option name="width" value="1522" />
     <option name="height" value="2012" />
@@ -278,111 +273,28 @@
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="dataset" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="fmt" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="subject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="result" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="constants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -454,8 +366,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1513" height="1013" extended-state="6" />
-    <editor active="true" />
+    <frame x="745" y="0" width="761" height="1006" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5058419" side_tool="true" weight="0.4236902" />
@@ -464,9 +375,9 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.4969072" weight="0.32915717" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.4236902" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.4270953" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.23780069" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.49217638" />
       <window_info anchor="right" id="R Packages" order="7" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="4" />
@@ -523,11 +434,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/explorer/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/explorer/api/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
@@ -742,20 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -767,6 +659,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1995">
           <caret line="108" column="87" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -781,6 +676,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -849,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/AppBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -886,13 +777,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="113" column="31" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+        <state relative-caret-position="416">
+          <caret line="90" column="66" selection-start-line="90" selection-start-column="66" selection-end-line="90" selection-end-column="66" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="22" column="95" selection-start-line="22" selection-start-column="95" selection-end-line="22" selection-end-column="95" />
         </state>
       </provider>
     </entry>
