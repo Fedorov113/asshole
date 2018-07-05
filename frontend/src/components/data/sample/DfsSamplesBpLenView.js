@@ -18,7 +18,7 @@ const styles = theme => ({
   })
 ;
 
-class SamplesTableView extends React.Component {
+class DfsSamplesBpLenView extends React.Component {
 
   state = {
     dfs_to_plot: []
@@ -41,8 +41,8 @@ class SamplesTableView extends React.Component {
 }
 
 
-SamplesTableView.propTypes = {
+DfsSamplesBpLenView.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter((withStyles(styles)(SamplesTableView)))
+export default withRouter((withStyles(styles)(DfsSamplesBpLenView)))

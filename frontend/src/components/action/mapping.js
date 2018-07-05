@@ -137,7 +137,7 @@ class Mapping extends React.Component {
     if (Object.keys(this.props.mapping_files).length === 0 && this.props.mapping_files.constructor === Object
     )
       return;
-    let mapped_node = this.props.mapping_files['FHM'][0]['mapped'];
+    let mapped_node = this.props.mapping_files['CHINESE'][0]['mapped'];
 
     this.state.preprocs = [];
     this.state.tools = [];

@@ -11,13 +11,12 @@ import {withRouter} from 'react-router-dom';
 
 const styles = {
   card: {
-    minWidth: 325,
-
+    minWidth: 250,
   },
   cardAction: {
     display: 'block',
     textAlign: 'initial',
-    minWidth: 325,
+    minWidth: 250,
   },
   title: {
     marginBottom: 16,
@@ -37,6 +36,7 @@ class DfCard extends React.Component {
 
   render() {
     const {classes} = this.props;
+
     return (
       <div>
         <Card className={classes.card}>
@@ -46,6 +46,12 @@ class DfCard extends React.Component {
             <CardContent>
               <Typography variant="headline" component="h2">
                 {this.props.df_info}
+              </Typography>
+              <Typography color="textSecondary">
+                Number of samples:
+              </Typography>
+              <Typography color="textSecondary">
+                Number of subjects:
               </Typography>
               <Typography color="textSecondary">
                 {/*{this.props.data.df_description}*/}

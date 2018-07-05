@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import {withRouter} from 'react-router-dom';
 
 import {withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -33,7 +34,7 @@ import SampleFullInfo from './data/sample/SampleFullInfo'
 import ReferenceExplorer from './action/reference_explorer'
 import Mapping from './action/mapping'
 import MappingRuleGenerator from './action/MappingRuleGenerator'
-import SamplesTableView from './data/sample/SamplesTableView'
+import SamplesTableView from './data/sample/DfsSamplesBpLenView'
 import Mp2Boxplot from "./result/Mp2Boxplot";
 
 
@@ -142,58 +143,21 @@ class ClippedDrawer extends React.Component {
 
     const {anchor, open} = this.state;
 
-    const drawer = (
-      <Drawer
-        variant="persistent"
-        anchor={anchor}
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
-          </IconButton>
-        </div>
-        <Divider/>
-        <List>
-          <ListItem button component="a" href="/app/dfs">
-            <ListItemText primary="Datasets"/>
-          </ListItem>
-          <ListItem button component="a" href="/app/ref_seq">
-            <ListItemText primary="Reference Sequences"/>
-          </ListItem>
-          <ListItem button component="a" href="/app/mapping">
-            <ListItemText primary="Mapping"/>
-          </ListItem>
-          <ListItem button component="a" href="/app/mapping_rule">
-            <ListItemText primary="Mapping Rule Generator"/>
-          </ListItem>
-          <ListItem button component="a" href="/app/samples_table">
-            <ListItemText primary="Reads Samples Table"/>
-          </ListItem>
-          <ListItem button component="a" href="/app/mp2box">
-            <ListItemText primary="Metaphlan2 Box Plots"/>
-          </ListItem>
-
-          <ListItem button component="a" href="/app/sample_full">
-            <ListItemText primary="Sample Full Info"/>
-          </ListItem>
-        </List>
-      </Drawer>
-    );
-
-    let before = null;
-    let after = null;
-
-    if (anchor === 'left') {
-      before = drawer;
-    } else {
-      after = drawer;
-    }
+    // const drawer = (
+    //
+    // );
+    //
+    // let before = null;
+    // let after = null;
+    //
+    // if (anchor === 'left') {
+    //   before = drawer;
+    // } else {
+    //   after = drawer;
+    // }
 
     return (
+      <BrowserRouter>
       <div className={classes.appFrame}>
         <AppBar
           className={classNames(classes.appBar, {
@@ -216,7 +180,45 @@ class ClippedDrawer extends React.Component {
           </Toolbar>
         </AppBar>
 
-        {before}
+        <Drawer
+        variant="persistent"
+        anchor={anchor}
+        open={open}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={this.handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+          </IconButton>
+        </div>
+        <Divider/>
+        <List>
+          <ListItem button component={Link} to="/app/dfs">
+            <ListItemText primary="Datasets"/>
+          </ListItem>
+          <ListItem button component={Link} to="/app/ref_seq">
+            <ListItemText primary="Reference Sequences"/>
+          </ListItem>
+          <ListItem button component="a" href="/app/mapping">
+            <ListItemText primary="Mapping"/>
+          </ListItem>
+          <ListItem button component="a" href="/app/mapping_rule">
+            <ListItemText primary="Mapping Rule Generator"/>
+          </ListItem>
+          <ListItem button component="a" href="/app/samples_table">
+            <ListItemText primary="Reads Samples Table"/>
+          </ListItem>
+          <ListItem button component="a" href="/app/mp2box">
+            <ListItemText primary="Metaphlan2 Box Plots"/>
+          </ListItem>
+
+          <ListItem button component="a" href="/app/sample_full">
+            <ListItemText primary="Sample Full Info"/>
+          </ListItem>
+        </List>
+      </Drawer>
 
 
         <main className={classNames(classes.content, classes[`content-${anchor}`], {
@@ -224,10 +226,10 @@ class ClippedDrawer extends React.Component {
               [classes[`contentShift-${anchor}`]]: open,
             })}>
           <div className={classes.drawerHeader}/>
-          <BrowserRouter>
+
             <Switch>
               <Route exact path='/app/dfs' component={DatasetCardsGrid}/>
-              <Route exact path='/app/dataset/:df_id' component={DatasetFullInfo}/>
+              <Route exact path='/app/dataset/:df' component={DatasetFullInfo}/>
               <Route exact path='/app/dataset/:df_id/add_subject' component={AddSubjectForm}/>
               <Route exact path='/app/dataset/:df_id/add_sample/' component={AddSampleForm}/>
               <Route exact path='/app/dataset/:df_id/sample/TFM_002_F1-2_S4/mp2' component={Mp2Plot}/>
@@ -246,11 +248,11 @@ class ClippedDrawer extends React.Component {
               <Route exact path='/app/mp2box' component={Mp2Boxplot}/>
 
             </Switch>
-          </BrowserRouter>
+
         </main>
-        {after}
 
       </div>
+      </BrowserRouter>
     );
   }
 }

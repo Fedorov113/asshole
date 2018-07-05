@@ -16,14 +16,16 @@ class DatasetListView(APIView):
         datasets = glob.glob(search_dir)
 
         datasets_list = []
+        # What information do we want to include in each df?
+        # This object can be constructed only if there is at least one sample in reads/raw folder
+        # {
+        #     df_name: df_name,
+        #     description: description from df_name.info file, if present,
+        #     num_samples: number of samples in reads/raw folder
+        # }
         for dataset in datasets:
             if os.path.isdir(dataset):
                 datasets_list.append(dataset.replace(pipeline_dir + 'datasets/', ''))
 
-        # What information we want to include in each sample?
-        # {
-        #     df_name: df_name,
-        #     description: description from df_name.info file,
-        #     num_samples: number of samples in reads/raw folder
-        # }
+
         return HttpResponse(json.dumps(datasets_list), content_type='application/json')
