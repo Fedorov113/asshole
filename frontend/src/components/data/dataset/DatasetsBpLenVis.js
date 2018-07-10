@@ -23,13 +23,6 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-
-function createDataForTable(name, r1_size, r2_size, bp, reads) {
-  id += 1;
-  return {id, name, r1_size, r2_size, bp, reads}
-}
-
 class DatasetsBpLenVis extends React.Component {
 
   state = {

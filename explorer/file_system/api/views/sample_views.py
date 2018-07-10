@@ -31,3 +31,4 @@ class SampleKronaView(APIView):
             krona_html = krona_html_file.read()
 
         return HttpResponse(krona_html, content_type='text/html')
+

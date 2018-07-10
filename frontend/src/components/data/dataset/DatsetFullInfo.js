@@ -6,10 +6,14 @@ import {withStyles} from '@material-ui/core/styles';
 import {withRouter} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+
 import {fetchReads} from "../../../redux/actions/sampleActions";
 
 import ReadsParser from '../sample/ReadsParser'
 import SamplesTable from './SamplesTable'
+import DatasetReadsContentViz from './DatasetReadsContentViz'
 
 const styles = theme => ({
   root: {
@@ -74,8 +78,25 @@ class DatasetFullInfo extends React.Component {
     if (this.props.reads !== 'None') {
       let representation_of_df_reads = new ReadsParser(this.props.reads);
       let preprocs = representation_of_df_reads.preprocs;
-      preproc = preprocs[0];
-      samples = representation_of_df_reads.reads_for_preproc(preprocs[0]);
+      let longest = '';
+      let final = false;
+
+      for(let i=0; i<preprocs.length; i++){
+        if(preprocs[i] === 'final'){
+          preproc='final';
+          break;
+        }
+        else{
+          if (preprocs[i].length > longest.length){
+            longest = preprocs[i]
+          }
+        }
+      }
+
+      if(preproc !== 'final'){
+        preproc = longest;
+      }
+      samples = representation_of_df_reads.reads_for_preproc(preproc);
     }
 
     return (
@@ -85,6 +106,13 @@ class DatasetFullInfo extends React.Component {
         </Typography>
 
         <div className={classes.content}>
+          {preproc !== "None"
+            ?
+            <DatasetReadsContentViz df={df} preproc={preproc}/>
+            :
+            <LinearProgress/>
+          }
+
           <Typography variant="headline" gutterBottom>
             Samples
           </Typography>

@@ -201,16 +201,16 @@ class ClippedDrawer extends React.Component {
           <ListItem button component={Link} to="/app/ref_seq">
             <ListItemText primary="Reference Sequences"/>
           </ListItem>
-          <ListItem button component="a" href="/app/mapping">
+          <ListItem button component={Link} to="/app/mapping">
             <ListItemText primary="Mapping"/>
           </ListItem>
-          <ListItem button component="a" href="/app/mapping_rule">
+          <ListItem button component={Link} to="/app/mapping_rule">
             <ListItemText primary="Mapping Rule Generator"/>
           </ListItem>
-          <ListItem button component="a" href="/app/samples_table">
+          <ListItem button component={Link} to="/app/samples_table">
             <ListItemText primary="Reads Samples Table"/>
           </ListItem>
-          <ListItem button component="a" href="/app/mp2box">
+          <ListItem button component={Link} to="/app/mp2box">
             <ListItemText primary="Metaphlan2 Box Plots"/>
           </ListItem>
 

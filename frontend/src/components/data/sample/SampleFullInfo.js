@@ -38,6 +38,7 @@ class SampleFullInfo extends React.Component {
     let sample = this.props.match.params.sample;
     let fastqc_r1 = "/api/fs/fastqc/"+df+"/"+preproc+"/"+sample+"/R1/";
     let fastqc_r2 = "/api/fs/fastqc/"+df+"/"+preproc+"/"+sample+"/R2/";
+    let krona_centr = "/api/fs/krona/"+df+"/"+preproc+"/"+sample+"/centr/";
     return (
       <div>
         <Typography variant="headline" gutterBottom>
@@ -64,6 +65,9 @@ class SampleFullInfo extends React.Component {
         </Typography>
         <Typography  component='a' href={fastqc_r2} target="_blank">
           FastQC for strand 2
+        </Typography>
+        <Typography  component='a' href={krona_centr} target="_blank">
+          Krona taxonomic Centrifuge visualization
         </Typography>
       </div>
 

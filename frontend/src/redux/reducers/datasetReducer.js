@@ -3,6 +3,7 @@ import {
   FETCH_DATASET_LIST,
   FETCH_DATASETS_FS,
   FETCH_DATASET_PREPROCS,
+  FETCH_DATASET_GENERAL_TAXA_COMPOSITION,
   NEW_DATASET
 } from "../constants/action-types";
 
@@ -14,7 +15,8 @@ const initialState = {
     datasets: [],
     loaded: false
   },
-  dataset_list: []
+  dataset_list: [],
+  general_taxa_composition: [],
 
 };
 
@@ -43,6 +45,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         dataset_preprocs: action.payload,
+      };
+    case FETCH_DATASET_GENERAL_TAXA_COMPOSITION:
+      return {
+        ...state,
+        general_taxa_composition: action.payload,
       };
     default:
       return state;

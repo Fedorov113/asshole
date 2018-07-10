@@ -1,5 +1,5 @@
 import os, glob
-
+import pandas as pd
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
@@ -141,24 +141,28 @@ class ReadsInSystem:
                 except ValueError:
                     # print('Looks like this is the end')
                     if os.path.isfile(parent_path + path):
-                        self.name = path
-                        self.type = 'file'
-                        self.full_path = parent_path + path
-                        split = path.split('.')
-                        if split[1] == 'fastq' and split[2] == 'gz':
-                            self.size = sizeof_fmt(os.path.getsize(parent_path + path))
-                            # get counts
-                            self.reads = 0
-                            self.bp = 0
-                            if os.path.isfile(parent_path + split[0] + '.count'):
-                                with open(parent_path + split[0] + '.count', 'r') as count:
-                                    splits = count.readline().split(' ')
-                                    self.reads = splits[0]
-                                    self.bp = splits[1]
+                        self.add_reads_file(parent_path, path)
         else:
             print('We dont like it')
             print('Parent: ' + parent_path)
             print('Path: ' + path)
+
+    def add_reads_file(self, parent_path, path):
+        self.name = path
+        self.type = 'file'
+        self.full_path = parent_path + path
+        split = path.split('.')
+        if split[1] == 'fastq' and split[2] == 'gz':
+            self.size = sizeof_fmt(os.path.getsize(parent_path + path))
+            # get counts
+            self.reads = 0
+            self.bp = 0
+            if os.path.isfile(parent_path + split[0] + '.count'):
+                with open(parent_path + split[0] + '.count', 'r') as count:
+                    splits = count.readline().split(' ')
+                    self.reads = splits[0]
+                    self.bp = splits[1]
+
 
     def add_child(self, parent_path, path):
         parent_path_to_pass = parent_path
@@ -253,3 +257,24 @@ def parse_fs_node(node):
 
 def mapped_dict_from_fs(node):
     return
+
+def get_general_taxa_comp_for_sample(directory):
+    if os.path.isfile(directory):
+        centr_krak = pd.read_csv(directory, sep='\t', header=None)
+        uncl = (int(centr_krak.loc[centr_krak[5] == 'unclassified'][1]))
+        vir = (int(centr_krak.loc[centr_krak[5] == '  Viruses'][1]))
+        homo = (int(centr_krak.loc[centr_krak[
+                                       5] == '                                                              Homo sapiens'][
+                        1]))
+        bacteria = (int(centr_krak.loc[centr_krak[5] == '    Bacteria'][1]))
+        archaea = (int(centr_krak.loc[centr_krak[5] == '    Archaea'][1]))
+        other = int(centr_krak.loc[centr_krak[5] == 'root'][1]) - vir - homo - bacteria - archaea
+        composition = {'sample': directory.split('/')[-2],
+                       'uncl': uncl,
+                       'vir': vir,
+                       'bacteria': bacteria,
+                       'archaea': archaea,
+                       'homo': homo,
+                       'other': other}
+        return composition
+    else: return None
