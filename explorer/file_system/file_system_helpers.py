@@ -105,7 +105,7 @@ class FileSystem:
             return self.name
 
 
-class ReadsInSystem:
+class RReadsInSystem:
     debug = True
 
     def __init__(self, parent_path, path='', level=0):

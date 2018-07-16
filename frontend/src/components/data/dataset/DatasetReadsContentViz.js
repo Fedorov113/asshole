@@ -105,6 +105,9 @@ class DatasetReadsContentViz extends React.Component {
       autosize: true,
       barmode: 'stack',
       title: 'Sample reads composition',
+      margin: {
+        l:150
+      }
     };
 
 

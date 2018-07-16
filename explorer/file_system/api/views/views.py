@@ -5,6 +5,8 @@ from rest_framework import viewsets
 from explorer.file_system.api import serializers
 from explorer.file_system.samples import get_samples_for_df_preproc
 from explorer.file_system.ref_seq_explorer import *
+from explorer.file_system.file_system_class import ReadsInSystem
+
 
 import pandas as pd
 from explorer.file_system import metaphlan2 as mp2
@@ -13,6 +15,7 @@ from rest_framework.views import APIView
 import json
 import explorer.file_system.helpers as hp
 
+
 class SampleFSViewSet(viewsets.ViewSet):
     # Required for the Browsable API renderer to have a nice form.
     serializer_class = serializers.SampleFSSerializer
@@ -20,10 +23,11 @@ class SampleFSViewSet(viewsets.ViewSet):
     def list(self, request):
         samples = get_samples_for_df_preproc('FHM', 'raw')
         print(samples)
-        ss = {'sample_name':samples}
+        ss = {'sample_name': samples}
         serializer = serializers.SampleFSSerializer(
             instance=ss)
         return Response(serializer.data)
+
 
 class Mp2View(APIView):
     def get(self, request):
@@ -63,16 +67,18 @@ class Mp2View(APIView):
 
         return HttpResponse(mp2_data_json, content_type='application/json')
 
+
 class Mp2BoxView(APIView):
     def get(self, request, dataset, preproc):
         mp2_dir = settings.PIPELINE_DIR + '/datasets/'
         mp2_dir += '{df}/taxa/reads/{preproc}/mp2/'
-        mp2_dir = mp2_dir.format(df = dataset, preproc = preproc)
+        mp2_dir = mp2_dir.format(df=dataset, preproc=preproc)
 
         return 0
 
+
 class DatasetsFSView(APIView):
-    def get(self,request):
+    def get(self, request):
         pipeline_dir = settings.PIPELINE_DIR + '/'
         datasets_dir = pipeline_dir + 'datasets/*'
         datasets_folders = glob.glob(datasets_dir)
@@ -84,29 +90,29 @@ class DatasetsFSView(APIView):
             record = record.replace(pipeline_dir, '')
             rifs.add_child(pipeline_dir, record)
 
-
         print('LETS SEE WHAT WEVE GOT')
         print(rifs.__str__())
 
         df_list = []
         for df in datasets_folders:
-            df_list.append(df.replace(pipeline_dir+'datasets/', ''))
+            df_list.append(df.replace(pipeline_dir + 'datasets/', ''))
 
         return HttpResponse(json.dumps(df_list), content_type='application/json')
+
 
 class DatasetPreprocsAPIVIew(APIView):
     def get(self, request, df):
         pipeline_dir = settings.PIPELINE_DIR + '/'
-        preprocs_dir = pipeline_dir + 'datasets/'+df+'/reads/*'
+        preprocs_dir = pipeline_dir + 'datasets/' + df + '/reads/*'
         preprocs = glob.glob(preprocs_dir)
 
         preprocs_list = []
         for preproc in preprocs:
             if os.path.isdir(preproc):
-                preprocs_list.append(preproc.replace(pipeline_dir+'datasets/'+df+'/reads/', ''))
-
+                preprocs_list.append(preproc.replace(pipeline_dir + 'datasets/' + df + '/reads/', ''))
 
         return HttpResponse(json.dumps(preprocs_list), content_type='application/json')
+
 
 class Mp2ScatterView(APIView):
     def get(self, request):
@@ -132,6 +138,7 @@ class Mp2ScatterView(APIView):
 
         return HttpResponse(mp2_data_json, content_type='application/json')
 
+
 class Mp2BoxAPIView(APIView):
     def get(self, request):
         # Parse query
@@ -144,7 +151,7 @@ class Mp2BoxAPIView(APIView):
         pipeline_dir = settings.PIPELINE_DIR + '/'
         datasets_dir = pipeline_dir + 'datasets/'
         mp2_dir = datasets_dir + '{df}/taxa/reads/{preproc}/mp2/'
-        mp2_dir_for_df_preproc = mp2_dir.format(df = df, preproc = preproc)
+        mp2_dir_for_df_preproc = mp2_dir.format(df=df, preproc=preproc)
         mp2_files = glob.glob(mp2_dir_for_df_preproc + '*.mp2')
         # Dictionary of format {sample_name: file_location}
         samples_loc = {}
@@ -152,33 +159,37 @@ class Mp2BoxAPIView(APIView):
             samples_loc[file.split('/')[-1].replace('.mp2', '')] = file
 
         # Load Data
-        mp2_data = mp2.read_mp2_data(samples_loc, level='o__', org='Bacteria', norm_100 = False)
+        mp2_data = mp2.read_mp2_data(samples_loc, level='o__', org='Bacteria', norm_100=False)
         mp2box = mp2_data.set_index('sample').T
         mp2box = mp2box.fillna('none')
         # Transform to json
         mp2_box_dict = mp2box.to_dict(orient='index')
-        #mp2_box_json = json.dumps(mp2_box_dict)
-        #mp2_box_json = list(mp2_box_json)
+        # mp2_box_json = json.dumps(mp2_box_dict)
+        # mp2_box_json = list(mp2_box_json)
         final_dict = {'df': df, "preproc": preproc, 'mp2box': mp2_box_dict}
-        return HttpResponse( json.dumps(final_dict), content_type='application/json')
+        return HttpResponse(json.dumps(final_dict), content_type='application/json')
+
 
 class MappedView(APIView):
 
     def get(self, request, dataset, preproc, tool, seq_type, seq_name, postproc):
+        pipeline_dir = settings.PIPELINE_DIR + '/'
         datasets_dir = settings.PIPELINE_DIR + '/datasets/'
         search_dir = datasets_dir + '{0}/mapped/{1}/{2}/{3}/{4}/{5}/'
         search_dir = search_dir.format(dataset, preproc, tool, seq_type, seq_name, postproc)
-        mapped_files = get_files_from_path_with_ext(search_dir, '.bb_stats', only_names = False)
+        mapped_files = get_files_from_path_with_ext(search_dir, '.bb_stats', only_names=False)
 
         # remove dir to datasets
         for i, f in enumerate(mapped_files):
-            mapped_files[i] = f.replace(datasets_dir, '')
-            print(f)
+            mapped_files[i] = f.replace(settings.PIPELINE_DIR + '/', '')
+
+        mapped = ReadsInSystem(pipeline_dir, mapped_files[0])
 
         if len(mapped_files) > 0:
             myFiles = FileSystem(mapped_files[0])
             for i, record in enumerate(mapped_files[1:]):
                 myFiles.add_child(record)
+                mapped.add_child(pipeline_dir, record)
 
         query_params = self.request.query_params
         samples = query_params.get('samples', None)
@@ -193,25 +204,22 @@ class MappedView(APIView):
             print(search_dir)
             mapping_res = hp.load_cov_stats(samples, search_dir, '.bb_stats')
 
-
             # apply filter if exists
             if query_filter is not None and query_filter != '':
                 print(query_filter)
                 query_filter = query_filter.replace('and', '&')
                 query_filter = query_filter.replace('or', '|')
                 for sample in samples:
-                    query_string += query_filter.format(s = sample)
+                    query_string += query_filter.format(s=sample)
                 query_string = query_string[0:-3]
                 print(query_string)
                 mapping_res = hp.get_df_from_query(mapping_res, query_string)
-
 
             ## leave only norm_fold for heatmap
             cols = mapping_res.columns
             for col in cols:
                 if not (col == '#ID' or 'Norm_fold' in col):
                     mapping_res = mapping_res.drop(col, axis=1)
-
 
             # # Only with hosts
             # vir_info_loc = '/data6/bio/TFM/pipeline/data/ref/virus/IMGVR_mVCs_nucleotides.info.tsv'
@@ -220,18 +228,17 @@ class MappedView(APIView):
             # with_hosts_list = list(with_hosts['mVCs'])
             # mapping_res = mapping_res.loc[mapping_res['#ID'].isin(with_hosts_list)]
 
-
             # set #ID as index
             mapping_res = mapping_res.set_index('#ID')
             # fill NaN values with 0
             mapping_res = mapping_res.fillna(0)
             # drop all rowes that contain only 0
-            #clean_mapping_res = clean_mapping_res[(clean_mapping_res.T != 0).any()]
+            # clean_mapping_res = clean_mapping_res[(clean_mapping_res.T != 0).any()]
             cols = mapping_res.columns
             rename_cols = {}
             for i, col in enumerate(cols):
                 rename_cols[col] = col.replace('Norm_fold__', '')
-            clean_mapping_res =mapping_res.rename(rename_cols, axis='columns')
+            clean_mapping_res = mapping_res.rename(rename_cols, axis='columns')
 
             clean_mapping_res_dict = clean_mapping_res.to_dict(orient='split')
             clean_mapping_res_json = json.dumps(clean_mapping_res_dict)
@@ -239,8 +246,8 @@ class MappedView(APIView):
 
             return HttpResponse(clean_mapping_res_json, content_type='application/json')
 
+        return HttpResponse(json.dumps(mapped.to_dict()), content_type='application/json')
 
-        return HttpResponse(json.dumps(myFiles.make_dict()), content_type='application/json')
 
 class RefSeqSetsView(viewsets.ViewSet):
     # Required for the Browsable API renderer to have a nice form.
@@ -259,13 +266,14 @@ class RefSeqSetsView(viewsets.ViewSet):
             instance=categories_with_seq_sets, many=True)
         return Response(serializer.data)
 
+
 class ReadsView(APIView):
     def get(self, request, df, preproc):
-        pipeline_dir = settings.PIPELINE_DIR +'/'
+        pipeline_dir = settings.PIPELINE_DIR + '/'
         datasets_dir = pipeline_dir + 'datasets/'
         search_dir = datasets_dir + '{0}/reads/{1}/'
         search_dir = search_dir.format(df, preproc)
-        read_files = glob.glob(search_dir  + '*/*.fastq.gz')
+        read_files = glob.glob(search_dir + '*/*.fastq.gz')
         read_files.sort()
         print(read_files)
         rifs = ReadsInSystem(pipeline_dir, read_files[0].replace(pipeline_dir, ''))
@@ -274,7 +282,4 @@ class ReadsView(APIView):
             record = record.replace(pipeline_dir, '')
             rifs.add_child(pipeline_dir, record)
 
-        mapped_dict_from_fs(rifs)
-
         return HttpResponse(json.dumps(rifs.to_dict()), content_type='application/json')
-

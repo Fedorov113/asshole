@@ -1,6 +1,7 @@
 import os, glob
 from .file_system_helpers import sizeof_fmt
 
+
 class ReadsInSystem:
     debug = True
 
@@ -36,7 +37,13 @@ class ReadsInSystem:
                 except ValueError:
                     # print('Looks like this is the end')
                     if os.path.isfile(parent_path + path):
-                        self.add_reads_file(parent_path, path)
+                        if path.split('.')[-1] == 'gz':
+                            self.add_reads_file(parent_path, path)
+                        else:
+                            self.name = path
+                            self.type = 'file'
+                            self.full_path = parent_path + path
+
         else:
             print('We dont like it')
             print('Parent: ' + parent_path)
@@ -57,8 +64,6 @@ class ReadsInSystem:
                     splits = count.readline().split(' ')
                     self.reads = splits[0]
                     self.bp = splits[1]
-
-
 
     def add_child(self, parent_path, path):
         parent_path_to_pass = parent_path
@@ -106,13 +111,24 @@ class ReadsInSystem:
             return dictionary
         else:
             if self.type == 'file':
-                return {'node_name': self.name,
+                print(self.name)
+                if self.name.split('.')[-1] == 'gz':
+                    return {
+                        'node_name': self.name,
                         'full_path': self.full_path,
                         'type': self.type,
                         'level': self.level,
                         'size': self.size,
                         'bp': self.bp,
-                        'reads': self.reads}
+                        'reads': self.reads
+                    }
+                else:
+                    return {
+                        'node_name': self.name,
+                        'full_path': self.full_path,
+                        'type': self.type,
+                        'level': self.level
+                    }
             if self.type == 'dir':
                 return {'node_name': self.name,
                         'full_path': self.full_path,
