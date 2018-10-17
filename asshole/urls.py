@@ -16,11 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('explorer/', include('explorer.urls')),
-    path('app/', include('frontend.urls')),
-    path('api/molot/', include(('explorer.api.urls', 'explorer'), namespace='api-explorer')),
-    path('api/fs/', include(('explorer.file_system.api.urls', 'filesystem'), namespace='fs-explorer')),
-    path('api/mis/', include(('mis.api.urls', 'mis'), namespace='api-mis'))
+    path('api/fs/', include(('explorer.file_system.api.urls', 'filesystem'), namespace='fs-explorer'))
 ]

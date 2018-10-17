@@ -1,5 +1,55 @@
+import fnmatch
 import os, glob
 import pandas as pd
+
+
+def find_files(base, pattern):
+    '''Return list of files matching pattern in base folder.'''
+    return [n for n in fnmatch.filter(os.listdir(base), pattern) if
+        os.path.isfile(os.path.join(base, n))]
+
+def get_samples_from_dir(loc):
+    samples_list = []
+
+    ext = '.fastq.gz'
+
+    if loc[-1] != '/':
+        loc += '/'
+
+    samples =  [
+        item.split("/")[-1].split(ext)[0]
+        for item in glob.glob(loc + '*_R1*' + ext)
+    ]
+
+    for i, s in enumerate(samples):
+        if s.endswith('_R1_001'):
+            samples[i] = s[:-7]
+
+
+    for sample in samples:
+        temp_saples_dict = {'sample_name': sample,
+                            'files': {'R1': '', 'R2': '', 'S': []},
+                            'renamed_files': {'R1': '', 'R2': '', 'S': []}}
+
+        r1 = sample + '_R1*' + ext
+        r1_f = find_files(loc, r1)
+        if len(r1_f) == 1:
+            stripped = r1_f[0].replace(ext, '')
+            stripped = stripped[0:-4]+ext
+            temp_saples_dict['renamed_files']['R1'] = stripped
+            temp_saples_dict['files']['R1'] = r1_f[0]
+
+        r2 = sample + '_R2*' + ext
+        r2_f = find_files(loc, r2)
+        if len(r2_f) == 1:
+            stripped = r2_f[0].replace(ext, '')
+            stripped = stripped[0:-4]+ext
+            temp_saples_dict['renamed_files']['R2'] = stripped
+            temp_saples_dict['files']['R2'] = r2_f[0]
+
+        samples_list.append(temp_saples_dict)
+
+    return samples_list
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:

@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 
 from django.conf import settings
+import json
 
 
 class SampleFastQCView(APIView):
@@ -31,4 +32,10 @@ class SampleKronaView(APIView):
             krona_html = krona_html_file.read()
 
         return HttpResponse(krona_html, content_type='text/html')
+
+class SampleImportView(APIView):
+    def post(self, request):
+        print(request.data )
+        return HttpResponse(json.dumps(request.data), content_type='application/json')
+
 

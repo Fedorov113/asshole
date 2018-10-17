@@ -283,3 +283,13 @@ class ReadsView(APIView):
             rifs.add_child(pipeline_dir, record)
 
         return HttpResponse(json.dumps(rifs.to_dict()), content_type='application/json')
+
+
+class CheckSamplesInFolder(APIView):
+    def get(self, request):
+        query_params = self.request.query_params
+        loc = query_params.get('loc', None)
+
+        samples = get_samples_from_dir(loc)
+
+        return HttpResponse(json.dumps(samples), content_type='application/json')

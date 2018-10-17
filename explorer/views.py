@@ -1,25 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from explorer.tasks import *
 from django.conf import settings
 import os, glob
-from .models import Dataset
-from django.template import loader
-from django.http import Http404
+
+from django.http import HttpResponse
+from rest_framework.views import APIView
+import json
+
 from django.shortcuts import render
-from Bio import SeqIO
-
-from explorer.serializers import DatasetSerializer
-from rest_framework import generics
-
-# Create your views here.
-
-# Show datasets
-def index(request):
-    return HttpResponse("Hello, world. This is an entry point to asshole.")
-
-# Dataset main view
-
-
+# from Bio import SeqIO
 
 def get_fastqc(df_name, batch_name, how, sample_name, strand):
     fastqc_html = ''
@@ -32,18 +20,7 @@ def get_fastqc(df_name, batch_name, how, sample_name, strand):
 
     return fastqc_html
 
-def dataset(request, df_id):
-    try:
-        df_name=Dataset.objects.get(pk = df_id).df_name
-    except Dataset.DoesNotExist:
-        raise Http404("NO SUCH DATASET")
 
-    context = {
-        'df_name': df_name,
-        'files': get_samples_for_df(df_name, 0)
-    }
-
-    return render(request, 'explorer/index.html', context)
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
@@ -52,53 +29,7 @@ def sizeof_fmt(num, suffix='B'):
         num /= 1024.0
     return "%.1f%s%s" % (num, 'Yi', suffix)
 
-def sample(request, df_id,sample_name):
-    try:
-        df_name=Dataset.objects.get(pk = df_id).df_name
-    except Dataset.DoesNotExist:
-        raise Http404("NO SUCH DATASET")
 
-    # Check all reads files that exist for this sample
-    reads_dir = os.path.join(settings.PIPELINE_DIR, 'datasets/'
-                                     + df_name
-                                     + '/reads/')
-    dirs_with_reads = get_folders_in_path(reads_dir)
-
-    fastqgz_files_dir = reads_dir + '%s/'
-    fff = {}
-    for dir in dirs_with_reads:
-        directory = fastqgz_files_dir % dir
-        if len(glob.glob(directory+sample_name+'*.fastq.gz')) > 0:
-            reads_files = get_files_from_path_with_ext(directory+sample_name, '.fastq.gz')
-            reads_files.sort()
-            # os.stat('C:\\Python27\\Lib\\genericpath.py').st_size
-            reads_files_info = []
-            for file in reads_files:
-                f_size = os.stat(directory+file+'.fastq.gz').st_size
-                reads_files_info.append([file, sizeof_fmt(f_size)])
-            print(reads_files_info)
-            fff[dir] = reads_files_info
-
-    context = {
-        'files': fff,
-        'sample_name': sample_name
-    }
-    return render(request, 'explorer/sample.html', context)
-
-def fastqc(request, df_id, sample_name, strand, how):
-    try:
-        df_name=Dataset.objects.get(pk = df_id).df_name
-    except Dataset.DoesNotExist:
-        raise Http404("NO SUCH DATASET")
-
-    try:
-        fastqc = get_fastqc(df_name, 0, how, sample_name, strand)
-    except Exception:
-        raise Http404('NO FASTQC REPORT FOR ' + sample_name)
-    context = {
-        'fastqc': fastqc
-    }
-    return render(request, 'explorer/fastqc.html', context)
 
 def get_folders_in_path(directory):
     return [d for d in os.listdir(directory)
@@ -132,7 +63,7 @@ def sequence_explorer(request):
 
 def get_sequences_info_from_fasta(category, fasta_name, ext):
     ref_sequences_dir = os.path.join(settings.PIPELINE_DIR, 'data/ref/'+category+'/'+fasta_name+ext)
-    return SeqIO.to_dict(SeqIO.parse(ref_sequences_dir, "fasta"))
+    return None #SeqIO.to_dict(SeqIO.parse(ref_sequences_dir, "fasta"))
 
 def sequence_set(request, category, seq_set_name):
     context = {
@@ -142,9 +73,41 @@ def sequence_set(request, category, seq_set_name):
     }
     return render(request, 'explorer/sequence_set.html', context)
 
-class DatasetViewSet(generics.ListCreateAPIView):
-    """
-    API endpoint that allows datasets to be viewed or edited.
-    """
-    queryset = Dataset.objects.all()
-    serializer_class = DatasetSerializer
+# class DatasetViewSet(generics.ListCreateAPIView):
+#     """
+#     API endpoint that allows datasets to be viewed or edited.
+#     """
+#     queryset = Dataset.objects.all()
+#     serializer_class = DatasetSerializer
+
+
+
+
+
+
+class TestCelery(APIView):
+    def get(self, request):
+        add.delay(2, 2)
+        return HttpResponse (json.dumps('Well, weve started mult'), content_type='application/json')
+
+
+
+
+
+
+
+class TestCelerySnakemake(APIView):
+    def get(self, request):
+        input_list = [
+            'datasets/FHM/reads/raw/D2T1_L2S1_B4_S13/D2T1_L2S1_B4_S13_R2.count',
+            'datasets/FHM/reads/raw/T15T5_L1S1_B5_S32/T15T5_L1S1_B5_S32_R1.count',
+        ]
+
+        snakemake_run.delay(input_list)
+
+        return HttpResponse (json.dumps('Well, weve started snakemake'), content_type='application/json')
+
+
+
+
+
