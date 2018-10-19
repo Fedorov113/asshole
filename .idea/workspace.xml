@@ -2,210 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f08cfec-28e1-4b40-a220-9c8253d3597e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/fedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/fedor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asshole/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/asshole/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asshole/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/asshole/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asshole/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/asshole/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/asshole/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/notes.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views/subject_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/api/views/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/api/views/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/api/views/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/templates/explorer/fastqc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/templates/explorer/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/templates/explorer/sample.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/templates/explorer/sequence_explorer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/templates/explorer/sequence_set.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/explorer/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AppBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/MappingHeatmap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/MappingParser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/MappingRuleGenerator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/MappingSelector.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/ReferencePanel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/mapping.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/action/reference_explorer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/actual_shit/ActualShitCardsGrid.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetCardsGrid.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetPreprocReadsSelector.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetReadsContentViz.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetSelect.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatasetsBpLenVis.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/DatsetFullInfo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/dataset/SamplesTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/fmt/FmtCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/AddSampleForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/DfsSamplesBpLenView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/ReadsParser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/SampleByDirTabs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/SampleFullInfo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/sample/SamplesExpandableList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/subject/AddSubjectForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonCardsGrid.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/data/subject/PersonFullInfo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/result/Mp2Boxplot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/result/Mp2BoxplotViz.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/result/metaphlan2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/result/mp2_scatter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/datasetActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/fmtActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/mappingActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/mp2Actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/personActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/sampleActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/actions/seqSetsActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/constants/action-types.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/datasetReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/fmtReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/mappingReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/mp2Reducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/personReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/sampleReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/reducers/seqSetsReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/api/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/api/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/api/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/api/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/Archetype.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/ArchetypeHRID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/AuthoredArchetype.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/OperationalTemplate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/Template.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/TemplateOverlay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/archetype/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/ArchetypeConstraint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/ArchetypeSlot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CArchetypeRoot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CAttribute.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CAttributeTuple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CComplexObject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CComplexObjectProxy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CDefinedObject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CObject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CPrimitiveObject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CPrimitiveTuple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/CSecondOrder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/constraint_model/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/definitions/AdlCodeDefinitions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/definitions/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/primitive/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/rules/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2/terminology/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/aom2_profile/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/p_aom2/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/p_aom2/archetype/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/p_aom2/constraint_model/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/p_aom2/primitive/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/am/p_aom2/terminology/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/definitions/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/definitions/definitions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/ArchetypeID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/ObjectID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/ObjectRef.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/PartyRef.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/UID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/identification/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/measurement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/base_types/terminology/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/bmm/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/bmm/core/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/bmm/rm_access/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/bmm_persistence/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/AnyFoundationClass.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/functional/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/iso8601_time/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/primitive_types/Boolean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/primitive_types/Numeric.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/primitive_types/Ordered.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/primitive_types/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/structures/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/foundation_types/time/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/base/resource/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/Archetyped.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/FeederAudit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/Link.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/Locatable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/Pathable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/archetyped/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/change_control.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/directory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/generic/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/resource/AuthoredResource.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/common/resource/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/composition/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/composition/content/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/composition/content/entry.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/composition/content/navigation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_structures/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_structures/history.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_structures/item_structure.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/DataValue.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/basic/DvBoolean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/basic/DvIdentifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/basic/DvState.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/basic/ReferenceModelName.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/basic/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/encapsulated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/quantity/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/text/DvCodedText.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/text/DvParagraph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/text/DvText.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/text/TermMapping.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/text/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/time_specification.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/uri/DvURI.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/data_types/uri/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/demographic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/ehr.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/exr_ectract.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/rm/integration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/org/openehr/sm/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mis/views.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -233,8 +37,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/explorer/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+            <state relative-caret-position="210">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -242,13 +46,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tasks.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="336">
+              <caret line="19" column="34" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="34" />
               <folding>
                 <element signature="e#25#81#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sample_views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -257,11 +73,20 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/explorer/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="103" column="9" selection-start-line="100" selection-start-column="8" selection-end-line="103" selection-end-column="9" />
+            <state relative-caret-position="2961">
+              <caret line="141" column="8" lean-forward="true" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/asshole/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="40" column="26" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -357,17 +182,17 @@
         <option value="$PROJECT_DIR$/explorer/admin.py" />
         <option value="$PROJECT_DIR$/asshole/urls.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/api/urls.py" />
-        <option value="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" />
         <option value="$PROJECT_DIR$/asshole/__init__.py" />
         <option value="$PROJECT_DIR$/asshole/settings.py" />
         <option value="$PROJECT_DIR$/asshole/taska.py" />
         <option value="$PROJECT_DIR$/asshole/tasks.py" />
         <option value="$PROJECT_DIR$/asshole/celery.py" />
-        <option value="$PROJECT_DIR$/explorer/urls.py" />
         <option value="$PROJECT_DIR$/snakemake/logging.py" />
-        <option value="$PROJECT_DIR$/explorer/views.py" />
         <option value="$PROJECT_DIR$/snakemake/workflow.py" />
+        <option value="$PROJECT_DIR$/explorer/urls.py" />
         <option value="$PROJECT_DIR$/explorer/tasks.py" />
+        <option value="$PROJECT_DIR$/explorer/views.py" />
+        <option value="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" />
       </list>
     </option>
   </component>
@@ -400,6 +225,37 @@
             <path>
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="file_system" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -476,23 +332,23 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5051546" side_tool="true" weight="0.32915717" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50446737" side_tool="true" weight="0.33712983" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49966645" weight="0.33712983" />
+      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49553263" weight="0.33712983" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49484536" weight="0.32915717" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.32915717" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.32915717" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.14089347" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" weight="0.17731959" />
       <window_info anchor="right" id="R Packages" order="7" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="Database" order="5" weight="0.3298969" />
       <window_info anchor="right" id="SciView" order="6" weight="0.3298969" />
       <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.26185566" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -502,31 +358,31 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
-      <window_info anchor="right" id="SciView" order="6" weight="0.3298969" />
-      <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.26185566" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32915717" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.3298969" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.17731959" />
+      <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.26185566" />
       <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="right" id="R Packages" order="7" />
+      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49553263" weight="0.33712983" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" weight="0.18281788" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.30182233" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49484536" weight="0.32915717" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="R Packages" order="7" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5051546" side_tool="true" weight="0.32915717" />
-      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49966645" weight="0.33712983" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="5" weight="0.3298969" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4941581" visible="true" weight="0.32915717" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50446737" side_tool="true" weight="0.33712983" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="SciView" order="6" weight="0.3298969" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49484536" weight="0.32915717" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,27 +455,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/dataset_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="34" column="23" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asshole/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -628,13 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asshole/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
         </state>
       </provider>
     </entry>
@@ -659,87 +491,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
+    <entry file="file://$PROJECT_DIR$/snakemake/conda.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/cwl.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/utils.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/logging.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/executors.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/scheduler.py" />
+    <entry file="file://$PROJECT_DIR$/snakemake/workflow.py" />
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/dataset_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="6" column="1" selection-start-line="6" selection-end-line="7" />
+        <state relative-caret-position="42">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/explorer/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+        <state relative-caret-position="210">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/conda.py">
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/remote_sources/-1784310541/-1247177518/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5533">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/cwl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5302" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8319" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/wrapper.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/logging.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6615" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/executors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1245">
-          <caret line="385" column="45" selection-start-line="385" selection-start-column="17" selection-end-line="385" selection-end-column="45" />
+        <state relative-caret-position="125">
+          <caret line="301" column="4" selection-start-line="301" selection-start-column="4" selection-end-line="301" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/explorer/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="103" column="9" selection-start-line="100" selection-start-column="8" selection-end-line="103" selection-end-column="9" />
+        <state relative-caret-position="2961">
+          <caret line="141" column="8" lean-forward="true" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/scheduler.py">
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="159" column="36" selection-start-line="159" selection-start-column="20" selection-end-line="159" selection-end-column="36" />
+        <state relative-caret-position="2835">
+          <caret line="291" lean-forward="true" selection-start-line="291" selection-end-line="291" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#4023#5057#0" />
+            <element signature="e#5094#6405#0" />
+            <element signature="e#6440#9990#0" />
+            <element signature="e#10037#10660#0" />
+            <element signature="e#10693#11377#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snakemake/workflow.py">
+    <entry file="file://$PROJECT_DIR$/asshole/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="308" column="33" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="33" />
+        <state relative-caret-position="840">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="336">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="34" />
           <folding>
             <element signature="e#25#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

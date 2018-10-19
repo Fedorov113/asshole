@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" autoUploadExternalChanges="true">
     <serverData>
+      <paths name="asshole">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data6/bio/TFM/asshole" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="fedor@localhost:22">
         <serverdata>
           <mappings>

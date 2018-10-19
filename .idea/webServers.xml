@@ -7,6 +7,14 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="a7ba5bb5-947e-403f-81f3-f5ada8e131d9" name="asshole" url="http://localhost">
+        <fileTransfer host="cluster.ripcm.com" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

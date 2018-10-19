@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 from django.conf import settings
 import json
+import os
 
 
 class SampleFastQCView(APIView):
@@ -35,7 +36,28 @@ class SampleKronaView(APIView):
 
 class SampleImportView(APIView):
     def post(self, request):
-        print(request.data )
-        return HttpResponse(json.dumps(request.data), content_type='application/json')
+        data = json.loads(request.body)
+
+        src = data['orig_file']
+        dst = settings.PIPELINE_DIR+'/datasets/'+data['hdf_name']+'/reads/imp/'+data['sample']+'/'+data['new_name']+'.fastq.gz'
+
+        original_umask = None
+        try:
+            # stackoverflow.com/questions/5231901/permission-problems-when-creating-a-dir-with-os-makedirs-in-python
+            original_umask = os.umask(0)
+            if not os.path.isdir(settings.PIPELINE_DIR+'/datasets/'+data['hdf_name']+'/reads/imp/'+data['sample']+'/'):
+                os.makedirs(settings.PIPELINE_DIR+'/datasets/'+data['hdf_name']+'/reads/imp/'+data['sample']+'/', 0o777)
+            if not os.path.islink(dst):
+                os.symlink(src, dst)
+        except Exception as Error:
+            print(Error)
+        finally:
+            os.umask(original_umask)
+
+        cool = 'COOL'
+        if not os.path.islink(dst):
+            cool = 'FUCK'
+
+        return HttpResponse(json.dumps(cool), content_type='application/json')
 
 
