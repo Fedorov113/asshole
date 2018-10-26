@@ -2,12 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" name="sftp://fedorov@cluster.ripcm.com:22/home/fedorov/miniconda3/bin/python" url="http://cluster.ripcm.com">
-        <fileTransfer host="cluster.ripcm.com" port="22" accessType="SFTP">
-          <option name="port" value="22" />
-        </fileTransfer>
-      </webServer>
-      <webServer id="a7ba5bb5-947e-403f-81f3-f5ada8e131d9" name="asshole" url="http://localhost">
+      <webServer id="fb9dc2ab-6918-4608-9136-a00e683c0e09" name="asshole" url="http://cluster.ripcm.com">
         <fileTransfer host="cluster.ripcm.com" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />

@@ -54,10 +54,12 @@ class SampleImportView(APIView):
         finally:
             os.umask(original_umask)
 
-        cool = 'COOL'
+        success = {'success': True}
         if not os.path.islink(dst):
-            cool = 'FUCK'
+            success['success'] = False
 
-        return HttpResponse(json.dumps(cool), content_type='application/json')
+        print(success)
+
+        return HttpResponse(json.dumps(success), content_type='application/json')
 
 
