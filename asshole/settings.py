@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+MGMS_URL = 'http://127.0.0.1:11111/'
+
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'django.contrib.admin',
@@ -50,9 +52,6 @@ INSTALLED_APPS = [
 # }
 
 CELERY_RESULT_BACKEND = 'django-db'
-
-
-
 
 
 MIDDLEWARE = [

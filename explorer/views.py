@@ -105,51 +105,21 @@ class TestCelerySnakemake(APIView):
 
         return HttpResponse (json.dumps("Well, we've started snakemake. Let's how it ends."), content_type='application/json')
 
-def generate_snakefile(input_list, name=''):
-    # Get number of files for id
-    num_of_files = sum([len(files) for r, d, files in os.walk(settings.PIPELINE_DIR +'/run_snakes')])
-    print('Number of files: ' + str(num_of_files))
 
-
-    # Generate tmp snakemake file name
-    snakefile_id = name + '.py'
-    if name == '':
-        snakefile_id = 'snake_run_' + str(num_of_files) + '.py'
-
-
-    # Load base snakemake file
-    # Read content to str
-    snakefile_content = ''
-    with open(settings.PIPELINE_DIR + '/bin/snake/base.py', 'r') as base:
-        snakefile_content = base.read()
-
-    # Write list of files
-    snakefile_content += 'input_list='+str(input_list)+'\n'
-
-    # Write generated rule
-    snakefile_content += '\nrule gen:\n' + '\tinput: input_list'
-
-    # Save this string to and file to tmp folder
-    snakefile_loc = settings.PIPELINE_DIR +'/run_snakes/'+snakefile_id
-    with open(snakefile_loc, 'w') as file:
-        file.write(snakefile_content)
-
-    return snakefile_loc
 
 class CelerySnakemakeFromList(APIView):
     def post(self, request):
         task_id = uuid()
         data = json.loads(request.body)
-        print(data)
         samples_list = data['samples_list']
 
-        sn_loc = generate_snakefile(samples_list, task_id)
+        # sn_loc = generate_snakefile(samples_list, task_id)
 
         dry = int(request.GET.get('dry', 1))
 
         print(task_id)
         # Run snakemake by file identificator
-        snakemake_run.apply_async((sn_loc, dry), task_id=task_id)
+        snakemake_run.apply_async((samples_list, dry), task_id=task_id)
 
         return HttpResponse (json.dumps("Well, we've started snakemake"), content_type='application/json')  
 

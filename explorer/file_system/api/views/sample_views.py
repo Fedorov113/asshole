@@ -34,6 +34,8 @@ class SampleKronaView(APIView):
 
         return HttpResponse(krona_html, content_type='text/html')
 
+
+# Creates symlinks
 class SampleImportView(APIView):
     def post(self, request):
         data = json.loads(request.body)
