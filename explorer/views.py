@@ -85,43 +85,17 @@ def sequence_set(request, category, seq_set_name):
 
 
 
-
-
-class TestCelery(APIView):
-    def post(self, request):
-        data = json.loads(request.body)
-        samples_list = data['samples_list']
-        print(samples_list)
-        return HttpResponse (json.dumps('Well, weve started mult'), content_type='application/json')
-
-
-class TestCelerySnakemake(APIView):
-    def post(self, request):
-
-        data = json.loads(request.body)
-        samples_list = data['samples_list']
-
-        snakemake_run.delay(samples_list)
-
-        return HttpResponse (json.dumps("Well, we've started snakemake. Let's how it ends."), content_type='application/json')
-
-
-
 class CelerySnakemakeFromList(APIView):
     def post(self, request):
         task_id = uuid()
         data = json.loads(request.body)
-        samples_list = data['samples_list']
-
-        # sn_loc = generate_snakefile(samples_list, task_id)
-
+        desired_files = data['desired_files']
         dry = int(request.GET.get('dry', 1))
 
-        print(task_id)
-        # Run snakemake by file identificator
-        snakemake_run.apply_async((samples_list, dry), task_id=task_id)
+        # Run snakemake
+        snakemake_run.apply_async((desired_files, dry), task_id=task_id)
 
-        return HttpResponse (json.dumps("Well, we've started snakemake"), content_type='application/json')  
+        return HttpResponse (json.dumps({'start': 'SUCCESS'}), content_type='application/json')
 
 
 
