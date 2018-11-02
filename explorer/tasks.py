@@ -60,18 +60,32 @@ class CallbackSnakemake(Task):
 
 
 @shared_task(base=CallbackSnakemake, bind=True)
-def snakemake_run(self, samples_list, dry):
+def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
     sn_loc = generate_snakefile(samples_list, self.request.id)
 
     os.chdir(settings.PIPELINE_DIR)
     dry_arg = ''
     if dry == 1:
         dry_arg = '-n'
+        print('running dry')
 
+    shell_cmd_wc = "snakemake -s {sn_loc} --drmaa ' -pe make {threads}' {dry} -k -p --latency-wait 150 -j {jobs} --drmaa-log-dir ./drmaa_log gen --config task_id='{task_id}'"
+    shell_cmd = shell_cmd_wc.format(sn_loc=sn_loc, dry=dry_arg, threads=threads, jobs=jobs, task_id=self.request.id)
+
+    print('OPENING SUBPROCESS')
     p = subprocess.Popen(
-        "snakemake -s " + sn_loc + " --drmaa ' -pe make 2' " + dry_arg + " -k -p --latency-wait 150 -j 2 --drmaa-log-dir ./drmaa_log gen ",
+        shell_cmd,
         shell=True,
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    while True:
+        line = p.stdout.readline().rstrip()
+        if not line:
+            break
+        print (line)
+
+
+
     output, error = p.communicate()
 
     print('output')
@@ -98,30 +112,31 @@ def send_count(res):
     # parse loc to hard_df and sample_fs name
     if os.path.isfile(res):
         ext = (res.split('.')[-1])
-        slash_split = res.split('/')
+        if ext == 'count':
+            slash_split = res.split('/')
 
-        result_lines = []
-        with open(res, "r") as f:
-            result_lines = f.readlines()
+            result_lines = []
+            with open(res, "r") as f:
+                result_lines = f.readlines()
 
-        data = {
-            'input': {
-                'name_on_fs': slash_split[-2],
-                'df': slash_split[1],
-                'preproc': slash_split[3],
-                'strand': slash_split[-1].split('.')[0].split('_')[-1],
-            },
-            'result': {
-                'reads': int(result_lines[0][0:-2].split(' ')[0]),
-                'bp': int(result_lines[0][0:-2].split(' ')[1])
+            data = {
+                'input': {
+                    'name_on_fs': slash_split[-2],
+                    'df': slash_split[1],
+                    'preproc': slash_split[3],
+                    'strand': slash_split[-1].split('.')[0].split('_')[-1],
+                },
+                'result': {
+                    'reads': int(result_lines[0][0:-2].split(' ')[0]),
+                    'bp': int(result_lines[0][0:-2].split(' ')[1])
+                }
             }
-        }
 
-        # Make request to MGMS and wait for response
-        res_type = 'COUNTS'
-        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+            # Make request to MGMS and wait for response
+            res_type = 'COUNTS'
+            headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
 
-        url = settings.MGMS_URL + 'api/mgms/result/' + res_type + '/'
+            url = settings.MGMS_URL + 'api/mgms/result/' + res_type + '/'
 
-        r = requests.post(url, data=json.dumps(data), headers=headers)
-        print(r)
+            r = requests.post(url, data=json.dumps(data), headers=headers)
+            print(r)

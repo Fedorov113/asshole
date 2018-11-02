@@ -91,9 +91,12 @@ class CelerySnakemakeFromList(APIView):
         data = json.loads(request.body)
         desired_files = data['desired_files']
         dry = int(request.GET.get('dry', 1))
+        drmaa = int(request.GET.get('drmaa', 0))
+        jobs = int(request.GET.get('jobs', 1))
+        threads = int(request.GET.get('threads', 1))
 
         # Run snakemake
-        snakemake_run.apply_async((desired_files, dry), task_id=task_id)
+        snakemake_run.apply_async((desired_files, dry, threads, jobs), task_id=task_id)
 
         return HttpResponse (json.dumps({'start': 'SUCCESS'}), content_type='application/json')
 
