@@ -1,3 +1,4 @@
+from explorer.models import SnakeRule
 from explorer.tasks import *
 from django.conf import settings
 import os, glob
@@ -83,7 +84,74 @@ def sequence_set(request, category, seq_set_name):
 #     serializer_class = DatasetSerializer
 
 
+class CelerySnakemakeFromJSON(APIView):
+    def post(self, request):
+        task_id = uuid()
+        data = json.loads(request.body)
+        desired_results = data['desired_results']
 
+        # for each requested result create out_loc from JSON
+        for res in desired_results:
+            SnakeRule.objects.filter(rule_type=res['type'], )
+        # get rule name, wc string, and how to process it
+
+        # if simple - just fill wildcards with input dictionary
+
+        # if it involves output function - call it by name and pass input dict as arg
+
+        fastqc_example = {
+            'type': 'profile',
+            'tool': 'fastqc',
+            'input_type': 'simple',
+            'input': {
+                'df': 'FHM',
+                'preproc': 'imp',
+                'sample': 'D2T1',
+                'strand': 'R1'
+            }
+         }
+
+        taxa_example = {
+            'type': 'taxa',
+            'tool': 'mp2',
+            'params': 'def',
+            'input_type': 'simple',
+            'input': {
+                'df': 'FHM',
+                'preproc': 'imp',
+                'sample': 'D2T1'
+            }
+        }
+
+        map_example = {
+            'type': 'map',
+            'tool': 'bwa',
+            'params': 'def',
+            'postproc': 'none',
+            'input_type': 'simple', # means that wildcards will be simple expanded
+            'input': {
+                'df': 'FHM',
+                'preproc': 'imp',
+                'sample': 'D2T1',
+                'ref_type': 'virus',
+                'ref_name': 'allphagegenomes'
+            }
+        }
+
+        # or do we know input_type from rule definition?
+        assemb_example = {
+            'type': 'assemb',
+            'tool': 'mh',
+            'params': 'def',
+            'input_type': 'assemb_function',  # means that function by this name will be called to construct output string
+            'input': {
+                'containers': [{
+                    'df': 'FHM',
+                    'preproc': 'imp',
+                    'sample': 'D2T1'
+                }]
+            }
+        }
 
 class CelerySnakemakeFromList(APIView):
     def post(self, request):

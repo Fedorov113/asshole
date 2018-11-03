@@ -1,6 +1,8 @@
 # Create your tasks here
 from __future__ import absolute_import, unicode_literals
 
+
+
 import requests
 from celery import shared_task
 from celery import group
@@ -15,6 +17,8 @@ import subprocess
 from celery.worker.request import Request
 
 from asshole.celery import app
+from explorer.RuleSerializer import RuleSerializer
+from explorer.models import SnakeRuleResult
 
 logger = get_task_logger(__name__)
 import json
@@ -53,15 +57,25 @@ def generate_snakefile(input_list, name=''):
 class CallbackSnakemake(Task):
 
     def on_success(self, retval, task_id, args, kwargs):
-        res_files = args[0]
+        results = list (SnakeRuleResult.objects.filter(task_id=task_id))
+        print('IN CALLBACK')
+        print(task_id)
+        for res in results:
+            print('printing result')
+            print(res.rule_name)
+            print(res.output_to_serialize)
 
-        tasks = group([send_count.s(res) for res in res_files])
+        #res_files = args[0]
+
+        tasks = group([ser_and_send_to_m.s(res) for res in results])
         group_task = tasks.apply_async()
 
 
 @shared_task(base=CallbackSnakemake, bind=True)
 def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
     sn_loc = generate_snakefile(samples_list, self.request.id)
+
+    print('task_id ' + str(self.request.id))
 
     os.chdir(settings.PIPELINE_DIR)
     dry_arg = ''
@@ -106,37 +120,9 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
 
 
 @shared_task
-def send_count(res):
-    os.chdir(settings.PIPELINE_DIR)
+def ser_and_send_to_m(rule_result):
+    ser = RuleSerializer(rule_result.rule_name, rule_result.output_to_serialize)
 
-    # parse loc to hard_df and sample_fs name
-    if os.path.isfile(res):
-        ext = (res.split('.')[-1])
-        if ext == 'count':
-            slash_split = res.split('/')
-
-            result_lines = []
-            with open(res, "r") as f:
-                result_lines = f.readlines()
-
-            data = {
-                'input': {
-                    'name_on_fs': slash_split[-2],
-                    'df': slash_split[1],
-                    'preproc': slash_split[3],
-                    'strand': slash_split[-1].split('.')[0].split('_')[-1],
-                },
-                'result': {
-                    'reads': int(result_lines[0][0:-2].split(' ')[0]),
-                    'bp': int(result_lines[0][0:-2].split(' ')[1])
-                }
-            }
-
-            # Make request to MGMS and wait for response
-            res_type = 'COUNTS'
-            headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-
-            url = settings.MGMS_URL + 'api/mgms/result/' + res_type + '/'
-
-            r = requests.post(url, data=json.dumps(data), headers=headers)
-            print(r)
+    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    url = settings.MGMS_URL + 'api/mgms/result/'
+    r = requests.post(url, data=ser.to_json(), headers=headers)
