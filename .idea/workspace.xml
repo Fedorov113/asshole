@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e68d916e-7772-4431-b9b8-78a9354c3d67" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/explorer/RuleSerializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explorer/result/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explorer/result/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explorer/result/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explorer/result/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/explorer/tool/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/explorer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/explorer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,32 +25,33 @@
     <session id="-64030558">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.56" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="9" />
+          <entry key="py" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="9" />
+          <entry key="Python" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3617" />
+          <entry key="py" value="3954" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3617" />
+          <entry key="Python" value="3954" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -56,54 +60,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="126" column="48" selection-start-line="126" selection-start-column="48" selection-end-line="126" selection-end-column="48" />
-              <folding>
-                <element signature="e#25#81#0" expanded="true" />
-                <element signature="e#1799#2616#0" />
-                <marker date="1541203053204" expanded="true" signature="3459:3736" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/explorer/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+            <state relative-caret-position="-140">
+              <caret line="61" column="17" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="17" />
               <folding>
-                <marker date="1541208850119" expanded="true" signature="269:274" ph="..." />
-                <marker date="1541208850119" expanded="true" signature="1468:1469" ph="..." />
+                <marker date="1541271060078" expanded="true" signature="269:274" ph="..." />
+                <marker date="1541271060078" expanded="true" signature="1975:2204" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/views.py">
+        <entry file="file://$PROJECT_DIR$/explorer/tool/tool_serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="94" column="60" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
+            <state>
+              <caret selection-end-line="1" selection-end-column="29" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
-                <marker date="1541206389412" expanded="true" signature="2714:4770" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/RuleSerializer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <marker date="1541202743307" expanded="true" signature="132:194" ph="..." />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/explorer/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            <state relative-caret-position="234">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -122,10 +98,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asshole/settings.py">
+        <entry file="file://$PROJECT_DIR$/explorer/tool/tool_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state>
+              <caret selection-end-line="6" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/result/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/result/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,10 +136,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/explorer/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+            <state relative-caret-position="390">
+              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/explorer/result/urls.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -162,13 +173,18 @@
       <list>
         <option value="$PROJECT_DIR$/asshole/settings.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/api/views/sample_views.py" />
-        <option value="$PROJECT_DIR$/explorer/urls.py" />
         <option value="$PROJECT_DIR$/asshole/celery.py" />
         <option value="$PROJECT_DIR$/explorer/RuleSerializer.py" />
         <option value="$PROJECT_DIR$/explorer/tasks.py" />
-        <option value="$PROJECT_DIR$/explorer/admin.py" />
         <option value="$PROJECT_DIR$/explorer/views.py" />
+        <option value="$PROJECT_DIR$/explorer/tool/tool_views.py" />
+        <option value="$PROJECT_DIR$/explorer/tool/tool_serializers.py" />
+        <option value="$PROJECT_DIR$/explorer/admin.py" />
         <option value="$PROJECT_DIR$/explorer/models.py" />
+        <option value="$PROJECT_DIR$/explorer/result/serializers.py" />
+        <option value="$PROJECT_DIR$/explorer/result/views.py" />
+        <option value="$PROJECT_DIR$/explorer/result/urls.py" />
+        <option value="$PROJECT_DIR$/explorer/urls.py" />
       </list>
     </option>
   </component>
@@ -199,6 +215,18 @@
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
               <item name="explorer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="result" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asshole" type="462c0819:PsiDirectoryNode" />
+              <item name="explorer" type="462c0819:PsiDirectoryNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -274,9 +302,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="1013" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26203576" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2661623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -289,9 +316,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.27066818" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.27066818" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.3272933" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.3272933" />
       <window_info anchor="bottom" id="Python Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -345,16 +372,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2782">
+          <caret line="126" column="48" selection-start-line="126" selection-start-column="48" selection-end-line="126" selection-end-column="48" />
           <folding>
-            <element signature="e#0#56#0" expanded="true" />
+            <element signature="e#25#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/urls.py">
+    <entry file="file://$PROJECT_DIR$/explorer/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        <state relative-caret-position="2158">
+          <caret line="94" column="60" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1541206389412" expanded="true" signature="2714:4770" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/RuleSerializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1541202743307" expanded="true" signature="132:194" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -365,57 +414,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/RuleSerializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1541202743307" expanded="true" signature="132:194" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/explorer/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        <state relative-caret-position="234">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
+    <entry file="file://$PROJECT_DIR$/explorer/tool/tool_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="126" column="48" selection-start-line="126" selection-start-column="48" selection-end-line="126" selection-end-column="48" />
+        <state>
+          <caret selection-end-line="6" selection-end-column="41" />
           <folding>
-            <element signature="e#25#81#0" expanded="true" />
-            <element signature="e#1799#2616#0" />
-            <marker date="1541203053204" expanded="true" signature="3459:3736" ph="..." />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/views.py">
+    <entry file="file://$PROJECT_DIR$/explorer/result/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="94" column="60" selection-start-line="94" selection-start-column="60" selection-end-line="94" selection-end-column="60" />
+        <state relative-caret-position="234">
+          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/result/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/result/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1541206389412" expanded="true" signature="2714:4770" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/tool/tool_serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/explorer/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+        <state relative-caret-position="-140">
+          <caret line="61" column="17" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="17" />
           <folding>
-            <marker date="1541208850119" expanded="true" signature="269:274" ph="..." />
-            <marker date="1541208850119" expanded="true" signature="1468:1469" ph="..." />
+            <marker date="1541271060078" expanded="true" signature="269:274" ph="..." />
+            <marker date="1541271060078" expanded="true" signature="1975:2204" ph="..." />
           </folding>
         </state>
       </provider>
