@@ -13,5 +13,6 @@ urlpatterns = [
     path('tool/', ToolList.as_view()),
 
     path('result_types/', ResultTypeList.as_view()),
-    path('results/', ResultList.as_view())
+    path('results/', ResultList.as_view()),
+    path('schema/<schema_object>', SchemaView.as_view())
 ]

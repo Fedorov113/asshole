@@ -105,3 +105,10 @@ class Result(models.Model):
 
     def __str__(self):
         return self.result_name
+
+class Schema(models.Model):
+    schema_name = models.CharField(max_length=256, unique=True)
+    schema = models.TextField()
+
+    def __str__(self):
+        return self.schema_name
