@@ -24,6 +24,8 @@ def get_samples_from_dir(loc):
     for i, s in enumerate(samples):
         if s.endswith('_R1_001'):
             samples[i] = s[:-7]
+        elif s.endswith('_R1'):
+            samples[i] = s[:-3]
 
 
     for sample in samples:
@@ -35,7 +37,9 @@ def get_samples_from_dir(loc):
         r1_f = find_files(loc, r1)
         if len(r1_f) == 1:
             stripped = r1_f[0].replace(ext, '')
-            stripped = stripped[0:-4]+ext
+            if stripped.endswith('_001'):
+                stripped = stripped[0:-4]+ext
+            else: stripped = stripped+ext
             temp_saples_dict['renamed_files']['R1'] = stripped
             temp_saples_dict['files']['R1'] = r1_f[0]
 
@@ -43,7 +47,10 @@ def get_samples_from_dir(loc):
         r2_f = find_files(loc, r2)
         if len(r2_f) == 1:
             stripped = r2_f[0].replace(ext, '')
-            stripped = stripped[0:-4]+ext
+            if stripped.endswith('_001'):
+                stripped = stripped[0:-4]+ext
+            else:
+                stripped = stripped + ext
             temp_saples_dict['renamed_files']['R2'] = stripped
             temp_saples_dict['files']['R2'] = r2_f[0]
 

@@ -37,7 +37,7 @@ class SnakeRule(models.Model):
 
 class Tool(models.Model):
     name = models.CharField(max_length=256)
-    short_name = models.CharField(max_length=10, help_text='Short name used by Snakemake in Pipeline')
+    short_name = models.CharField(max_length=10, unique=True, help_text='Short name used by Snakemake in Pipeline')
     version = models.CharField(max_length=256)
     home_page = models.CharField(max_length=256, blank=True, null=True)
     type = models.CharField(max_length=256)
@@ -102,6 +102,7 @@ class Result(models.Model):
     # Not sure if we really need this...
     # But the idea is to store result input JSON schema
     input_schema = models.TextField()
+    tool_params_schema = models.TextField()
 
     def __str__(self):
         return self.result_name
