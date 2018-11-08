@@ -65,9 +65,8 @@ class CallbackSnakemake(Task):
             print(res.rule_name)
             print(res.output_to_serialize)
 
-        #res_files = args[0]
 
-        tasks = group([ser_and_send_to_m.s(res) for res in results])
+        tasks = group([ser_and_send_to_m.s(res.rule_name, res.output_to_serialize) for res in results])
         group_task = tasks.apply_async()
 
 
@@ -98,8 +97,6 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
             break
         print (line)
 
-
-
     output, error = p.communicate()
 
     print('output')
@@ -120,9 +117,10 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
 
 
 @shared_task
-def ser_and_send_to_m(rule_result):
-    ser = RuleSerializer(rule_result.rule_name, rule_result.output_to_serialize)
+def ser_and_send_to_m(rule_name, rule_result):
+    print(rule_result)
+    ser = RuleSerializer(rule_name, rule_result)
 
     headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
     url = settings.MGMS_URL + 'api/mgms/result/'
-    r = requests.post(url, data=ser.to_json(), headers=headers)
+    r = requests.post(url, data=ser.get_json(), headers=headers)

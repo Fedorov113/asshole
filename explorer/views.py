@@ -1,4 +1,4 @@
-from explorer.models import SnakeRule
+from explorer.models import *
 from explorer.tasks import *
 from django.conf import settings
 import os, glob
@@ -88,70 +88,29 @@ class CelerySnakemakeFromJSON(APIView):
     def post(self, request):
         task_id = uuid()
         data = json.loads(request.body)
-        desired_results = data['desired_results']
+        print(data)
+        desired = data['desired_results']
 
-        # for each requested result create out_loc from JSON
-        for res in desired_results:
-            SnakeRule.objects.filter(rule_type=res['type'], )
-        # get rule name, wc string, and how to process it
+        # create out_loc from JSON
+        res = Result.objects.get(result_name=desired['result'])
+        print(res.json_in_to_loc_out_func)
 
-        # if simple - just fill wildcards with input dictionary
+        input_loc_list = []
+        if res.json_in_to_loc_out_func == 'simple':
+            out_wc = res.out_str_wc
+            input_objects = desired['input_objects']
 
-        # if it involves output function - call it by name and pass input dict as arg
+            for input in desired['input']:
+                input_loc_list.append(out_wc.format(**input[input_objects[0]]))
 
-        fastqc_example = {
-            'type': 'profile',
-            'tool': 'fastqc',
-            'input_type': 'simple',
-            'input': {
-                'df': 'FHM',
-                'preproc': 'imp',
-                'sample': 'D2T1',
-                'strand': 'R1'
-            }
-         }
+        print(input_loc_list)
 
-        taxa_example = {
-            'type': 'taxa',
-            'tool': 'mp2',
-            'params': 'def',
-            'input_type': 'simple',
-            'input': {
-                'df': 'FHM',
-                'preproc': 'imp',
-                'sample': 'D2T1'
-            }
-        }
+        snakemake_run.apply_async((input_loc_list, 0, desired['threads'], desired['jobs']), task_id=task_id)
 
-        map_example = {
-            'type': 'map',
-            'tool': 'bwa',
-            'params': 'def',
-            'postproc': 'none',
-            'input_type': 'simple', # means that wildcards will be simple expanded
-            'input': {
-                'df': 'FHM',
-                'preproc': 'imp',
-                'sample': 'D2T1',
-                'ref_type': 'virus',
-                'ref_name': 'allphagegenomes'
-            }
-        }
 
-        # or do we know input_type from rule definition?
-        assemb_example = {
-            'type': 'assemb',
-            'tool': 'mh',
-            'params': 'def',
-            'input_type': 'assemb_function',  # means that function by this name will be called to construct output string
-            'input': {
-                'containers': [{
-                    'df': 'FHM',
-                    'preproc': 'imp',
-                    'sample': 'D2T1'
-                }]
-            }
-        }
+        return HttpResponse (json.dumps({'got': 'it'}), content_type='application/json')
+
+
 
 class CelerySnakemakeFromList(APIView):
     def post(self, request):

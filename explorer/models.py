@@ -87,7 +87,7 @@ class Result(models.Model):
     tool = models.ForeignKey(Tool, blank=True, null=True, on_delete=models.CASCADE)
 
     # Short name that summarizes what this result means
-    result_name = models.CharField(max_length=256)
+    result_name = models.CharField(max_length=256, unique=True)
 
     # String with wildcards that is the !FINAL! file for this result.
     # ( In rule there may be more than one output file, but this specific file triggers correct rule,
