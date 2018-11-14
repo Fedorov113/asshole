@@ -15,7 +15,10 @@ urlpatterns = router.urls
 # TODO WTF IS GOING ON HERE??
 
 urlpatterns += [
-    re_path(r'^check_dir/', CheckSamplesInFolder.as_view()),
+    path('sample/import/', SampleImportView.as_view()),
+    path('check_dir/', CheckSamplesInFolder.as_view()),
+
+
     re_path(r'^sample/mp2/', Mp2View.as_view()),
     re_path(r'^dataset/$', DatasetsFSView.as_view()),
     re_path(r'^datasets/$', DatasetListView.as_view()),
@@ -28,9 +31,4 @@ urlpatterns += [
     re_path(r'^reads/(?P<df>.+)/(?P<preproc>.+)', ReadsView.as_view()),
     re_path(r'^mapping/(?P<dataset>.+)/(?P<preproc>.+)/(?P<tool>.+)/(?P<seq_type>.+)/(?P<seq_name>.+)/('
             r'?P<postproc>.+)/$', MappedView.as_view()),
-
-
-
-
-    path('sample/import/', SampleImportView.as_view())
 ]

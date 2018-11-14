@@ -2,6 +2,35 @@ import fnmatch
 import os, glob
 import pandas as pd
 
+from asshole import settings
+
+
+def import_sample(data):
+    src = data['orig_file']
+    dst = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/{sample}_{strand}.fastq.gz'
+    dst_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/'
+    dst_dir = dst_dir.format(
+        df=data['df'],
+        sample=data['sample']
+    )
+    dst = dst.format(
+        df=data['df'],
+        sample=data['sample'],
+        strand=data['strand']
+    )
+    original_umask = None
+    try:
+        # stackoverflow.com/questions/5231901/permission-problems-when-creating-a-dir-with-os-makedirs-in-python
+        original_umask = os.umask(0)
+        if not os.path.isdir(dst_dir):
+            os.makedirs(dst_dir, 0o777)
+        if not os.path.islink(dst):
+            os.symlink(src, dst)
+    except Exception as Error:
+        print(Error)
+    finally:
+        os.umask(original_umask)
+        return os.path.islink(dst)
 
 def find_files(base, pattern):
     '''Return list of files matching pattern in base folder.'''

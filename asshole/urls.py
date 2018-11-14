@@ -20,5 +20,6 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('explorer/', include('explorer.urls')),
-    path('api/fs/', include(('explorer.file_system.api.urls', 'filesystem'), namespace='fs-explorer'))
+    path('api/fs/', include(('explorer.file_system.api.urls', 'filesystem'), namespace='fs-explorer')),
+    path('api/mgms/', include(('mg_manager.api.urls', 'mgms'), namespace='mgms'))
 ]
