@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.static import static
 
+from asshole import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('explorer/', include('explorer.urls')),
-    path('api/fs/', include(('explorer.file_system.api.urls', 'filesystem'), namespace='fs-explorer')),
+    path('api/fs/', include(('explorer.api.urls', 'filesystem'), namespace='fs-explorer')),
     path('api/mgms/', include(('mg_manager.api.urls', 'mgms'), namespace='mgms'))
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

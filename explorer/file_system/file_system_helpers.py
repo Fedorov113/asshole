@@ -6,6 +6,17 @@ from asshole import settings
 
 
 def import_sample(data):
+    """
+    Imports sample as symlink from file system
+    :param data: dict  {
+                            'orig_file': original location of file,
+                            'df': dataset for this sample,
+                            'strand': strand
+                            'sample': sample name on file system
+                        }
+    :return: True if import successful False otherwise
+    """
+
     src = data['orig_file']
     dst = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/{sample}_{strand}.fastq.gz'
     dst_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/'
@@ -28,12 +39,15 @@ def import_sample(data):
             os.symlink(src, dst)
     except Exception as Error:
         print(Error)
+        return False
     finally:
         os.umask(original_umask)
         return os.path.islink(dst)
 
 def find_files(base, pattern):
-    '''Return list of files matching pattern in base folder.'''
+    '''
+    Return list of files matching pattern in base folder.
+    '''
     return [n for n in fnmatch.filter(os.listdir(base), pattern) if
         os.path.isfile(os.path.join(base, n))]
 
@@ -61,7 +75,7 @@ def get_samples_from_dir(loc):
         temp_saples_dict = {'sample_name': sample,
                             'files': {'R1': '', 'R2': '', 'S': []},
                             'renamed_files': {'R1': '', 'R2': '', 'S': []}}
-
+        # TODO make function
         r1 = sample + '_R1*' + ext
         r1_f = find_files(loc, r1)
         if len(r1_f) == 1:
@@ -102,6 +116,11 @@ def get_folders_in_path(directory):
 
 
 def get_files_from_path_with_ext(directory, extension, only_names=True):
+    if directory[-1] != '/':
+        directory += '/'
+    if extension[0] != '.':
+        extension = '.' + extension
+
     if only_names:
         return [
             item.split("/")[-1].split(extension)[0]

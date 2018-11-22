@@ -72,13 +72,14 @@ class SequencingRun(models.Model):
 
 class MgSample(models.Model):
     name = models.CharField(max_length=200, blank=True)
+    # TODO rework unique
     name_on_fs = models.CharField(max_length=200, blank=True, unique=True)
     uuid_from_km = models.CharField(max_length=256, blank=True, null=True)
 
     library_sample = models.ForeignKey(LibrarySample, on_delete=models.CASCADE, blank=True, null=True)
     sequencing_run = models.ForeignKey(SequencingRun, on_delete=models.CASCADE, blank=True, null=True)
 
-    dataset_hard = models.ForeignKey(DatasetHard, on_delete=models.CASCADE)
+    dataset_hard = models.ForeignKey(DatasetHard, on_delete=models.CASCADE, related_name='samples')
 
     def save(self, *args, **kwargs):
         if self.library_sample is not None and self.sequencing_run is not None:

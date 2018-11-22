@@ -1,4 +1,9 @@
+import os
+
 from django.db import models
+
+from asshole import settings
+
 
 class SnakeRuleResult(models.Model):
     """
@@ -58,6 +63,19 @@ class Parameter(models.Model):
 
     def __str__(self):
         return self.tool.name + '_' + self.short_name
+
+    def save(self, *args, **kwargs):
+        super(Parameter, self).save(*args, **kwargs)
+
+        param_loc_str = settings.PIPELINE_DIR + '/params/{tool}/{param}.json'
+        param_loc = param_loc_str.format(tool=self.tool.short_name, param=self.short_name)
+        dirname = os.path.dirname(param_loc)
+        print(dirname)
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
+        with open(param_loc, "w") as f:
+            f.write(self.param_data)
+
 
 class ResultTypes(models.Model):
     # Mapping, Assembly, Reads Preprocessing, etc...

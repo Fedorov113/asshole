@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIPELINE_DIR = os.path.abspath(os.path.join(BASE_DIR, '../pipeline/'))
+MEDIA_ROOT = PIPELINE_DIR
+MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -30,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 MGMS_URL = 'http://127.0.0.1:11111/'
+ASSHOLE_URL = 'http://127.0.0.1:17777/'
 
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',

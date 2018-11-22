@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from explorer.file_system.file_system_helpers import import_sample
 from ..models import *
+from ..result.serializers import ProfileResultSerializer
 
 class DatasetHardSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,12 +18,12 @@ class DatasetHardSerializer(serializers.ModelSerializer):
         return value
 
 
+
 class SampleSourceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SampleSource
         fields = '__all__'
-
 
 
 class RealSampleSerializer(serializers.ModelSerializer):
@@ -37,10 +38,19 @@ class LibrarySerializer(serializers.ModelSerializer):
 
 class MgFileSerializer(serializers.ModelSerializer):
     container = serializers.PrimaryKeyRelatedField( required=False, queryset=MgSampleFileContainer.objects.all())
-
+    profile = ProfileResultSerializer(many=True, required=False)
     class Meta:
         model = MgFile
         fields = '__all__'
+        extra_fields = ['profile']
+
+    def get_field_names(self, declared_fields, info):
+        expanded_fields = super(MgFileSerializer, self).get_field_names(declared_fields, info)
+
+        if getattr(self.Meta, 'extra_fields', None):
+            return expanded_fields + self.Meta.extra_fields
+        else:
+            return expanded_fields
 
 class MgSampleFileContainerSerializer(serializers.ModelSerializer):
 
@@ -64,7 +74,7 @@ class MgSampleFileContainerSerializer(serializers.ModelSerializer):
 
 
 class MgSampleSerializer(serializers.ModelSerializer):
-
+    df = serializers.PrimaryKeyRelatedField(required=False, queryset=DatasetHard.objects.all())
     containers = MgSampleFileContainerSerializer(many=True)
 
     class Meta:
@@ -110,3 +120,20 @@ class MgSampleSerializer(serializers.ModelSerializer):
         else:
             return MgSample.objects.create(**validated_data)
 
+
+class DatasetHardFullSerializer(serializers.ModelSerializer):
+
+    samples = MgSampleSerializer(many=True)
+
+    class Meta:
+        model = DatasetHard
+        fields = '__all__'
+        extra_fields = ['samples']
+
+    def get_field_names(self, declared_fields, info):
+        expanded_fields = super(DatasetHardFullSerializer, self).get_field_names(declared_fields, info)
+
+        if getattr(self.Meta, 'extra_fields', None):
+            return expanded_fields + self.Meta.extra_fields
+        else:
+            return expanded_fields

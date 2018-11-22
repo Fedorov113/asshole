@@ -26,6 +26,10 @@ class DatasetHardDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
     queryset = DatasetHard.objects.all()
     serializer_class = DatasetHardSerializer
 
+class DatasetHardFull(generics.ListCreateAPIView):
+    serializer_class = DatasetHardFullSerializer
+    queryset = DatasetHard.objects.all()
+
 class LibraryList(generics.ListCreateAPIView):  # Detail View
     queryset = Library.objects.all()
     serializer_class = LibrarySerializer
@@ -36,7 +40,6 @@ class LibraryDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
 
 class MgSampleList(generics.ListCreateAPIView):
     serializer_class = MgSampleSerializer
-
 
     def get_serializer(self, *args, **kwargs):
         """ if an array is passed, set serializer to many """
@@ -49,6 +52,7 @@ class MgSampleList(generics.ListCreateAPIView):
         print('sample list queryset')
         if 'pk' in self.kwargs:
             hard_df_pk = self.kwargs['pk']
+            print(hard_df_pk)
             if hard_df_pk is not None:
                 qs = qs.filter(
                     Q(dataset_hard=hard_df_pk)
