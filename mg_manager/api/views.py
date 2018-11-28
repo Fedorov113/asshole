@@ -38,14 +38,18 @@ class LibraryDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
     queryset = Library.objects.all()
     serializer_class = LibrarySerializer
 
-class MgSampleList(generics.ListCreateAPIView):
-    serializer_class = MgSampleSerializer
+class SequencingRunList(generics.ListCreateAPIView):  # Detail View
+    queryset = SequencingRun.objects.all()
+    serializer_class = SequencingRunSerializer
+
+class MgSampleFullList(generics.ListCreateAPIView):
+    serializer_class = MgSampleFullSerializer
 
     def get_serializer(self, *args, **kwargs):
         """ if an array is passed, set serializer to many """
         if isinstance(kwargs.get('data', {}), list):
             kwargs['many'] = True
-        return super(MgSampleList, self).get_serializer(*args, **kwargs)
+        return super(MgSampleFullList, self).get_serializer(*args, **kwargs)
 
     def get_queryset(self):
         qs = MgSample.objects.all()
@@ -59,9 +63,45 @@ class MgSampleList(generics.ListCreateAPIView):
                 ).distinct()
         return qs
 
+class MgSampleFullLookup(generics.ListCreateAPIView):
+    serializer_class = MgSampleFullSerializer
+
+    def get_serializer(self, *args, **kwargs):
+        """ if an array is passed, set serializer to many """
+        if isinstance(kwargs.get('data', {}), list):
+            kwargs['many'] = True
+        return super(MgSampleFullLookup, self).get_serializer(*args, **kwargs)
+
+    def get_queryset(self):
+        qs = MgSample.objects.all()
+        hdf = self.request.query_params.get('hdf', None)
+        sdf = self.request.query_params.get('sdf', None)
+        run = self.request.query_params.get('run', None)
+        lib = self.request.query_params.get('lib', None)
+        dtype = self.request.query_params.get('dtype', None)
+
+        if hdf is not None:
+            qs = qs.filter(Q(dataset_hard=hdf))
+        if run is not None:
+            qs = qs.filter(Q(sequencing_run=run))
+
+        return qs
+
+class MgSampleContainerFileList(generics.ListCreateAPIView):
+    serializer_class = MgSampleContainerFileSerializer
+    queryset = MgFile.objects.all()
+
+class MgSampleContainerList(generics.ListCreateAPIView):
+    serializer_class = MgSampleContainerSerializer
+    queryset = MgSampleFileContainer.objects.all()
+
+class MgSampleList(generics.ListCreateAPIView):
+    serializer_class = MgSampleSerializer
+    queryset = MgSample.objects.all()
+
 class MgSampleDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
     queryset = MgSample.objects.all()
-    serializer_class = MgSampleSerializer
+    serializer_class = MgSampleFullSerializer
 
 class RealSampleAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'

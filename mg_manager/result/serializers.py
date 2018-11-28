@@ -9,3 +9,10 @@ class ProfileResultSerializer(serializers.ModelSerializer):
         model = ProfileResult
         fields = ['id','file', 'bp', 'reads']
         # fields = '__all__'
+        #
+
+class ProfileResultFullSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfileResult
+        fields = '__all__'
+        # fields = '__all__'

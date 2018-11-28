@@ -31,26 +31,41 @@ class RealSampleSerializer(serializers.ModelSerializer):
         model = RealSample
         fields = '__all__'
 
+class SequencingRunSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SequencingRun
+        fields = '__all__'
+
 class LibrarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Library
         fields = '__all__'
 
 class MgFileSerializer(serializers.ModelSerializer):
-    container = serializers.PrimaryKeyRelatedField( required=False, queryset=MgSampleFileContainer.objects.all())
+    container = serializers.PrimaryKeyRelatedField(required=False, queryset=MgSampleFileContainer.objects.all())
     profile = ProfileResultSerializer(many=True, required=False)
     class Meta:
         model = MgFile
+        fields = ['id', 'container', 'strand', 'profile', 'orig_file_location']
+    #     extra_fields = []
+    #
+    # def get_field_names(self, declared_fields, info):
+    #     expanded_fields = super(MgFileSerializer, self).get_field_names(declared_fields, info)
+    #
+    #     if getattr(self.Meta, 'extra_fields', None):
+    #         return expanded_fields + self.Meta.extra_fields
+    #     else:
+    #         return expanded_fields
+
+class MgSampleContainerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MgSampleFileContainer
         fields = '__all__'
-        extra_fields = ['profile']
 
-    def get_field_names(self, declared_fields, info):
-        expanded_fields = super(MgFileSerializer, self).get_field_names(declared_fields, info)
-
-        if getattr(self.Meta, 'extra_fields', None):
-            return expanded_fields + self.Meta.extra_fields
-        else:
-            return expanded_fields
+class MgSampleContainerFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MgFile
+        fields = ['id', 'strand', 'container']
 
 class MgSampleFileContainerSerializer(serializers.ModelSerializer):
 
@@ -72,8 +87,12 @@ class MgSampleFileContainerSerializer(serializers.ModelSerializer):
             return expanded_fields
 
 
-
 class MgSampleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MgSample
+        fields = '__all__'
+
+class MgSampleFullSerializer(serializers.ModelSerializer):
     df = serializers.PrimaryKeyRelatedField(required=False, queryset=DatasetHard.objects.all())
     containers = MgSampleFileContainerSerializer(many=True)
 
@@ -83,7 +102,7 @@ class MgSampleSerializer(serializers.ModelSerializer):
         extra_fields = ['containers']
 
     def get_field_names(self, declared_fields, info):
-        expanded_fields = super(MgSampleSerializer, self).get_field_names(declared_fields, info)
+        expanded_fields = super(MgSampleFullSerializer, self).get_field_names(declared_fields, info)
         if getattr(self.Meta, 'extra_fields', None):
             return expanded_fields + self.Meta.extra_fields
         else:
@@ -123,7 +142,7 @@ class MgSampleSerializer(serializers.ModelSerializer):
 
 class DatasetHardFullSerializer(serializers.ModelSerializer):
 
-    samples = MgSampleSerializer(many=True)
+    samples = MgSampleFullSerializer(many=True)
 
     class Meta:
         model = DatasetHard

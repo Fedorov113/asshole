@@ -10,4 +10,6 @@ urlpatterns = [
     path('profile_result/<int:pk>/', ProfileResultDetail.as_view()),
     path('mp2_box/', Mp2BoxAPIView.as_view()),
 
+    path('general_taxa_composition/', GeneralTaxaComposition.as_view()),
+
 ]

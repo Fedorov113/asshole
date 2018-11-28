@@ -62,6 +62,8 @@ class LibrarySample(models.Model):
 
 # PROTOCOL
 class SequencingRun(models.Model):
+    name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=32, unique=True)
     platform = models.CharField(max_length=200)
     date_of_run = models.DateField()
     description = models.TextField()
@@ -80,7 +82,7 @@ class MgSample(models.Model):
     sequencing_run = models.ForeignKey(SequencingRun, on_delete=models.CASCADE, blank=True, null=True)
 
     dataset_hard = models.ForeignKey(DatasetHard, on_delete=models.CASCADE, related_name='samples')
-
+ 
     def save(self, *args, **kwargs):
         if self.library_sample is not None and self.sequencing_run is not None:
             self.name = self.library_sample.name + '_B' + str(self.sequencing_run.pk)

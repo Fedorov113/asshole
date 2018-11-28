@@ -368,18 +368,25 @@ def get_general_taxa_comp_for_sample(directory):
         centr_krak = pd.read_csv(directory, sep='\t', header=None)
         uncl = (int(centr_krak.loc[centr_krak[5] == 'unclassified'][1]))
         vir = (int(centr_krak.loc[centr_krak[5] == '  Viruses'][1]))
-        homo = (int(centr_krak.loc[centr_krak[
-                                       5] == '                                                              Homo sapiens'][
-                        1]))
+        homo = (int(centr_krak.loc[centr_krak[5] == '                                                              Homo sapiens'][1]))
+
         bacteria = (int(centr_krak.loc[centr_krak[5] == '    Bacteria'][1]))
-        archaea = (int(centr_krak.loc[centr_krak[5] == '    Archaea'][1]))
+        archaea = centr_krak.loc[centr_krak[5] == '    Archaea'][1]
+        if len(archaea) == 0:
+            archaea = 0
+        else:
+            archaea = int(archaea)
+
         other = int(centr_krak.loc[centr_krak[5] == 'root'][1]) - vir - homo - bacteria - archaea
+
+        total = uncl + vir + bacteria + archaea + homo + other
         composition = {'sample': directory.split('/')[-2],
                        'uncl': uncl,
                        'vir': vir,
                        'bacteria': bacteria,
                        'archaea': archaea,
                        'homo': homo,
-                       'other': other}
+                       'other': other,
+                       'total': total}
         return composition
     else: return None

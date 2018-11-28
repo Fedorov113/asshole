@@ -71,11 +71,7 @@ class GeneralResult:
 
 
     def save(self):
-        # print('IN GENERAL SAVE')
-        print('-NAME-----   \n' + self.name)
-        # print('-INPUT----   \n' + str(self.input_objects))
-        # print('-RAW RES--   \n' + self.raw_res)
-
+        print('-NAME----- ' + self.name)
 
         # Create new instance of that model
         # TODO cannot just expand this. Should we override save, or create a specific function inside model class?
@@ -101,7 +97,7 @@ class GeneralResult:
         elif self.name == 'profile':
             # Get class corresponding to result: <Name>Result
             result_model = globals()[self.name.capitalize() + 'Result']
-            result_instance = result_model(**json.loads(self.raw_res))
+
 
             input_obj = self.input_objects['MgSampleFile']
             input_obj = MgFile.objects.get(
@@ -110,10 +106,17 @@ class GeneralResult:
                 container__mg_sample__name_on_fs=input_obj['sample'],
                 container__mg_sample__dataset_hard__df_name=input_obj['df']
             )
-
             mg_file = input_obj
-            result_instance.mg_file= mg_file
-            result_instance.save()
+
+            # Try to get this result, if there is no such - save
+            try:
+                result_model.objects.get(mg_file=mg_file)
+                print('result exists')
+            except result_model.DoesNotExist:
+                print('SAVING profile')
+                result_instance = result_model(**json.loads(self.raw_res))
+                result_instance.mg_file= mg_file
+                result_instance.save()
         # self.raw_res = '{}'
         # except:
         #     print('ERROR')

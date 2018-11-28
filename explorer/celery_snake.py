@@ -45,7 +45,8 @@ def run_snakemake_from_dict(request_dict):
                 url = settings.ASSHOLE_URL + 'api/mgms/result/'
                 r = req.post(url, data=ser.get_json(), headers=headers)
                 print(r)
-            input_loc_list.append(out_loc)
+            else:
+                input_loc_list.append(out_loc)
     elif res.json_in_to_loc_out_func == 'many_containers_from':
         out_wc = res.out_str_wc
         input_objects = desired['input_objects']
@@ -104,6 +105,6 @@ def run_snakemake_from_dict(request_dict):
                 #THIS FILE WAS NOT ALREADY COMPUTED
                     input_loc_list.append(out_loc)
 
-    print(input_loc_list)
+    print('REQUESTING ' + str(len( input_loc_list)) + ' RESULTS')
 
     snakemake_run.apply_async((input_loc_list, 0, desired['threads'], 42), task_id=task_id)
