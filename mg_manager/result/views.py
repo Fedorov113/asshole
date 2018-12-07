@@ -62,7 +62,9 @@ class GeneralTaxaComposition(APIView):
             )
             abs_loc = os.path.join(settings.PIPELINE_DIR, centr_loc)
             if os.path.isfile(abs_loc):
-                res.append(get_general_taxa_comp_for_sample(abs_loc))
+                rr = get_general_taxa_comp_for_sample(abs_loc)
+                if rr is not None:
+                    res.append(rr)
             # samples_loc[mp2_def.report.path.split('/')[-1].replace('.mp2', '')] = mp2_def.report.path
 
 

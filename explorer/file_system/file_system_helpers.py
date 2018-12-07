@@ -363,30 +363,37 @@ def parse_fs_node(node):
 def mapped_dict_from_fs(node):
     return
 
+def read_krak_node(df, node_name):
+    reads = df.loc[df[5] == node_name][1]
+    if len(reads) == 0:
+        reads = 0
+    else:
+        reads = int(reads)
+    return reads
+
+
 def get_general_taxa_comp_for_sample(directory):
     if os.path.isfile(directory):
-        centr_krak = pd.read_csv(directory, sep='\t', header=None)
-        uncl = (int(centr_krak.loc[centr_krak[5] == 'unclassified'][1]))
-        vir = (int(centr_krak.loc[centr_krak[5] == '  Viruses'][1]))
-        homo = (int(centr_krak.loc[centr_krak[5] == '                                                              Homo sapiens'][1]))
+        try:
+            centr_krak = pd.read_csv(directory, sep='\t', header=None)
+            uncl = read_krak_node(centr_krak, 'unclassified')
+            vir = read_krak_node(centr_krak, '  Viruses')
+            homo = read_krak_node(centr_krak, '                                                              Homo sapiens')
+            bacteria = read_krak_node(centr_krak, '    Bacteria')
+            archaea = read_krak_node(centr_krak, '    Archaea')
+            other = read_krak_node(centr_krak, 'root') - vir - homo - bacteria - archaea
 
-        bacteria = (int(centr_krak.loc[centr_krak[5] == '    Bacteria'][1]))
-        archaea = centr_krak.loc[centr_krak[5] == '    Archaea'][1]
-        if len(archaea) == 0:
-            archaea = 0
-        else:
-            archaea = int(archaea)
-
-        other = int(centr_krak.loc[centr_krak[5] == 'root'][1]) - vir - homo - bacteria - archaea
-
-        total = uncl + vir + bacteria + archaea + homo + other
-        composition = {'sample': directory.split('/')[-2],
-                       'uncl': uncl,
-                       'vir': vir,
-                       'bacteria': bacteria,
-                       'archaea': archaea,
-                       'homo': homo,
-                       'other': other,
-                       'total': total}
-        return composition
+            total = uncl + vir + bacteria + archaea + homo + other
+            composition = {'sample': directory.split('/')[-2],
+                           'uncl': uncl,
+                           'vir': vir,
+                           'bacteria': bacteria,
+                           'archaea': archaea,
+                           'homo': homo,
+                           'other': other,
+                           'total': total}
+            return composition
+        except:
+            print ('error' + directory)
+            return None
     else: return None

@@ -10,32 +10,29 @@ class DatasetHard(models.Model):
         return self.df_name
 
 
-
 class SampleSource(models.Model):
-    source_name = models.CharField(max_length=200, unique=True)
-    source_description = models.TextField()
-    df = models.ForeignKey(DatasetHard, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, unique=True)
+    description = models.TextField()
 
-    def __str__(self):
-        return self.source_name
-
-class RealSample(models.Model):
-    source = models.ForeignKey(SampleSource, on_delete=models.CASCADE)
-    date_of_collection = models.DateField()
-    serial_number = models.PositiveIntegerField()
-    name = models.CharField(max_length=200, blank=True)
-    # SHOULD BE JSON
-    meta_info = models.TextField(blank=True)
-
-    class Meta:
-        unique_together = ('source', 'serial_number')
+    meta_info = models.TextField(blank=True)  # FLAT JSON
+    ids = models.TextField(blank=True)  # {'service': <identificator>}; {'rcpcm_cdr': 1234dcertr}
 
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        self.name = self.source.source_name + 'T' + str(self.serial_number)
-        super(RealSample, self).save(*args, **kwargs)
+
+class RealSample(models.Model):
+    source = models.ForeignKey(SampleSource, on_delete=models.CASCADE, related_name='real_samples')
+    description = models.TextField(blank=True)
+    name = models.CharField(max_length=200, blank=True)
+    date_of_collection = models.DateField(blank=True, null=True)
+    meta_info = models.TextField(blank=True)  # FLAT JSON
+
+    class Meta:
+        unique_together = ('source', 'name')
+
+    def __str__(self):
+        return self.source.name + '_' + self.name
 
 
 class Library(models.Model):
@@ -47,20 +44,6 @@ class Library(models.Model):
         return self.library_name
 
 
-class LibrarySample(models.Model):
-    real_sample = models.ForeignKey(RealSample, on_delete=models.CASCADE)
-    library = models.ForeignKey(Library, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.name = self.real_sample.name + '_L' + str(self.library.pk)
-        super(LibrarySample, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
-
-
-# PROTOCOL
 class SequencingRun(models.Model):
     name = models.CharField(max_length=200)
     short_name = models.CharField(max_length=32, unique=True)
@@ -69,24 +52,23 @@ class SequencingRun(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.platform
+        return self.name + ' ' + self.platform
 
 
 class MgSample(models.Model):
-    name = models.CharField(max_length=200, blank=True)
-    # TODO rework unique
-    name_on_fs = models.CharField(max_length=200, blank=True, unique=True)
-    uuid_from_km = models.CharField(max_length=256, blank=True, null=True)
+    dataset_hard = models.ForeignKey(DatasetHard, on_delete=models.CASCADE, related_name='samples')
+    real_sample = models.ForeignKey(RealSample, on_delete=models.CASCADE, blank=True, null=True,  related_name='mg_samples')
+    source = models.ForeignKey(SampleSource, on_delete=models.CASCADE, blank=True, null=True)
 
-    library_sample = models.ForeignKey(LibrarySample, on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True)
+    name_on_fs = models.CharField(max_length=200, blank=True, unique=True)
+
+    library = models.ForeignKey(Library, on_delete=models.CASCADE, blank=True, null=True)
     sequencing_run = models.ForeignKey(SequencingRun, on_delete=models.CASCADE, blank=True, null=True)
 
-    dataset_hard = models.ForeignKey(DatasetHard, on_delete=models.CASCADE, related_name='samples')
- 
-    def save(self, *args, **kwargs):
-        if self.library_sample is not None and self.sequencing_run is not None:
-            self.name = self.library_sample.name + '_B' + str(self.sequencing_run.pk)
-        super(MgSample, self).save(*args, **kwargs)
+
+    class Meta:
+        unique_together = ('dataset_hard', 'name', 'library', 'sequencing_run')
 
     def __str__(self):
         return self.name

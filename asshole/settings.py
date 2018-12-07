@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIPELINE_DIR = os.path.abspath(os.path.join(BASE_DIR, '../pipeline/'))
+STATIC_ROOT= os.path.join(BASE_DIR,'static_media/')
+
 MEDIA_ROOT = PIPELINE_DIR
 MEDIA_URL = '/media/'
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'mg_manager',
     'corsheaders',
+    'silk'
 ]
 
 # REST_FRAMEWORK = {
@@ -57,7 +60,6 @@ INSTALLED_APPS = [
 
 CELERY_RESULT_BACKEND = 'django-db'
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'asshole.urls'
@@ -91,7 +94,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'asshole.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

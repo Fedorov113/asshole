@@ -4,6 +4,7 @@ from explorer.file_system.file_system_helpers import import_sample
 from ..models import *
 from ..result.serializers import ProfileResultSerializer
 
+
 class DatasetHardSerializer(serializers.ModelSerializer):
     class Meta:
         model = DatasetHard
@@ -17,58 +18,63 @@ class DatasetHardSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("The Dataset name must be unique")
         return value
 
+class RealSampleIdSerializer(serializers.ModelSerializer):
+    # source = serializers.PrimaryKeyRelatedField(required=False, queryset=SampleSource.objects.all())
 
+    class Meta:
+        model = RealSample
+        fields = ['pk']
 
 class SampleSourceSerializer(serializers.ModelSerializer):
+    real_samples = RealSampleIdSerializer(many=True)
 
     class Meta:
         model = SampleSource
         fields = '__all__'
+        extra_fields = ['real_samples']
 
+    def get_field_names(self, declared_fields, info):
+        expanded_fields = super(SampleSourceSerializer, self).get_field_names(declared_fields, info)
+        if getattr(self.Meta, 'extra_fields', None):
+            return expanded_fields + self.Meta.extra_fields
+        else:
+            return expanded_fields
 
-class RealSampleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RealSample
-        fields = '__all__'
 
 class SequencingRunSerializer(serializers.ModelSerializer):
     class Meta:
         model = SequencingRun
         fields = '__all__'
 
+
 class LibrarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Library
         fields = '__all__'
 
+
 class MgFileSerializer(serializers.ModelSerializer):
     container = serializers.PrimaryKeyRelatedField(required=False, queryset=MgSampleFileContainer.objects.all())
     profile = ProfileResultSerializer(many=True, required=False)
+
     class Meta:
         model = MgFile
         fields = ['id', 'container', 'strand', 'profile', 'orig_file_location']
-    #     extra_fields = []
-    #
-    # def get_field_names(self, declared_fields, info):
-    #     expanded_fields = super(MgFileSerializer, self).get_field_names(declared_fields, info)
-    #
-    #     if getattr(self.Meta, 'extra_fields', None):
-    #         return expanded_fields + self.Meta.extra_fields
-    #     else:
-    #         return expanded_fields
+
 
 class MgSampleContainerSerializer(serializers.ModelSerializer):
     class Meta:
         model = MgSampleFileContainer
         fields = '__all__'
 
+
 class MgSampleContainerFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = MgFile
         fields = ['id', 'strand', 'container']
 
-class MgSampleFileContainerSerializer(serializers.ModelSerializer):
 
+class MgSampleFileContainerSerializer(serializers.ModelSerializer):
     files = MgFileSerializer(many=True)
     mg_sample = serializers.PrimaryKeyRelatedField(required=False, queryset=MgSample.objects.all())
 
@@ -91,6 +97,7 @@ class MgSampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = MgSample
         fields = '__all__'
+
 
 class MgSampleFullSerializer(serializers.ModelSerializer):
     df = serializers.PrimaryKeyRelatedField(required=False, queryset=DatasetHard.objects.all())
@@ -125,7 +132,7 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
                         data = {
                             'orig_file': new_file.orig_file_location,
                             'df': mg_sample.dataset_hard.df_name,
-                            'strand':new_file.strand,
+                            'strand': new_file.strand,
                             'sample': mg_sample.name_on_fs
                         }
 
@@ -141,7 +148,6 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
 
 
 class DatasetHardFullSerializer(serializers.ModelSerializer):
-
     samples = MgSampleFullSerializer(many=True)
 
     class Meta:
