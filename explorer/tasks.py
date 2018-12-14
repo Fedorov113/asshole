@@ -27,6 +27,7 @@ import select
 logger = get_task_logger(__name__)
 import json
 
+
 # import mg_manager.result.models as result_models
 
 def generate_snakefile(input_list, name=''):
@@ -65,9 +66,9 @@ class CallbackSnakemake(Task):
         results = list(SnakeRuleResult.objects.filter(task_id=task_id))
         print('IN CALLBACK' + task_id)
         # for res in results:
-            # print('printing result')
-            # print(res.rule_name)
-            # print(res.output_to_serialize)
+        # print('printing result')
+        # print(res.rule_name)
+        # print(res.output_to_serialize)
 
         tasks = group([ser_and_send_to_m.s(res.rule_name, res.output_to_serialize) for res in results])
         group_task = tasks.apply_async()
@@ -86,7 +87,10 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
         print('running dry')
 
     shell_cmd_wc = "/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} --cluster 'qsub' {dry} -k -p --latency-wait 150 -j {jobs}  gen --config task_id='{task_id}'"
-    shell_cmd_wc = "/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} --drmaa ' -pe make {threads}' {dry} -k -p --latency-wait 150 -j {jobs} --drmaa-log-dir ./drmaa_log gen --config task_id='{task_id}'"
+    shell_cmd_wc = """/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} \
+    --drmaa ' -pe make {threads}' {dry} -k -p --latency-wait 150 -j {jobs} \
+    --drmaa-log-dir ./drmaa_log gen --config task_id='{task_id}'"""
+
     shell_cmd = shell_cmd_wc.format(sn_loc=sn_loc, dry=dry_arg, threads=threads, jobs=jobs, task_id=self.request.id)
 
     print('OPENING SUBPROCESS')
@@ -111,15 +115,13 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
     output, error = p.communicate()
 
     if p.returncode != 0:
-        print('error')
+        print('!!!!!ERROR!!!!!')
         print(error)
         print('return code')
         print(p.returncode)
     else:
         print('output')
         print(output)
-
-
 
     ret = 'ALL DONE'
     if p.returncode != 0:

@@ -103,12 +103,17 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
     df = serializers.PrimaryKeyRelatedField(required=False, queryset=DatasetHard.objects.all())
     containers = MgSampleFileContainerSerializer(many=True)
 
+    def get_validation_exclusions(self):
+        exclusions = super(MgSampleFullSerializer, self).get_validation_exclusions()
+        return exclusions + ['library']
+
     class Meta:
         model = MgSample
         fields = '__all__'
         extra_fields = ['containers']
 
     def get_field_names(self, declared_fields, info):
+        print('getting field names')
         expanded_fields = super(MgSampleFullSerializer, self).get_field_names(declared_fields, info)
         if getattr(self.Meta, 'extra_fields', None):
             return expanded_fields + self.Meta.extra_fields

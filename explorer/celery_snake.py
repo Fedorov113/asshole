@@ -10,101 +10,114 @@ from explorer.tasks import snakemake_run
 import json
 
 
-def run_snakemake_from_dict(request_dict):
+def create_simple_wc(out_wc, tool_info, input_object, input_object_name):
+    dict_to_expand = {}
+    if tool_info is not None:
+        dict_to_expand = tool_info.copy()
+    dict_to_expand.update(input_object[input_object_name[0]])
+    return out_wc.format(**dict_to_expand)
+
+
+def check_if_result_computed(result, res_loc):
+    """
+    Checks if result is computed. If it is - sends it to Management System
+    :param result: Name of result
+    :param res_loc: Location of result file
+    :return: True if computed, False otherwise
+    """
+    if os.path.isfile(settings.PIPELINE_DIR + '/' + res_loc):  # THIS RESULT WAS ALREADY COMPUTED
+        ser = RuleSerializer(result, res_loc)
+        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        url = settings.ASSHOLE_URL + 'api/mgms/result/'
+        r = req.post(url, data=ser.get_json(), headers=headers)
+        print(r)
+        return True
+    else:
+        return False
+
+
+def create_many_containers_from_wc(out_wc, tool_info, input_object, input_object_name):
+    if tool_info is None:
+        return 0
+
+    dict_to_expand = tool_info.copy()
+    many_containers_from_df = ''
+    rrr = []
+    for cont in input_object['ArrayOfMgSampleContainer']:
+        if len(rrr) == 0:
+            rrr.append({cont['df']: [{cont['preproc']: [cont['sample']]}]})
+
+        for j, r in enumerate(rrr):
+            if cont['df'] in r.keys():
+                for i, pr in enumerate(r[cont['df']]):
+                    if cont['preproc'] in pr.keys():
+                        if cont['sample'] not in pr[cont['preproc']]:
+                            rrr[j][cont['df']][i][cont['preproc']].append(cont['sample'])
+                    else:
+                        rrr[j][cont['df']].append({cont['preproc']: [cont['sample']]})
+            else:
+                rrr.append({cont['df']: [{cont['preproc']: [cont['sample']]}]})
+    dfs = ''
+    preprocs = ''
+    samples = ''
+    for r in rrr:
+        df = list(r.keys())[0]
+        dfs += df + '+'
+        for i, pr in enumerate(r[df]):
+            preproc = list(pr.keys())[0]
+            preprocs += preproc + '='
+            for s in pr[preproc]:
+                samples += s + ':'
+            samples = samples[0:-1]
+            samples += '='
+        preprocs = preprocs[0:-1]
+        samples = samples[0:-1]
+        preprocs += '+'
+        samples += '+'
+        many_containers_from_df += '+'
+    preprocs = preprocs[0:-1]
+    samples = samples[0:-1]
+    dfs = dfs[0:-1]
+
+    dict_to_expand['dfs'] = dfs
+    dict_to_expand['preprocs'] = preprocs
+    dict_to_expand['samples'] = samples
+    print(dict_to_expand)
+    # dict_to_expand.update(inp[input_objects[0]])
+
+    out_loc = out_wc.format(**dict_to_expand)
+    return out_wc.format(**dict_to_expand)
+
+
+NO_RESULT_IN_DB = 1
+
+
+def generate_files_for_snake_from_request_dict(request_dict):
     """
 
     :param request_dict: { input: [], input_objects: ['MgSampleFile'], result: 'profile" }
-    :return:
+    :return: list with file locations if everything is OK, integer error code otherwise
     """
-    task_id = uuid()
+    input_loc_list = []  # list of files to request from snakemake
     desired = request_dict['desired_results']
 
-    # create out_loc from JSON
-    res = Result.objects.get(result_name=desired['result'])
+    # Trying to get desired result from db.
+    try:
+        res = Result.objects.get(result_name=desired['result'])
+    except Result.DoesNotExist:
+        return NO_RESULT_IN_DB
 
-    input_loc_list = []
     if res.json_in_to_loc_out_func == 'simple':
-        out_wc = res.out_str_wc
-        input_objects = desired['input_objects']
-        tool_info = {}
-
-        if 'tool_info' in desired.keys():
-            tool_info = desired['tool_info']
-
         for inp in desired['input']:
-            dict_to_expand = tool_info.copy()
-            dict_to_expand.update(inp[input_objects[0]])
-            out_loc = out_wc.format(**dict_to_expand)
-
-
-            if os.path.isfile(settings.PIPELINE_DIR + '/' + out_loc):
-                # THIS FILE WAS ALREADY COMPUTED
-                print(out_loc)
-                ser = RuleSerializer(desired['result'], out_loc)
-                headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-                url = settings.ASSHOLE_URL + 'api/mgms/result/'
-                r = req.post(url, data=ser.get_json(), headers=headers)
-                print(r)
-            else:
+            out_loc = create_simple_wc(res.out_str_wc, desired.get('tool_info'), inp, desired.get('input_objects'))
+            if not check_if_result_computed(desired['result'], out_loc):
                 input_loc_list.append(out_loc)
-    elif res.json_in_to_loc_out_func == 'many_containers_from':
-        out_wc = res.out_str_wc
-        input_objects = desired['input_objects']
-        tool_info = {}
 
-        if 'tool_info' in desired.keys():
-            tool_info = desired['tool_info']
-            for inp in desired['input']:
-                dict_to_expand = tool_info.copy()
-                many_containers_from_df = ''
-                rrr = []
-                for cont in inp['ArrayOfMgSampleContainer']:
-                    if len(rrr) == 0:
-                        rrr.append({cont['df']: [{cont['preproc']: [cont['sample']]}]})
+    elif res.json_in_to_loc_out_func == 'many_containers':
+        for inp in desired['input']:
+            out_loc = create_many_containers_from_wc(res.out_str_wc, desired.get('tool_info'), inp,
+                                                     desired.get('input_objects'))
+            if not os.path.isfile(out_loc):
+                input_loc_list.append(out_loc)
 
-                    for j, r in enumerate(rrr):
-                        if cont['df'] in r.keys():
-                            for i, pr in enumerate(r[cont['df']]):
-                                if cont['preproc'] in pr.keys():
-                                    if cont['sample'] not in pr[cont['preproc']]:
-                                        rrr[j][cont['df']][i][cont['preproc']].append(cont['sample'])
-                                else:
-                                    rrr[j][cont['df']].append({cont['preproc']: [cont['sample']]})
-                        else:
-                            rrr.append({cont['df']: [{cont['preproc']: [cont['sample']]}]})
-                dfs = ''
-                preprocs = ''
-                samples = ''
-                for r in rrr:
-                    df = list(r.keys())[0]
-                    dfs += df+'+'
-                    for i, pr in enumerate(r[df]):
-                        preproc = list(pr.keys())[0]
-                        preprocs += preproc+'='
-                        for s in pr[preproc]:
-                            samples += s + ':'
-                        samples = samples[0:-1]
-                        samples += '='
-                    preprocs = preprocs[0:-1]
-                    samples = samples[0:-1]
-                    preprocs += '+'
-                    samples += '+'
-                    many_containers_from_df += '+'
-                preprocs = preprocs[0:-1]
-                samples = samples[0:-1]
-                dfs = dfs[0:-1]
-
-                dict_to_expand['dfs']=dfs
-                dict_to_expand['preprocs']=preprocs
-                dict_to_expand['samples']=samples
-                print(dict_to_expand)
-                # dict_to_expand.update(inp[input_objects[0]])
-
-                out_loc = out_wc.format(**dict_to_expand)
-                if not os.path.isfile(out_loc):
-                #THIS FILE WAS NOT ALREADY COMPUTED
-                    input_loc_list.append(out_loc)
-
-    print('REQUESTING ' + str(len( input_loc_list)) + ' RESULTS')
-
-    snakemake_run.apply_async((input_loc_list, 0, desired['threads'], 42), task_id=task_id)
+    return input_loc_list

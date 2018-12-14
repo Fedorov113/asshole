@@ -1,5 +1,11 @@
 from django.db import models
 
+class MetaSchema(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    schema = models.TextField(blank=True)  # FLAT JSON
+
+    def __str__(self):
+        return self.name
 
 class DatasetHard(models.Model):
     df_name = models.CharField(max_length=200, unique=True)
@@ -13,6 +19,7 @@ class DatasetHard(models.Model):
 class SampleSource(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField()
+    meta_schema = models.ForeignKey(MetaSchema, on_delete=models.CASCADE, blank=True, null=True)
 
     meta_info = models.TextField(blank=True)  # FLAT JSON
     ids = models.TextField(blank=True)  # {'service': <identificator>}; {'rcpcm_cdr': 1234dcertr}
@@ -26,8 +33,9 @@ class RealSample(models.Model):
     description = models.TextField(blank=True)
     name = models.CharField(max_length=200, blank=True)
     date_of_collection = models.DateField(blank=True, null=True)
+    time_point = models.PositiveIntegerField(blank=True, null=True)
+    meta_schema = models.ForeignKey(MetaSchema, on_delete=models.CASCADE, blank=True, null=True)
     meta_info = models.TextField(blank=True)  # FLAT JSON
-
     class Meta:
         unique_together = ('source', 'name')
 
@@ -51,6 +59,8 @@ class SequencingRun(models.Model):
     date_of_run = models.DateField()
     description = models.TextField()
 
+
+
     def __str__(self):
         return self.name + ' ' + self.platform
 
@@ -65,6 +75,7 @@ class MgSample(models.Model):
 
     library = models.ForeignKey(Library, on_delete=models.CASCADE, blank=True, null=True)
     sequencing_run = models.ForeignKey(SequencingRun, on_delete=models.CASCADE, blank=True, null=True)
+
 
 
     class Meta:

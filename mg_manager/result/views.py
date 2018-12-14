@@ -1,5 +1,7 @@
 import json
 import os
+from rest_framework import status
+from rest_framework.response import Response
 
 from rest_framework import generics, mixins, viewsets
 
@@ -8,10 +10,10 @@ from .serializers import ProfileResultSerializer, ProfileResultFullSerializer
 from rest_framework.views import APIView
 from django.http import HttpResponse
 
-from .models import GeneralResult, ProfileResult, Mp2Result
+from .models import GeneralResult, ProfileResult, Mp2Result, get_mg_sample_container
 from ..models import MgFile, MgSampleFileContainer
 
-from explorer.celery_snake import run_snakemake_from_dict
+from explorer.celery_snake import generate_files_for_snake_from_request_dict
 from explorer.file_system import metaphlan2 as mp2
 from explorer.file_system.file_system_helpers import get_general_taxa_comp_for_sample
 
@@ -55,10 +57,10 @@ class GeneralTaxaComposition(APIView):
         for cont in containers:
             centr_wc = 'datasets/{df}/taxa/{preproc}/centr__def/{sample}/{sample}_krak.tsv'
             cont_obj = MgSampleFileContainer.objects.get(pk=cont)
-            centr_loc = centr_wc.format (
-                df = cont_obj.mg_sample.dataset_hard.df_name,
-                preproc = cont_obj.preprocessing,
-                sample = cont_obj.mg_sample.name_on_fs
+            centr_loc = centr_wc.format(
+                df=cont_obj.mg_sample.dataset_hard.df_name,
+                preproc=cont_obj.preprocessing,
+                sample=cont_obj.mg_sample.name_on_fs
             )
             abs_loc = os.path.join(settings.PIPELINE_DIR, centr_loc)
             if os.path.isfile(abs_loc):
@@ -67,8 +69,8 @@ class GeneralTaxaComposition(APIView):
                     res.append(rr)
             # samples_loc[mp2_def.report.path.split('/')[-1].replace('.mp2', '')] = mp2_def.report.path
 
-
         return HttpResponse(json.dumps(res), content_type='application/json')
+
 
 class ProfileResultList(generics.ListCreateAPIView):  # Detail View
     queryset = ProfileResult.objects.all()
@@ -98,9 +100,12 @@ class ResultRequest(APIView):
 
         data = json.loads(request.body)
         res = data['desired_results']
-        print(res)
 
         input_objects = res['input_objects']
+        # check that input objects is registered
+        if not (input_objects[0] == 'MgSampleFile' or input_objects[0] == 'MgSampleFileContainer'):
+            return Response('Unknown input object', status=status.HTTP_400_BAD_REQUEST)
+
         # Need to manually create query for every input object type?
         # Here we check what exists and db and what not
         for i, input in enumerate(res['input']):
@@ -121,12 +126,20 @@ class ResultRequest(APIView):
                     except ProfileResult.DoesNotExist:
                         print("no such")
                 except MgFile.DoesNotExist:
-                    print('no such input')
+                    return Response('No such file', status=status.HTTP_400_BAD_REQUEST)
+
+            elif input_objects[0] == 'MgSampleFileContainer':
+                cont = get_mg_sample_container(
+                    df=input[input_objects[0]]['df'],
+                    preproc=input[input_objects[0]]['preproc'],
+                    sample=input[input_objects[0]]['sample'])
+                if cont is None:
+                    return Response('No such container', status=status.HTTP_400_BAD_REQUEST)
 
         # Make request to asshole
         # url = settings.ASSHOLE_URL + '/explorer/request_result/'
         # headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         # r = requests.post(url, data=json.dumps(data), headers=headers)
 
-        run_snakemake_from_dict(data)
+        generate_files_for_snake_from_request_dict(data)
         return HttpResponse(json.dumps({'start': 'SUCCESS'}), content_type='application/json')

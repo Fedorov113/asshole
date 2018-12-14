@@ -1,3 +1,4 @@
+from explorer.celery_snake import generate_files_for_snake_from_request_dict
 from explorer.models import *
 from explorer.tasks import *
 
@@ -6,37 +7,31 @@ from rest_framework.views import APIView
 import json
 
 from celery import uuid
-
-# from Bio import SeqIO
-
+from rest_framework import status
+from rest_framework.response import Response
 
 
 class CelerySnakemakeFromJSON(APIView):
     def post(self, request):
-        task_id = uuid()
         data = json.loads(request.body)
-        print(data)
-        desired = data['desired_results']
+        task_id = uuid()
+        res_locs = generate_files_for_snake_from_request_dict(data)
 
-        # create out_loc from JSON
-        res = Result.objects.get(result_name=desired['result'])
-        print(res.json_in_to_loc_out_func)
-
-        input_loc_list = []
-        if res.json_in_to_loc_out_func == 'simple':
-            out_wc = res.out_str_wc
-            input_objects = desired['input_objects']
-
-            for input in desired['input']:
-                input_loc_list.append(out_wc.format(**input[input_objects[0]]))
-
-        print(input_loc_list)
-
-        snakemake_run.apply_async((input_loc_list, 0, desired['threads'], desired['jobs']), task_id=task_id)
-
-
-        return HttpResponse (json.dumps({'got': 'it'}), content_type='application/json')
-
+        if isinstance(res_locs, (list,)):
+            if len(res_locs) > 0:
+                snakemake_run \
+                    .apply_async((res_locs, data['desired_results'].get('dry', 0),
+                                  data['desired_results']['threads'], 42), task_id=task_id)
+                return Response('Requested ' + str(len(res_locs)) + ' results',
+                                status=status.HTTP_202_ACCEPTED,
+                                content_type='application/json')
+            else:
+                return Response('Nothing to be done',
+                                status=status.HTTP_200_OK,
+                                content_type='application/json')
+        else:
+            return Response('Something went wrong',
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class CelerySnakemakeFromList(APIView):
@@ -52,9 +47,4 @@ class CelerySnakemakeFromList(APIView):
         # Run snakemake
         snakemake_run.apply_async((desired_files, dry, threads, jobs), task_id=task_id)
 
-        return HttpResponse (json.dumps({'start': 'SUCCESS'}), content_type='application/json')
-
-
-
-
-
+        return HttpResponse(json.dumps({'start': 'SUCCESS'}), content_type='application/json')

@@ -8,6 +8,7 @@ admin.site.register(DatasetSoft)
 
 admin.site.register(SampleSource)
 admin.site.register(RealSample)
+admin.site.register(MetaSchema)
 
 admin.site.register(Library)
 

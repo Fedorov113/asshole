@@ -2,6 +2,7 @@ from django.db import models
 import json
 from ..models import MgFile, MgSampleFileContainer, MgSample, DatasetHard
 
+
 def get_df(df):
     try:
         df = DatasetHard.objects.get(df_name=df)
@@ -22,7 +23,7 @@ def get_mg_sample(df, sample):
         return None
 
 
-def get_mg_sample_container(df,sample, preproc, create = False):
+def get_mg_sample_container(df, sample, preproc, create=False):
     try:
         cont = MgSampleFileContainer.objects.get(
             preprocessing=preproc,
@@ -39,7 +40,8 @@ def get_mg_sample_container(df,sample, preproc, create = False):
                 return cont
     return None
 
-def get_mg_sample_container_file(df,sample, preproc, strand, create = False):
+
+def get_mg_sample_container_file(df, sample, preproc, strand, create=False):
     try:
         mg_file = MgFile.objects.get(
             strand=strand,
@@ -57,6 +59,7 @@ def get_mg_sample_container_file(df,sample, preproc, strand, create = False):
                 return mg_file
     return None
 
+
 class GeneralResult:
     name = ''
     # DICT representation of input
@@ -68,7 +71,6 @@ class GeneralResult:
         self.name = name
         self.input_objects = input_objects
         self.raw_res = raw_res
-
 
     def save(self):
         print('-NAME----- ' + self.name)
@@ -82,7 +84,8 @@ class GeneralResult:
             print(res_dict)
             for res_obj in res_dict:
                 res = res_obj['MgSampleContainerFile']
-                print(get_mg_sample_container_file(res['df'], res['sample'], res['preproc'], res['strand'], create=True))
+                print(
+                    get_mg_sample_container_file(res['df'], res['sample'], res['preproc'], res['strand'], create=True))
 
             pass
         elif self.name == 'mp2':
@@ -97,7 +100,6 @@ class GeneralResult:
         elif self.name == 'profile':
             # Get class corresponding to result: <Name>Result
             result_model = globals()[self.name.capitalize() + 'Result']
-
 
             input_obj = self.input_objects['MgSampleFile']
             input_obj = MgFile.objects.get(
@@ -115,7 +117,7 @@ class GeneralResult:
             except result_model.DoesNotExist:
                 print('SAVING profile')
                 result_instance = result_model(**json.loads(self.raw_res))
-                result_instance.mg_file= mg_file
+                result_instance.mg_file = mg_file
                 result_instance.save()
         # self.raw_res = '{}'
         # except:
@@ -142,8 +144,9 @@ class Mp2Result(models.Model):
     def __str__(self):
         return self.mg_container.mg_sample.name_on_fs + ' ' + self.mg_container.preprocessing + ' ' + self.params
 
+
 class ProfileResult(models.Model):
-    mg_file = models.ForeignKey(MgFile, on_delete=models.CASCADE,  related_name='profile', unique=True)
+    mg_file = models.ForeignKey(MgFile, on_delete=models.CASCADE, related_name='profile', unique=True)
     # general_result = models.ForeignKey(GeneralResult, on_delete=models.CASCADE)
 
     bp = models.IntegerField()
@@ -163,7 +166,7 @@ class ProfileResult(models.Model):
     sequence_duplication_levels = models.CharField(max_length=10)
     overrepresented_sequences = models.CharField(max_length=10)
     adapter_content = models.CharField(max_length=10)
-    sequences_flagged_as_poor_quality= models.IntegerField(max_length=10)
+    sequences_flagged_as_poor_quality = models.IntegerField(max_length=10)
 
     adapter_content_img = models.ImageField(upload_to=None, blank=True, null=True)
     duplication_levels_img = models.ImageField(upload_to=None, blank=True, null=True)
