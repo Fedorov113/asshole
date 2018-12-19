@@ -71,7 +71,7 @@ class MgSample(models.Model):
     source = models.ForeignKey(SampleSource, on_delete=models.CASCADE, blank=True, null=True)
 
     name = models.CharField(max_length=200, blank=True)
-    name_on_fs = models.CharField(max_length=200, blank=True, unique=True)
+    name_on_fs = models.CharField(max_length=200, blank=True)
 
     library = models.ForeignKey(Library, on_delete=models.CASCADE, blank=True, null=True)
     sequencing_run = models.ForeignKey(SequencingRun, on_delete=models.CASCADE, blank=True, null=True)
@@ -79,7 +79,7 @@ class MgSample(models.Model):
 
 
     class Meta:
-        unique_together = ('dataset_hard', 'name', 'library', 'sequencing_run')
+        unique_together = ('dataset_hard', 'name_on_fs', 'library', 'sequencing_run')
 
     def __str__(self):
         return self.name

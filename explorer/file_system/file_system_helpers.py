@@ -1,11 +1,13 @@
 import fnmatch
 import os, glob
 import pandas as pd
+import shutil
 
 from asshole import settings
+from pathlib import Path
 
 
-def import_sample(data):
+def import_sample_file(data, update_origin_if_exists=False):
     """
     Imports sample as symlink from file system
     :param data: dict  {
@@ -14,21 +16,33 @@ def import_sample(data):
                             'strand': strand
                             'sample': sample name on file system
                         }
-    :return: True if import successful False otherwise
+    :return: success, message True if import successful False otherwise
     """
 
     src = data['orig_file']
+
     dst = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/{sample}_{strand}.fastq.gz'
+    dst = dst.format(df=data['df'], sample=data['sample'], strand=data['strand'])
+
     dst_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/'
-    dst_dir = dst_dir.format(
-        df=data['df'],
-        sample=data['sample']
-    )
-    dst = dst.format(
-        df=data['df'],
-        sample=data['sample'],
-        strand=data['strand']
-    )
+    dst_dir = dst_dir.format(df=data['df'], sample=data['sample'])
+
+    if os.path.isfile(src):
+        if os.path.islink(dst):
+            if str(Path(dst).resolve()) != src:
+                return False, 'Such sample exists, but with another original file'
+            else:
+                return True, 'Already imported'
+        else:
+            if create_link(src, dst, dst_dir):
+                return True, 'Imported'
+            else:
+                return False, 'Error creating symlink'
+    else:
+        return False, 'No such sample file on disk'
+
+
+def create_link(src, dst, dst_dir):
     original_umask = None
     try:
         # stackoverflow.com/questions/5231901/permission-problems-when-creating-a-dir-with-os-makedirs-in-python
@@ -44,62 +58,69 @@ def import_sample(data):
         os.umask(original_umask)
         return os.path.islink(dst)
 
+
+def delete_sample(data):
+    dst_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/imp/{sample}/'
+    dst_dir = dst_dir.format(
+        df=data['df'],
+        sample=data['sample']
+    )
+    if os.path.isdir(dst_dir):
+        shutil.rmtree(dst_dir)
+
+
 def find_files(base, pattern):
     '''
     Return list of files matching pattern in base folder.
     '''
     return [n for n in fnmatch.filter(os.listdir(base), pattern) if
-        os.path.isfile(os.path.join(base, n))]
+            os.path.isfile(os.path.join(base, n))]
+
+
+def get_sample_dict_from_dir(loc, sample, variant, ext):
+    temp_samples_dict = {'sample_name': sample,
+                         'files': {'R1': '', 'R2': '', 'S': []},
+                         'renamed_files': {'R1': '', 'R2': '', 'S': []}}
+
+    for strand in ['R1', 'R2']:
+        st = variant['strands'][strand]
+        st_file = find_files(loc, sample + st + ext)
+        if len(st_file) == 1:
+            stripped = st_file[0].replace(variant['strands'][strand] + ext, '')
+            stripped += '_' + strand + ext
+            temp_samples_dict['renamed_files'][strand] = stripped
+            temp_samples_dict['files'][strand] = st_file[0]
+
+    return temp_samples_dict
+
 
 def get_samples_from_dir(loc):
+    """
+    Searches for samples in loc. Sample should contain R1 and R2
+    :param loc:
+    :return: Returns sample dict in loc
+    """
     samples_list = []
 
     ext = '.fastq.gz'
+    end_variants = [{'name': 'normal', 'strands': {'R1': '_R1', 'R2': '_R2'}},
+                    {'name': 'ILLUMINA', 'strands': {'R1': '_R1_001', 'R2': '_R2_001'}},
+                    {'name': 'SRA', 'strands': {'R1': '_1', 'R2': '_2'}}]
 
+    # Fool check
     if loc[-1] != '/':
         loc += '/'
-
-    samples =  [
-        item.split("/")[-1].split(ext)[0]
-        for item in glob.glob(loc + '*_R1*' + ext)
-    ]
-
-    for i, s in enumerate(samples):
-        if s.endswith('_R1_001'):
-            samples[i] = s[:-7]
-        elif s.endswith('_R1'):
-            samples[i] = s[:-3]
-
-
-    for sample in samples:
-        temp_saples_dict = {'sample_name': sample,
-                            'files': {'R1': '', 'R2': '', 'S': []},
-                            'renamed_files': {'R1': '', 'R2': '', 'S': []}}
-        # TODO make function
-        r1 = sample + '_R1*' + ext
-        r1_f = find_files(loc, r1)
-        if len(r1_f) == 1:
-            stripped = r1_f[0].replace(ext, '')
-            if stripped.endswith('_001'):
-                stripped = stripped[0:-4]+ext
-            else: stripped = stripped+ext
-            temp_saples_dict['renamed_files']['R1'] = stripped
-            temp_saples_dict['files']['R1'] = r1_f[0]
-
-        r2 = sample + '_R2*' + ext
-        r2_f = find_files(loc, r2)
-        if len(r2_f) == 1:
-            stripped = r2_f[0].replace(ext, '')
-            if stripped.endswith('_001'):
-                stripped = stripped[0:-4]+ext
-            else:
-                stripped = stripped + ext
-            temp_saples_dict['renamed_files']['R2'] = stripped
-            temp_saples_dict['files']['R2'] = r2_f[0]
-
-        samples_list.append(temp_saples_dict)
-
+        
+    for variant in end_variants:
+        R1 = variant['strands']['R1']  # Get first strand. For paired end data it doesn't matter.
+        samples = [
+            item.split("/")[-1].split(ext)[0].replace(R1, '')
+            for item in glob.glob(loc + '*' + R1 + ext)
+        ]
+        for sample in samples:
+            samples_list.append(get_sample_dict_from_dir(loc, sample, variant, ext))
     return samples_list
+
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
@@ -268,7 +289,6 @@ class RReadsInSystem:
                     self.reads = splits[0]
                     self.bp = splits[1]
 
-
     def add_child(self, parent_path, path):
         parent_path_to_pass = parent_path
         # Standard assumptions
@@ -363,6 +383,7 @@ def parse_fs_node(node):
 def mapped_dict_from_fs(node):
     return
 
+
 def read_krak_node(df, node_name):
     reads = df.loc[df[5] == node_name][1]
     if len(reads) == 0:
@@ -378,7 +399,8 @@ def get_general_taxa_comp_for_sample(directory):
             centr_krak = pd.read_csv(directory, sep='\t', header=None)
             uncl = read_krak_node(centr_krak, 'unclassified')
             vir = read_krak_node(centr_krak, '  Viruses')
-            homo = read_krak_node(centr_krak, '                                                              Homo sapiens')
+            homo = read_krak_node(centr_krak,
+                                  '                                                              Homo sapiens')
             bacteria = read_krak_node(centr_krak, '    Bacteria')
             archaea = read_krak_node(centr_krak, '    Archaea')
             other = read_krak_node(centr_krak, 'root') - vir - homo - bacteria - archaea
@@ -394,6 +416,7 @@ def get_general_taxa_comp_for_sample(directory):
                            'total': total}
             return composition
         except:
-            print ('error' + directory)
+            print('error' + directory)
             return None
-    else: return None
+    else:
+        return None

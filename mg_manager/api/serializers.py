@@ -1,6 +1,10 @@
+import json
+
+import requests
 from rest_framework import serializers
 
-from explorer.file_system.file_system_helpers import import_sample
+from asshole import settings
+from explorer.file_system.file_system_helpers import import_sample_file
 from ..models import *
 from ..result.serializers import ProfileResultSerializer
 
@@ -18,12 +22,14 @@ class DatasetHardSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("The Dataset name must be unique")
         return value
 
+
 class RealSampleIdSerializer(serializers.ModelSerializer):
     # source = serializers.PrimaryKeyRelatedField(required=False, queryset=SampleSource.objects.all())
 
     class Meta:
         model = RealSample
         fields = ['pk']
+
 
 class SampleSourceSerializer(serializers.ModelSerializer):
     real_samples = RealSampleIdSerializer(many=True)
@@ -103,10 +109,6 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
     df = serializers.PrimaryKeyRelatedField(required=False, queryset=DatasetHard.objects.all())
     containers = MgSampleFileContainerSerializer(many=True)
 
-    def get_validation_exclusions(self):
-        exclusions = super(MgSampleFullSerializer, self).get_validation_exclusions()
-        return exclusions + ['library']
-
     class Meta:
         model = MgSample
         fields = '__all__'
@@ -132,7 +134,7 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
                     files_data = container_data.pop('files')
                     cont = MgSampleFileContainer.objects.create(mg_sample=mg_sample, **container_data)
                     for file_data in files_data:
-                        new_file = MgFile.objects.create(container=cont, **file_data)
+                        new_file = MgFile(container=cont, **file_data)
 
                         data = {
                             'orig_file': new_file.orig_file_location,
@@ -140,11 +142,10 @@ class MgSampleFullSerializer(serializers.ModelSerializer):
                             'strand': new_file.strand,
                             'sample': mg_sample.name_on_fs
                         }
+                        url = settings.ASSHOLE_URL + 'api/fs/sample/import/'
+                        r = requests.post(url, data=json.dumps(data))
 
-                        print(data)
-
-                        imp = import_sample(data)
-                        if imp:
+                        if r.status_code == 201:
                             new_file.import_success = True
                             new_file.save()
             return mg_sample

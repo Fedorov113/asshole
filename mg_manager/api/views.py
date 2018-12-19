@@ -9,7 +9,6 @@ from django.db.models import Q
 from rest_framework.exceptions import ErrorDetail, ValidationError
 
 
-
 class SampleSourceList(APIView):
     def get(self, request):
         sources_dict = {}
@@ -69,6 +68,7 @@ class RealSampleList(APIView):
         real_sample.save()
         return HttpResponse(json.dumps('created'), content_type='application/json')
 
+
 class SchemaList(APIView):
     def get(self, request):
         schemas_dict = {}
@@ -83,10 +83,9 @@ class SchemaList(APIView):
         return HttpResponse(json.dumps(schemas_dict), content_type='application/json')
 
 
-
 class MgSampleNewList(APIView):
     def get(self, request):
-        resp ={}
+        resp = {}
         samples_dict = {}
         hdf = request.query_params.get('hdf', None)
         sdf = request.query_params.get('sdf', None)
@@ -148,22 +147,26 @@ class MgSampleNewList(APIView):
         resp = {'ids': mg_sample_ids, 'data': samples_dict, }
         return HttpResponse(json.dumps(resp), content_type='application/json')
 
+
 class MgSampleUpdate(APIView):
     def put(self, request):
         data = request.data
         print(data)
         for key in data.keys():
-            s, created  = MgSample.objects.update_or_create(defaults=data[key], pk = key)
+            s, created = MgSample.objects.update_or_create(defaults=data[key], pk=key)
 
         return HttpResponse(json.dumps('update'), content_type='application/json')
+
+
 class RealSampleUpdate(APIView):
     def put(self, request):
         data = request.data
         print(data)
         for key in data.keys():
-            s, created  = RealSample.objects.update_or_create(defaults=data[key], pk = key)
+            s, created = RealSample.objects.update_or_create(defaults=data[key], pk=key)
 
         return HttpResponse(json.dumps('update'), content_type='application/json')
+
 
 class DatasetHardList(generics.ListCreateAPIView):  # Detail View
     queryset = DatasetHard.objects.all()
@@ -214,7 +217,7 @@ class MgSampleFullList(generics.ListCreateAPIView):
             serializer.is_valid(raise_exception=True)
         except ValidationError:
             print('not valid....')
-            # print(ValidationError.detail)
+            print(ValidationError.detail)
         print('checked valid')
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -232,31 +235,6 @@ class MgSampleFullList(generics.ListCreateAPIView):
                 qs = qs.filter(
                     Q(dataset_hard=hard_df_pk)
                 ).distinct()
-        return qs
-
-
-class MgSampleFullLookup(generics.ListCreateAPIView):
-    serializer_class = MgSampleFullSerializer
-
-    def get_serializer(self, *args, **kwargs):
-        """ if an array is passed, set serializer to many """
-        if isinstance(kwargs.get('data', {}), list):
-            kwargs['many'] = True
-        return super(MgSampleFullLookup, self).get_serializer(*args, **kwargs)
-
-    def get_queryset(self):
-        qs = MgSample.objects.all()
-        hdf = self.request.query_params.get('hdf', None)
-        sdf = self.request.query_params.get('sdf', None)
-        run = self.request.query_params.get('run', None)
-        lib = self.request.query_params.get('lib', None)
-        dtype = self.request.query_params.get('dtype', None)
-
-        if hdf is not None:
-            qs = qs.filter(Q(dataset_hard=hdf))
-        if run is not None:
-            qs = qs.filter(Q(sequencing_run=run))
-
         return qs
 
 
