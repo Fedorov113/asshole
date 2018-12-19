@@ -94,6 +94,7 @@ NO_RESULT_IN_DB = 1
 
 def generate_files_for_snake_from_request_dict(request_dict):
     """
+    Takes dictionary and returns list of files for snakemake
 
     :param request_dict: { input: [], input_objects: ['MgSampleFile'], result: 'profile" }
     :return: list with file locations if everything is OK, integer error code otherwise

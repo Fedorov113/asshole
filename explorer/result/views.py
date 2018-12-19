@@ -4,11 +4,9 @@ import requests
 from django.http import HttpResponse
 from rest_framework.views import APIView
 
-from asshole import settings
 from explorer.RuleSerializer import RuleSerializer
-from explorer.models import *
 from .serializers import *
-from rest_framework import generics, mixins, viewsets
+from rest_framework import generics
 
 
 class ResultTypeList(generics.ListCreateAPIView):

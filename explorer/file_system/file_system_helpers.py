@@ -9,14 +9,12 @@ from pathlib import Path
 
 def import_sample_file(data, update_origin_if_exists=False):
     """
-    Imports sample as symlink from file system
-    :param data: dict  {
-                            'orig_file': original location of file,
-                            'df': dataset for this sample,
-                            'strand': strand
-                            'sample': sample name on file system
-                        }
-    :return: success, message True if import successful False otherwise
+    Imports sample as symlink from file system,
+    :param data: dict  {'orig_file': original location of file,
+                        'df': dataset for this sample,
+                        'strand': strand
+                        'sample': sample name on file system}
+    :return: success (True if import successful False otherwise), message.
     """
 
     src = data['orig_file']
@@ -70,9 +68,9 @@ def delete_sample(data):
 
 
 def find_files(base, pattern):
-    '''
+    """
     Return list of files matching pattern in base folder.
-    '''
+    """
     return [n for n in fnmatch.filter(os.listdir(base), pattern) if
             os.path.isfile(os.path.join(base, n))]
 
@@ -97,11 +95,10 @@ def get_sample_dict_from_dir(loc, sample, variant, ext):
 def get_samples_from_dir(loc):
     """
     Searches for samples in loc. Sample should contain R1 and R2
-    :param loc:
+    :param loc: location on filesystem where we should search
     :return: Returns sample dict in loc
     """
     samples_list = []
-
     ext = '.fastq.gz'
     end_variants = [{'name': 'normal', 'strands': {'R1': '_R1', 'R2': '_R2'}},
                     {'name': 'ILLUMINA', 'strands': {'R1': '_R1_001', 'R2': '_R2_001'}},
@@ -110,7 +107,7 @@ def get_samples_from_dir(loc):
     # Fool check
     if loc[-1] != '/':
         loc += '/'
-        
+
     for variant in end_variants:
         R1 = variant['strands']['R1']  # Get first strand. For paired end data it doesn't matter.
         samples = [
@@ -119,6 +116,7 @@ def get_samples_from_dir(loc):
         ]
         for sample in samples:
             samples_list.append(get_sample_dict_from_dir(loc, sample, variant, ext))
+
     return samples_list
 
 

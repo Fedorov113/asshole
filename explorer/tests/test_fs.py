@@ -53,19 +53,22 @@ class ImportSampleTests(TestCase):
 
 
 class GetSamplesFromFolderTest(TestCase):
+    test_dir = os.getcwd() + '/testing_dir/'
+
+    def setUp(self):
+        os.makedirs(self.test_dir)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
 
     def test_normal(self):
         """
         Tests {s}_R1.fastq.gz {s}_R2.fastq.gz
         """
-        test_dir = os.getcwd() + '/testing_dir/'
-        os.makedirs(test_dir)
 
-        Path(test_dir + 'sample_R1.fastq.gz').touch()
-        Path(test_dir + 'sample_R2.fastq.gz').touch()
-        res = get_samples_from_dir(test_dir)
-
-        shutil.rmtree(test_dir)
+        Path(self.test_dir + 'sample_R1.fastq.gz').touch()
+        Path(self.test_dir + 'sample_R2.fastq.gz').touch()
+        res = get_samples_from_dir(self.test_dir)
 
         self.assertEqual([{'sample_name': 'sample',
                            'files': {'R1': 'sample_R1.fastq.gz', 'R2': 'sample_R2.fastq.gz', 'S': []},
@@ -76,31 +79,24 @@ class GetSamplesFromFolderTest(TestCase):
         """
         Tests {s}_R1_001.fastq.gz {s}_R2_001.fastq.gz
         """
-        test_dir = os.getcwd() + '/testing_dir/'
-        os.makedirs(test_dir)
 
-        Path(test_dir + 'sample_R1_001.fastq.gz').touch()
-        Path(test_dir + 'sample_R2_001.fastq.gz').touch()
-        res = get_samples_from_dir(test_dir)
-
-        shutil.rmtree(test_dir)
+        Path(self.test_dir + 'sample_R1_001.fastq.gz').touch()
+        Path(self.test_dir + 'sample_R2_001.fastq.gz').touch()
+        res = get_samples_from_dir(self.test_dir)
 
         self.assertEqual([{'sample_name': 'sample',
                            'files': {'R1': 'sample_R1_001.fastq.gz', 'R2': 'sample_R2_001.fastq.gz', 'S': []},
                            'renamed_files': {'R1': 'sample_R1.fastq.gz', 'R2': 'sample_R2.fastq.gz', 'S': []}}],
                          res)
+
     def test_1(self):
         """
         Tests {s}_1.fastq.gz {s}_2.gz
         """
-        test_dir = os.getcwd() + '/testing_dir/'
-        os.makedirs(test_dir)
 
-        Path(test_dir + 'sample_1.fastq.gz').touch()
-        Path(test_dir + 'sample_2.fastq.gz').touch()
-        res = get_samples_from_dir(test_dir)
-
-        shutil.rmtree(test_dir)
+        Path(self.test_dir + 'sample_1.fastq.gz').touch()
+        Path(self.test_dir + 'sample_2.fastq.gz').touch()
+        res = get_samples_from_dir(self.test_dir)
 
         self.assertEqual([{'sample_name': 'sample',
                            'files': {'R1': 'sample_1.fastq.gz', 'R2': 'sample_2.fastq.gz', 'S': []},

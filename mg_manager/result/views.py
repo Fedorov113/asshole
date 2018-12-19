@@ -1,5 +1,7 @@
 import json
 import os
+
+import requests
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -137,9 +139,9 @@ class ResultRequest(APIView):
                     return Response('No such container', status=status.HTTP_400_BAD_REQUEST)
 
         # Make request to asshole
-        # url = settings.ASSHOLE_URL + '/explorer/request_result/'
-        # headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-        # r = requests.post(url, data=json.dumps(data), headers=headers)
+        url = settings.ASSHOLE_URL + '/explorer/request_result/'
+        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        r = requests.post(url, data=json.dumps(data), headers=headers)
 
-        generate_files_for_snake_from_request_dict(data)
+        # generate_files_for_snake_from_request_dict(data)
         return HttpResponse(json.dumps({'start': 'SUCCESS'}), content_type='application/json')
