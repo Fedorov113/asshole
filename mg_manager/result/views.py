@@ -12,10 +12,9 @@ from .serializers import ProfileResultSerializer, ProfileResultFullSerializer
 from rest_framework.views import APIView
 from django.http import HttpResponse
 
-from .models import GeneralResult, ProfileResult, Mp2Result, get_mg_sample_container
+from .models import GeneralResult, ProfileResult, Mp2Result, get_mg_sample_container, get_mg_sample_container_file
 from ..models import MgFile, MgSampleFileContainer
 
-from explorer.celery_snake import generate_files_for_snake_from_request_dict
 from explorer.file_system import metaphlan2 as mp2
 from explorer.file_system.file_system_helpers import get_general_taxa_comp_for_sample
 
@@ -85,6 +84,9 @@ class ProfileResultDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
 
 
 class ResultView(APIView):
+    """
+    Accepts result from processing system and saves it internally
+    """
     def post(self, request):
         data = request.data
         gr = GeneralResult(name=data['result'], input_objects=data['input_objects'],
@@ -95,7 +97,7 @@ class ResultView(APIView):
 
 class ResultRequest(APIView):
     """
-    Accepts result request from client.
+    Accepts result request from client and sends it to processing system.
     """
 
     def post(self, request):
@@ -112,23 +114,21 @@ class ResultRequest(APIView):
         # Here we check what exists and db and what not
         for i, input in enumerate(res['input']):
             if input_objects[0] == 'MgSampleFile':
-                try:
-                    input_obj = MgFile.objects.get(
-                        strand=input[input_objects[0]]['strand'],
-                        container__preprocessing=input[input_objects[0]]['preproc'],
-                        container__mg_sample__name_on_fs=input[input_objects[0]]['sample'],
-                        container__mg_sample__dataset_hard__df_name=input[input_objects[0]]['df']
-                    )
+                input_obj = get_mg_sample_container_file(
+                    strand=input[input_objects[0]]['strand'],
+                    preproc=input[input_objects[0]]['preproc'],
+                    sample=input[input_objects[0]]['sample'],
+                    df=input[input_objects[0]]['df']
+                )
 
-                    print(len(res['input']))
-                    try:
-                        pr = ProfileResult.objects.filter(mg_file=input_obj)
-                        if (len(list(pr)) > 0):
-                            res['input'].pop(i)
-                    except ProfileResult.DoesNotExist:
-                        print("no such")
-                except MgFile.DoesNotExist:
+                if input_obj is None:
                     return Response('No such file', status=status.HTTP_400_BAD_REQUEST)
+                try:
+                    pr = ProfileResult.objects.filter(mg_file=input_obj)
+                    if len(list(pr)) > 0:
+                        res['input'].pop(i)
+                except ProfileResult.DoesNotExist:
+                    print("no such")
 
             elif input_objects[0] == 'MgSampleFileContainer':
                 cont = get_mg_sample_container(
@@ -139,9 +139,8 @@ class ResultRequest(APIView):
                     return Response('No such container', status=status.HTTP_400_BAD_REQUEST)
 
         # Make request to asshole
-        url = settings.ASSHOLE_URL + '/explorer/request_result/'
+        url = settings.ASSHOLE_URL + 'explorer/request_result/'
         headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         r = requests.post(url, data=json.dumps(data), headers=headers)
 
-        # generate_files_for_snake_from_request_dict(data)
         return HttpResponse(json.dumps({'start': 'SUCCESS'}), content_type='application/json')

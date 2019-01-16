@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e68d916e-7772-4431-b9b8-78a9354c3d67" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/explorer/celery_snake.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/celery_snake.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/result/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/result/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/explorer/tests/test_fs.py" beforeDir="false" afterPath="$PROJECT_DIR$/explorer/tests/test_fs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mg_manager/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mg_manager/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mg_manager/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mg_manager/api/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mg_manager/result/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mg_manager/result/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,13 +20,14 @@
     <session id="-64030558">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="1" />
@@ -38,38 +38,39 @@
           <entry key="project.open.time.24" value="2" />
           <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="py" value="201" />
+          <entry key="py" value="213" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="201" />
+          <entry key="Python" value="213" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Django Console" value="67" />
           <entry key="dummy" value="12" />
-          <entry key="py" value="14734" />
+          <entry key="py" value="15237" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="14801" />
+          <entry key="Python" value="15304" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -77,90 +78,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/tests/test_fs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2184">
-              <caret line="84" column="49" lean-forward="true" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <marker date="1545257780245" expanded="true" signature="1547:1758" ph="..." />
-                <marker date="1545257780245" expanded="true" signature="3361:3370" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8643">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/result/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/celery_snake.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="97" selection-start-line="97" selection-end-line="97" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mg_manager/result/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#76#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/explorer/result/urls.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -184,6 +102,7 @@
       <find>Bad Re</find>
       <find>libra</find>
       <find>MgSampleFullLoo</find>
+      <find>parse</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -212,7 +131,6 @@
         <option value="$PROJECT_DIR$/asshole/tests/test_result_views.py" />
         <option value="$PROJECT_DIR$/mg_manager/result/urls.py" />
         <option value="$PROJECT_DIR$/asshole/urls.py" />
-        <option value="$PROJECT_DIR$/mg_manager/api/urls.py" />
         <option value="$PROJECT_DIR$/mg_manager/result/models.py" />
         <option value="$PROJECT_DIR$/mg_manager/tests/test_result_views.py" />
         <option value="$PROJECT_DIR$/explorer/views.py" />
@@ -221,13 +139,14 @@
         <option value="$PROJECT_DIR$/mg_manager/models.py" />
         <option value="$PROJECT_DIR$/explorer/api/urls.py" />
         <option value="$PROJECT_DIR$/mg_manager/api/serializers.py" />
-        <option value="$PROJECT_DIR$/mg_manager/api/views.py" />
         <option value="$PROJECT_DIR$/explorer/api/views/sample_views.py" />
         <option value="$PROJECT_DIR$/explorer/tests/test_fs.py" />
         <option value="$PROJECT_DIR$/explorer/file_system/file_system_helpers.py" />
-        <option value="$PROJECT_DIR$/mg_manager/result/views.py" />
         <option value="$PROJECT_DIR$/explorer/result/views.py" />
         <option value="$PROJECT_DIR$/explorer/celery_snake.py" />
+        <option value="$PROJECT_DIR$/mg_manager/result/views.py" />
+        <option value="$PROJECT_DIR$/mg_manager/api/urls.py" />
+        <option value="$PROJECT_DIR$/mg_manager/api/views.py" />
       </list>
     </option>
   </component>
@@ -259,34 +178,6 @@
               <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
               <item name="asshole" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="explorer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="explorer" type="462c0819:PsiDirectoryNode" />
-              <item name="result" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="mg_manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="mg_manager" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asshole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asshole" type="462c0819:PsiDirectoryNode" />
-              <item name="mg_manager" type="462c0819:PsiDirectoryNode" />
-              <item name="result" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -300,7 +191,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -371,7 +262,7 @@
     <frame x="-6" y="-6" width="1513" height="1013" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20357634" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18156809" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -384,9 +275,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.31968147" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.30147895" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.3265074" />
+      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.3265074" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32992035" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -523,13 +414,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/explorer/tests.py" />
-    <entry file="file://$PROJECT_DIR$/explorer/RuleSerializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/asshole/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
@@ -558,26 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mg_manager/api/anal_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="91" column="31" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="31" />
-          <folding>
-            <element signature="e#25#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -599,9 +463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,40 +487,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mg_manager/api/urls.py">
+    <entry file="file://$PROJECT_DIR$/explorer/api/views/sample_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="442">
+          <caret line="17" column="72" lean-forward="true" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mg_manager/api/views.py">
+    <entry file="file://$PROJECT_DIR$/explorer/tests/test_fs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
+        <state relative-caret-position="2002">
+          <caret line="84" column="49" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/result/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/result/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/celery_snake.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2730">
+          <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2834">
+          <caret line="132" column="14" lean-forward="true" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/explorer/RuleSerializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2236">
+          <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mg_manager/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="149" column="43" lean-forward="true" selection-start-line="149" selection-start-column="43" selection-end-line="149" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2574">
+          <caret line="107" column="28" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/api/views/sample_views.py">
+    <entry file="file://$PROJECT_DIR$/mg_manager/api/anal_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="72" lean-forward="true" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="92">
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mg_manager/result/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3198">
+          <caret line="141" column="38" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -670,68 +581,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/tests/test_fs.py">
+    <entry file="file://$PROJECT_DIR$/mg_manager/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2184">
-          <caret line="84" column="49" lean-forward="true" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
+        <state relative-caret-position="40">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1545257780245" expanded="true" signature="1547:1758" ph="..." />
-            <marker date="1545257780245" expanded="true" signature="3361:3370" ph="..." />
+            <marker date="1547462378894" expanded="true" signature="427:840" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/file_system/file_system_helpers.py">
+    <entry file="file://$PROJECT_DIR$/mg_manager/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8643">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="402">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/result/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#76#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/result/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/explorer/celery_snake.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mg_manager/result/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>

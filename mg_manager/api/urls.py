@@ -37,4 +37,6 @@ urlpatterns = [
     path('sequencing_run/', SequencingRunList.as_view(), name='SequencingRunList-list'),
     path('fs_samples/', FsContainerList.as_view(), name='SequencingRunList-list'),
 
+    path('import_from_asshole/', ImportFromAsshole.as_view()),
+
 ]

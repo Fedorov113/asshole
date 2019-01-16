@@ -9,6 +9,26 @@ from django.db.models import Q
 from rest_framework.exceptions import ErrorDetail, ValidationError
 
 
+class ImportFromAsshole(APIView):
+    """
+    Used to import data from another asshole system.
+    """
+    def post(self, request):
+        """
+        Accept dataset folder
+        :param request:
+        :return:
+        """
+        data = request.data
+        print(data)
+
+        # Find all samples in shortest folder
+        # Construct model objects for samples (container, files, profile)
+        # Repeat for all preprocessings
+
+        return HttpResponse('import view', content_type='application/json')
+
+
 class SampleSourceList(APIView):
     def get(self, request):
         sources_dict = {}
@@ -255,4 +275,4 @@ class MgSampleList(generics.ListCreateAPIView):
 
 class MgSampleDetail(generics.RetrieveUpdateDestroyAPIView):  # Detail View
     queryset = MgSample.objects.all()
-    serializer_class = MgSampleSerializer
+    serializer_class = MgSampleFullSerializer
