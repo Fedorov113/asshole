@@ -19,7 +19,6 @@ from celery.worker.request import Request
 from asshole.celery import app
 from explorer.RuleSerializer import RuleSerializer
 from explorer.models import SnakeRuleResult
-from mg_manager.result.models import GeneralResult
 
 import importlib
 import select

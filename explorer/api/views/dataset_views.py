@@ -11,25 +11,38 @@ from explorer.file_system.file_system_helpers import *
 
 import pandas as pd
 
+import sys
+
+sys.path.insert(0, '/data6/bio/TFM/pipeline/anal/fedorov/notebooks/dev_ass/')
+import loaders as assload
+
+
 class DatasetListView(APIView):
     def get(self, request):
-        pipeline_dir = settings.PIPELINE_DIR + '/'
-        search_dir = pipeline_dir + 'datasets/*'
-        datasets = glob.glob(search_dir)
+        print('getting datasets')
+        return HttpResponse(json.dumps(assload.load_dfs_from_db(settings.ASSNAKE_DB)), content_type='application/json')
 
-        datasets_list = []
-        # What information do we want to include in each df?
-        # This object can be constructed only if there is at least one sample in reads/raw folder
-        # {
-        #     df_name: df_name,
-        #     description: description from df_name.info file, if present,
-        #     num_samples: number of samples in reads/raw folder
-        # }
-        for dataset in datasets:
-            if os.path.isdir(dataset):
-                datasets_list.append(dataset.replace(pipeline_dir + 'datasets/', ''))
+class SamplesForDfFs(APIView):
+    def get(self, request, df):
+        mg_samples = assload.load_mg_samples_in_df(df, settings.ASSNAKE_DB, 'pandas')
+        mg_samples_fs = pd.DataFrame.from_dict(assload.samples_in_df(df, settings.ASSNAKE_DB))
+        mg_samples_fs = mg_samples_fs.merge(mg_samples, on='fs_name')
+        mg_samples_fs = mg_samples_fs.to_dict(orient='records')
+        return HttpResponse(json.dumps(mg_samples_fs), content_type='application/json')
 
-        return HttpResponse(json.dumps(datasets_list), content_type='application/json')
+class DatasetFullView(APIView):
+    def get(self, request, df):
+        preproc_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/*'
+        samples_dir = settings.PIPELINE_DIR + '/datasets/{df}/reads/{preproc}/*'
+        preprocs = [p.split('/')[-1] for p in glob.glob(preproc_dir.format(df=df))]
+
+        res = []
+        for p in preprocs:
+            samples = [s.split('/')[-1] for s in glob.glob(samples_dir.format(df=df, preproc=p))]
+            res.append({'preproc': p, 'samples': samples})
+
+        return HttpResponse(json.dumps(res), content_type='application/json')
+
 
 class TaxaGeneralCompositionView(APIView):
     def get(self, request, df, preproc, tool):
@@ -41,7 +54,7 @@ class TaxaGeneralCompositionView(APIView):
         search_dir = search_dir.format(df=df, preproc=preproc, tool=tool)
         search_dir_w_sample = search_dir.replace('*', '{sample}')
 
-        meta_loc = datasets_dir+df+'/reads/meta.tsv'
+        meta_loc = datasets_dir + df + '/reads/meta.tsv'
         general_compositions = []
 
         if os.path.isfile(meta_loc):
@@ -58,4 +71,3 @@ class TaxaGeneralCompositionView(APIView):
                 general_compositions.append(get_general_taxa_comp_for_sample(report))
 
         return HttpResponse(json.dumps(general_compositions), content_type='application/json')
-

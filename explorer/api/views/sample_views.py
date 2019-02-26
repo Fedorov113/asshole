@@ -20,3 +20,4 @@ class SampleImportView(APIView):
     def delete(self, request):
         delete_sample(json.loads(request.body))
         return Response('deleted', status=status.HTTP_200_OK)
+

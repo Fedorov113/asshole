@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="ripcm">
+  <component name="PublishConfigData" autoUpload="Always" serverName="fedorov@cluster.ripcm.com:22">
     <serverData>
       <paths name="asshole">
         <serverdata>
@@ -9,24 +9,10 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="fedor@localhost:22">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="ripcm">
+      <paths name="fedorov@cluster.ripcm.com:22">
         <serverdata>
           <mappings>
             <mapping deploy="/data6/bio/TFM/asshole" local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="ripcm-auth">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

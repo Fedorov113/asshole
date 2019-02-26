@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIPELINE_DIR = os.path.abspath(os.path.join(BASE_DIR, '../pipeline/'))
-STATIC_ROOT= os.path.join(BASE_DIR,'static_media/')
+ASSNAKE_DB = '/data5/bio/databases/assnake'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_media/')
 
 MEDIA_ROOT = PIPELINE_DIR
 MEDIA_URL = '/media/'
@@ -29,11 +30,11 @@ SECRET_KEY = '=qbqotj%593dfrtj%5#)-uoeax#c)!%c=#yu1i!zr6eawi_v%y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['node2.net0.pyxis.ripcm.com']
 
 # Application definition
 
-MGMS_URL = 'http://127.0.0.1:11111/'
+MGMS_URL = 'http://tcga.ripcm.com:11111/'
 ASSHOLE_URL = 'http://127.0.0.1:17777/'
 
 INSTALLED_APPS = [
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_celery_results',
-    'mg_manager',
     'corsheaders',
     'silk'
 ]

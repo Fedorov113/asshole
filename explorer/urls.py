@@ -16,4 +16,9 @@ urlpatterns = [
     path('results/', ResultList.as_view()),
     path('schema/<schema_object>', SchemaView.as_view()),
     path('rule_result/<int:rule_result_id>/', RuleResultView.as_view()),
+
+    path('result_test/', ResultView.as_view()),
+    path('result_types_fs/', ResultTypeListFS.as_view()),
+    path('results_fs/', ResultListFS.as_view()),
+
 ]

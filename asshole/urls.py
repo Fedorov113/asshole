@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('explorer/', include('explorer.urls')),
     path('api/fs/', include(('explorer.api.urls', 'filesystem'), namespace='fs-explorer')),
-    path('api/mgms/', include(('mg_manager.api.urls', 'mgms'), namespace='mgms'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
