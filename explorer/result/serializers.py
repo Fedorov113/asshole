@@ -4,7 +4,7 @@ from explorer.models import *
 
 class ResultTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ResultTypes
+        model = ResultType
         fields = '__all__'
 
 class ResultSerializer(serializers.ModelSerializer):

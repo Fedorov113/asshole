@@ -18,4 +18,18 @@ import loaders as assload
 
 class SourcesForDfFs(APIView):
     def get(self, request, df):
-        return HttpResponse(json.dumps(assload.load_sources_in_df(df, settings.ASSNAKE_DB)), content_type='application/json')
+        sources = assload.load_sources_in_df(df, settings.ASSNAKE_DB)
+
+        sources_w_schemas = glob.glob(settings.ASSNAKE_DB+'/datasets/{df}/sources__*.tsv'.format(df=df))
+        if len(sources_w_schemas) > 0:
+            sources_meta = pd.read_csv(sources_w_schemas[0], sep = '\t')
+            sources_meta = sources_meta.fillna('null')
+
+            for s in sources:
+                info = sources_meta.loc[sources_meta['source'] == s['source']]
+                s.update({'meta_info': info.loc[:, info.columns != 'source'].to_dict(orient='records')[0]})
+        else:
+            for s in sources:
+                s.update({'meta_info': {}})
+
+        return HttpResponse(json.dumps(sources), content_type='application/json')

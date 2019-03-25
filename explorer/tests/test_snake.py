@@ -9,7 +9,7 @@ from explorer.models import *
 class SnakemakeFromDictTests(TestCase):
     def setUp(self):
         print('setup')
-        taxa_type = ResultTypes.objects.create(result_type='taxa', description='')
+        taxa_type = ResultType.objects.create(result_type='taxa', description='')
         Result.objects.create(
             data_type='wgs', result_name='centr', result_type=taxa_type,
             out_str_wc='datasets/{df}/taxa/{preproc}/centr__{params}/{sample}/{sample}_krak.tsv',

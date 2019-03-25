@@ -22,12 +22,27 @@ class DatasetListView(APIView):
         print('getting datasets')
         return HttpResponse(json.dumps(assload.load_dfs_from_db(settings.ASSNAKE_DB)), content_type='application/json')
 
+
+class SchemasInDf(APIView):
+    def get(self, request, df):
+        schemas = [s.split('/')[-1].replace('schema_source__', '').replace('.json', '') for s in
+         glob.glob('/data5/bio/databases/assnake/datasets/{df}/schema_source__*.json'.format(df=df))]
+        return HttpResponse(json.dumps(schemas), content_type='application/json')
+
 class SamplesForDfFs(APIView):
     def get(self, request, df):
         mg_samples = assload.load_mg_samples_in_df(df, settings.ASSNAKE_DB, 'pandas')
         mg_samples_fs = pd.DataFrame.from_dict(assload.samples_in_df(df, settings.ASSNAKE_DB))
         mg_samples_fs = mg_samples_fs.merge(mg_samples, on='fs_name')
         mg_samples_fs = mg_samples_fs.to_dict(orient='records')
+        return HttpResponse(json.dumps(mg_samples_fs), content_type='application/json')
+
+class SamplesForDfFs_(APIView):
+    def get(self, request, df):
+        mg_samples_fs = assload.load_mg_samples_in_df_fs(settings.ASSNAKE_DB, df)
+        # mg_samples_fs = pd.DataFrame.from_dict(assload.samples_in_df(df, settings.ASSNAKE_DB))
+        # mg_samples_fs = mg_samples_fs.merge(mg_samples, on='fs_name')
+        # mg_samples_fs = mg_samples_fs.to_dict(orient='records')
         return HttpResponse(json.dumps(mg_samples_fs), content_type='application/json')
 
 class DatasetFullView(APIView):

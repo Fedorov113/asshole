@@ -16,9 +16,11 @@ urlpatterns = router.urls
 urlpatterns += [
     path('dataset/', DatasetListView.as_view()),
     path('dataset/<str:df>/', SamplesForDfFs.as_view()),
+    path('dataset_/<str:df>/', SamplesForDfFs_.as_view()),
     path('dataset/<str:df>/source/', SourcesForDfFs.as_view()),
     path('dataset/<str:df>/biospecimen/', BiospecimensForDfFs.as_view()),
 
+    path('dataset/<str:df>/schemas/', SchemasInDf.as_view()),
     path('sample/import/', SampleImportView.as_view()),
     path('check_dir/', CheckSamplesInFolder.as_view()),
 

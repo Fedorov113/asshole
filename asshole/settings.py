@@ -30,11 +30,11 @@ SECRET_KEY = '=qbqotj%593dfrtj%5#)-uoeax#c)!%c=#yu1i!zr6eawi_v%y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['node2.net0.pyxis.ripcm.com']
+ALLOWED_HOSTS = ['node6.net0.pyxis.ripcm.com']
 
 # Application definition
 
-MGMS_URL = 'http://tcga.ripcm.com:11111/'
+MGMS_URL = 'http://odms.ripcm.com:11111/'
 ASSHOLE_URL = 'http://127.0.0.1:17777/'
 
 INSTALLED_APPS = [

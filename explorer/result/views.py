@@ -12,7 +12,7 @@ from rest_framework import generics
 
 
 class ResultTypeList(generics.ListCreateAPIView):
-    queryset = ResultTypes.objects.all()
+    queryset = ResultType.objects.all()
     serializer_class = ResultTypeSerializer
 
 

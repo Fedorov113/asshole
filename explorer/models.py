@@ -1,4 +1,6 @@
 import os
+import uuid
+
 
 from django.db import models
 
@@ -77,10 +79,11 @@ class Parameter(models.Model):
             f.write(self.param_data)
 
 
-class ResultTypes(models.Model):
+class ResultType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # Mapping, Assembly, Reads Preprocessing, etc...
     result_type = models.CharField(max_length=256)
-
+    short_name = models.CharField(max_length=32)
     # What is it all about?
     description = models.TextField()
 
@@ -94,19 +97,22 @@ class Result(models.Model):
     saved for long term in MGMS or processed. All of this Results will be exposed to MGMS,
     so it knows what it can perform.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     # Metagenomics, metabolomics, etc...
     data_type = models.CharField(max_length=256)
 
     # Mapping, Assembly, Reads Preprocessing, etc...
-    result_type = models.ForeignKey(ResultTypes, on_delete=models.CASCADE)
+    result_type = models.ForeignKey(ResultType, on_delete=models.CASCADE)
 
     # Tool
     tool = models.ForeignKey(Tool, blank=True, null=True, on_delete=models.CASCADE)
 
     # Short name that summarizes what this result means
-    result_name = models.CharField(max_length=256, unique=True)
+    short_name = models.CharField(max_length=30, unique=True)
 
+    result_name = models.CharField(max_length=256)
+    description = models.TextField()
     # String with wildcards that is the !FINAL! file for this result.
     # ( In rule there may be more than one output file, but this specific file triggers correct rule,
     # and will be present only if the rule successfully finished )
