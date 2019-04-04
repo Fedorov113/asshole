@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import serializers
 from explorer.models import *
 
@@ -11,3 +13,9 @@ class ResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Result
         fields = '__all__'
+
+    def to_representation(self, instance):
+        """Convert `username` to lowercase."""
+        ret = super().to_representation(instance)
+        ret['input_schema'] = json.loads(ret['input_schema'])
+        return ret

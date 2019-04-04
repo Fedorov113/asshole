@@ -27,4 +27,7 @@ class Command(BaseCommand):
                 result_dict = json.load(result_file)
                 res_type = ResultType.objects.get(id=result_dict['result_type'])
                 result_dict['result_type'] = res_type
+                result_dict.pop('params_schema')
+                result_dict.pop('tool')
+                result_dict['input_schema'] = json.dumps(result_dict['input_schema'])
                 Result(**result_dict).save()
