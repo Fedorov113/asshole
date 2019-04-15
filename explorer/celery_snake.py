@@ -14,7 +14,7 @@ def create_simple_wc(out_wc, tool_info, input_object, input_object_name):
     dict_to_expand = {}
     if tool_info is not None:
         dict_to_expand = tool_info.copy()
-    dict_to_expand.update(input_object[input_object_name[0]])
+    dict_to_expand.update(input_object)
     return out_wc.format(**dict_to_expand)
 
 
@@ -100,11 +100,11 @@ def generate_files_for_snake_from_request_dict(request_dict):
     :return: list with file locations if everything is OK, integer error code otherwise
     """
     input_loc_list = []  # list of files to request from snakemake
-    desired = request_dict['desired_results']
+    desired = request_dict
 
     # Trying to get desired result from db.
     try:
-        res = Result.objects.get(result_name=desired['result'])
+        res = Result.objects.get(id=desired['result'])
     except Result.DoesNotExist:
         return NO_RESULT_IN_DB
 

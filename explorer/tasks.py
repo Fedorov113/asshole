@@ -31,7 +31,7 @@ import json
 
 def generate_snakefile(input_list, name=''):
     # Get number of files for id
-    num_of_files = sum([len(files) for r, d, files in os.walk(settings.PIPELINE_DIR + '/run_snakes')])
+    num_of_files = sum([len(files) for r, d, files in os.walk(settings.SNAKES_DIR)])
     print('Number of files: ' + str(num_of_files))
 
     # Generate tmp snakemake file name
@@ -42,17 +42,32 @@ def generate_snakefile(input_list, name=''):
     # Load base snakemake file
     # Read content to str
     snakefile_content = ''
-    with open(settings.PIPELINE_DIR + '/bin/snake/base.py', 'r') as base:
+    with open(os.path.join(settings.ASSNAKE_INSTALLATION,'bin/templates/head.py'), 'r') as base:
         snakefile_content = base.read()
 
+    # Add configfile
+    snakefile_content += "\nconfigfile: '" + os.path.join(settings.ASSNAKE_INSTALLATION, 'config.yml') + "'"
+
+    # Add includes
+    snakefiles = "\nsnakefiles = '" + os.path.join(settings.ASSNAKE_INSTALLATION, 'bin/snake/') + "'"
+    snakefile_content += snakefiles
+    results = "\nresults = '" + os.path.join(settings.ASSNAKE_INSTALLATION, 'results/') + "'\n"
+    snakefile_content += results
+
+    # Add floor
+    with open(os.path.join(settings.ASSNAKE_INSTALLATION,'bin/templates/floor.py'), 'r') as base:
+        floor = base.read()
+        snakefile_content += floor
+
     # Write list of files
-    snakefile_content += 'input_list=' + str(input_list) + '\n'
+    snakefile_content += '\ninput_list=' + str(input_list) + '\n'
 
     # Write generated rule
     snakefile_content += '\nrule gen:\n' + '\tinput: input_list'
 
     # Save this string to and file to tmp folder
-    snakefile_loc = settings.PIPELINE_DIR + '/run_snakes/' + snakefile_id
+    snakefile_loc = os.path.join(settings.SNAKES_DIR, snakefile_id)
+    print('getting ready to save file')
     with open(snakefile_loc, 'w') as file:
         file.write(snakefile_content)
 

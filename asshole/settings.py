@@ -12,14 +12,21 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIPELINE_DIR = os.path.abspath(os.path.join(BASE_DIR, '../pipeline/'))
-ASSNAKE_DB = '/data5/bio/databases/assnake'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_media/')
 
 MEDIA_ROOT = PIPELINE_DIR
 MEDIA_URL = '/media/'
+
+
+SNAKES_DIR = os.path.abspath(os.path.join(BASE_DIR, './run_snakes/'))
+ASSNAKE_INSTALLATION = '/data4/bio/fedorov/assnake'
+ASSNAKE_DB = '/data5/bio/databases/assnake'
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/

@@ -13,15 +13,17 @@ from rest_framework.response import Response
 
 class CelerySnakemakeFromJSON(APIView):
     def post(self, request):
-        data = json.loads(request.body)
+        res_req = json.loads(request.body)
         task_id = uuid()
-        res_locs = generate_files_for_snake_from_request_dict(data)
-
+        res_locs = generate_files_for_snake_from_request_dict(res_req)
+        print(res_locs)
         if isinstance(res_locs, (list,)):
+            print('its a list')
             if len(res_locs) > 0:
+                print(' run snake')
                 snakemake_run \
-                    .apply_async((res_locs, data['desired_results'].get('dry', 0),
-                                  data['desired_results']['threads'], 42), task_id=task_id)
+                    .apply_async((res_locs, res_req.get('dry', 0),
+                                  res_req['threads'], res_req['jobs']), task_id=task_id)
                 return Response('Requested ' + str(len(res_locs)) + ' results',
                                 status=status.HTTP_202_ACCEPTED,
                                 content_type='application/json')
