@@ -23,7 +23,7 @@ class Command(BaseCommand):
         results = glob.glob(assnake_loc+'/results/*/*.json')
 
         for result in results:
-            with open(result) as result_file:
+            with open(result, encoding='utf-8') as result_file:
                 result_dict = json.load(result_file)
                 res_type = ResultType.objects.get(id=result_dict['result_type'])
                 result_dict['result_type'] = res_type

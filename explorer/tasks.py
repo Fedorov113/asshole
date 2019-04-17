@@ -100,49 +100,50 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
         dry_arg = '-n'
         print('running dry')
 
-    shell_cmd_wc = "/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} --cluster 'qsub' {dry} -k -p --latency-wait 150 -j {jobs}  gen --config task_id='{task_id}'"
-    shell_cmd_wc = """/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} \
-    --drmaa ' -pe make {threads}' {dry} -k -p --latency-wait 150 -j {jobs} \
-    --drmaa-log-dir ./drmaa_log gen --config task_id='{task_id}'"""
-
-    shell_cmd = shell_cmd_wc.format(sn_loc=sn_loc, dry=dry_arg, threads=threads, jobs=jobs, task_id=self.request.id)
-
-    print('OPENING SUBPROCESS')
-    p = subprocess.Popen(
-        shell_cmd,
-        shell=True,
-        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    def check_io():
-        ready_to_read = select.select([p.stdout, p.stderr], [], [], 1000)[0]
-        for io in ready_to_read:
-            line = io.readline()
-            print(line)
-            # logger.info(line[:-1])
-
-    # keep checking stdout/stderr until the child exits
-    while p.poll() is None:
-        check_io()
-
-    check_io()
-
-    output, error = p.communicate()
-
-    if p.returncode != 0:
-        print('!!!!!ERROR!!!!!')
-        print(error)
-        print('return code')
-        print(p.returncode)
-    else:
-        print('output')
-        print(output)
-
-    ret = 'ALL DONE'
-    if p.returncode != 0:
-        print('BAD RETURN')
-        ret = str(output)
-        # self.update_state(task_id=self.request.id, state='FAILURE', meta="result is None")
-        # raise let_it_fail
+    # shell_cmd_wc = "/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} --cluster 'qsub' {dry} -k -p --latency-wait 150 -j {jobs}  gen --config task_id='{task_id}'"
+    #
+    # shell_cmd_wc = """/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} \
+    # --drmaa ' -pe make {threads}' {dry} -k -p --latency-wait 150 -j {jobs} \
+    # --drmaa-log-dir ./drmaa_log gen --config task_id='{task_id}'"""
+    #
+    # shell_cmd = shell_cmd_wc.format(sn_loc=sn_loc, dry=dry_arg, threads=threads, jobs=jobs, task_id=self.request.id)
+    #
+    # print('OPENING SUBPROCESS')
+    # p = subprocess.Popen(
+    #     shell_cmd,
+    #     shell=True,
+    #     stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #
+    # def check_io():
+    #     ready_to_read = select.select([p.stdout, p.stderr], [], [], 1000)[0]
+    #     for io in ready_to_read:
+    #         line = io.readline()
+    #         print(line)
+    #         # logger.info(line[:-1])
+    #
+    # # keep checking stdout/stderr until the child exits
+    # while p.poll() is None:
+    #     check_io()
+    #
+    # check_io()
+    #
+    # output, error = p.communicate()
+    #
+    # if p.returncode != 0:
+    #     print('!!!!!ERROR!!!!!')
+    #     print(error)
+    #     print('return code')
+    #     print(p.returncode)
+    # else:
+    #     print('output')
+    #     print(output)
+    #
+    # ret = 'ALL DONE'
+    # if p.returncode != 0:
+    #     print('BAD RETURN')
+    #     ret = str(output)
+    #     # self.update_state(task_id=self.request.id, state='FAILURE', meta="result is None")
+    #     # raise let_it_fail
 
     return ret
 
