@@ -2,8 +2,12 @@
 from __future__ import absolute_import, unicode_literals
 
 import requests
+import yaml
 from celery import shared_task
 from celery import group
+import snakemake
+from django_eventstream import send_event
+
 import logging
 import sys
 from celery import Task, states
@@ -88,6 +92,11 @@ class CallbackSnakemake(Task):
         group_task = tasks.apply_async()
 
 
+def snake_log(log_dict):
+    print(log_dict)
+    send_event('test', 'message', log_dict)
+
+
 @shared_task(base=CallbackSnakemake, bind=True)
 def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
     sn_loc = generate_snakefile(samples_list, self.request.id)
@@ -100,6 +109,25 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
         dry_arg = '-n'
         print('running dry')
 
+    configfile = os.path.join(settings.ASSNAKE_INSTALLATION, 'config.yml')
+    conda_prefix = ''
+    with open(configfile) as f:
+        config = yaml.load(f)
+        conda_prefix = config['conda_prefix']
+
+    status = 1
+    status = snakemake.snakemake(sn_loc,
+                                 config=dict(assnake_install_dir=settings.ASSNAKE_INSTALLATION),
+                                 targets=['gen'],
+                                 printshellcmds=True,
+                                 dryrun=True,
+                                 configfile=os.path.join(settings.ASSNAKE_INSTALLATION, 'config.yml'),
+                                 use_conda=True,
+                                 conda_prefix=conda_prefix,
+                                 log_handler=snake_log,
+                                 latency_wait = 350,
+                                 quiet = True
+                                 )
     # shell_cmd_wc = "/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} --cluster 'qsub' {dry} -k -p --latency-wait 150 -j {jobs}  gen --config task_id='{task_id}'"
     #
     # shell_cmd_wc = """/data6/bio/TFM/soft/miniconda3/envs/snake/bin/snakemake -s {sn_loc} \
@@ -145,7 +173,7 @@ def snakemake_run(self, samples_list, dry, threads=1, jobs=1):
     #     # self.update_state(task_id=self.request.id, state='FAILURE', meta="result is None")
     #     # raise let_it_fail
 
-    return ret
+    return status
 
 
 @shared_task

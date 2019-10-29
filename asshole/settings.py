@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIPELINE_DIR = os.path.abspath(os.path.join(BASE_DIR, '../pipeline/'))
@@ -21,12 +20,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_media/')
 MEDIA_ROOT = PIPELINE_DIR
 MEDIA_URL = '/media/'
 
-
 SNAKES_DIR = os.path.abspath(os.path.join(BASE_DIR, './run_snakes/'))
-ASSNAKE_INSTALLATION = '/data4/bio/fedorov/assnake'
+ASSNAKE_INSTALLATION = '/data6/bio/TFM/pipeline/assnake'
 ASSNAKE_DB = '/data5/bio/databases/assnake'
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -52,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
+    'django_eventstream',
     'rest_framework',
     'django_celery_results',
     'corsheaders',
@@ -68,6 +66,7 @@ INSTALLED_APPS = [
 CELERY_RESULT_BACKEND = 'django-db'
 
 MIDDLEWARE = [
+    'django_grip.GripMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -101,6 +100,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'asshole.wsgi.application'
+ASGI_APPLICATION = 'asshole.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

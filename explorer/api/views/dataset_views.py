@@ -13,7 +13,7 @@ import pandas as pd
 
 import sys
 
-sys.path.insert(0, '/data6/bio/TFM/pipeline/anal/fedorov/notebooks/dev_ass/')
+sys.path.insert(0, '/data4/bio/fedorov/assnake_dev/api/')
 import loaders as assload
 
 
